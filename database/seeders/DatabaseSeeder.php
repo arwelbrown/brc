@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             PublisherSeeder::class,
             ProductSeeder::class,
             TeamSeeder::class,
-            SeriesSeeder::class
+            SeriesSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
