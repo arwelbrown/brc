@@ -1,66 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="./public/img/br_admin/hexa_final_1.webp" width="400" alt="BRC Hex"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<h2 align="center">Broken Reality Comics</h2>
 
-## About Laravel
+## Setup
+Welcome! I'd like to start by saying that I use Arch btw.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+In all seriousness, the following setup method is what I used to get the site up and running on Arch Linux - this will likely be similar on other linux distros but if you're on Mac or for some unspeakable reason, Windows... Good luck I guess?
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Firstly, you'll need to set up PHP, and then docker on your machine. If you prefer docker desktop, go for it! I don't tend to use it however.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Once you have these set up, clone the project, and run composer install.
 
-## Learning Laravel
+We now need to create a shell function for entering the docker container we will be creating with Laravel Sail. To do this, follow these commands (I use bash, this might be different for you if you use zsh, or fish).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```sh
+touch ~/.bash_functions
+nano ~/.bash_functions
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Write the following function in your .bash_functions file
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```sh                                      
+function dockin() {
+        if [ -z "$1" -o -z "$2" ]; then
+                docker exec -it brc-laravel-1 /bin/bash
+        fi
+}
+```
+And hit ctrl+x and y. Then add this to your .bashrc, or other equivalent;
+```sh
+source ~/.bash_functions
+```
 
-## Laravel Sponsors
+You'll now be able to enter the container from anywhere within your system by running dockin.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Next, cd into the directory where the project is cloned, and run the following;
 
-### Premium Partners
+```sh
+php artisan sail:install
+./vendor/bin/sail up
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Next, once the container has built, run:
 
-## Contributing
+```sh
+docker ps
+```
+To verify that it's working.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Next up, we'll create an alias for running the sail command. Drop the following at the end of your shell startup file
 
-## Code of Conduct
+```sh
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+You'll now be able to start up your docker container in your directory by calling
+```
+sail up -d
+```
 
-## Security Vulnerabilities
+## Database
+As part of the sail setup, you will create a MySQL database, running on port 3306 of your local machine. You should be able to download any SQL client, and connect using the information in the .env file.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Populating the database
+In the project root directory, run the following commands;
+```sh
+dockin
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+php artisan migrate
+php artisan db:seed
+```
