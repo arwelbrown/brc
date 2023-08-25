@@ -7,9 +7,13 @@ Welcome! I'd like to start by saying that I use Arch btw.
 
 In all seriousness, the following setup method is what I used to get the site up and running on Arch Linux - this will likely be similar on other linux distros but if you're on Mac or for some unspeakable reason, Windows... Good luck I guess?
 
-Firstly, you'll need to set up PHP, and then docker on your machine. If you prefer docker desktop, go for it! I don't tend to use it however.
+Firstly, you'll need to set up PHP, composer, and then docker on your machine. If you prefer docker desktop, go for it! I don't tend to use it however.
 
-Once you have these set up, clone the project, and run composer install.
+Once you have these set up, clone the project, and run
+
+```sh
+composer install
+```
 
 We now need to create a shell function for entering the docker container we will be creating with Laravel Sail. To do this, follow these commands (I use bash, this might be different for you if you use zsh, or fish).
 
