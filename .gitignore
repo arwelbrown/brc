@@ -3,3 +3,5 @@ storage/db-data
 database
 vendor
 .htaccess
+
+public/storage/hot
