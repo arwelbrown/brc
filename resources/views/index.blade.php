@@ -26,7 +26,9 @@
                 <label for="email" hidden></label>
                 <input class="form-control" id="email" type="email" name="email" placeholder="Your Email">
             </div>
-            <div class="mb-3"><button class="btn btn-primary ms-2" type="submit" style="background: var(--bs-blue);">Subscribe </button></div>
+            <div class="mb-3">
+                <button class="btn btn-primary ms-2" type="submit" style="background: var(--bs-blue);">Subscribe</button>
+            </div>
         </form>
     </div>
     <h1 data-aos="fade-down" style="font-family: Anton, sans-serif;font-weight: bold;text-align: center;font-size: 36px;margin-top: 50px;letter-spacing: 2PX;">
@@ -85,7 +87,7 @@
                         <img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/br_admin/The_Alpha_ICON.webp') }}" alt="The Alpha">
                     </a></div>
                 <div class="col-6 col-sm-6 col-md-4 col-lg-3" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
-                    <a class="d-inline-block" href="store/store-tsds">
+                    <a class="d-inline-block" href="store/store-thesuperdragonflysentinels">
                         <img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/br_admin/Sentinels_Icon.webp') }}" alt="T.S.D.S">
                     </a>
                 </div>
@@ -151,7 +153,7 @@
             </div>
         </div>
         <div class="row gy-4 row-cols-md-2 row-cols-xl-3 justify-content-center" data-aos="fade-up">
-            <div class="col-lg-4 align-self-center">
+            <div class="col-lg-4">
                 <div class="card bg-dark" style="background: rgba(255,255,255,0);">
                     <div class="card-body p-4" style="background: var(--bs-card-cap-bg);">
                         <img class="img-fluid" src="{{ url('img/other_publishers/ecru_comics/Ecrucomics_Banner.webp') }}" style="margin-bottom: 5px;" alt="Ecru Comics">
@@ -162,33 +164,8 @@
             <div class="col-lg-4">
                 <div class="card bg-dark">
                     <div class="card-body p-4">
-                        <img class="img-fluid" src="{{ url('img/other_publishers/Flat_Timez/Flat_Timez_Publishing_Web_Banner.webp') }}" style="margin-bottom: 5px;" alt="Flat Timez Publishing">
-                        <a class="card-link" href="store/other-publishers/store-awaken" style="font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);">Flat Timez Publishing &gt;&gt;
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card bg-dark">
-                    <div class="card-body p-4">
-                        <img class="img-fluid" src="{{ url('img/other_publishers/Jrd_comics/JRD_WEB_BANNER.webp') }}" style="margin-bottom: 5px;" alt="JRD Comics">
+                        <img class="img-fluid" src="{{ url('img/series_saint/JRD_WEB_BANNER.webp') }}" style="margin-bottom: 5px;" alt="JRD Comics">
                         <a class="card-link" href="store/other-publishers/store-saint" style="color: rgb(255,255,255);">JRD Comics &gt;&gt;</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card bg-dark">
-                    <div class="card-body p-4">
-                        <img class="img-fluid" src="{{ url('img/other_publishers/Lumostation/lumostation_banner.webp') }}" style="margin-bottom: 5px;" alt="Lumostation LLC">
-                        <a class="card-link" href="store/other-publishers/store-lumostation" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">LumoStation LLC &gt;&gt;</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card bg-dark">
-                    <div class="card-body p-4">
-                        <img class="img-fluid" src="{{ url('img/other_publishers/Zero_Medal/Zero_Medal_Web_Banner.webp') }}" style="margin-bottom: 5px;" alt="Zero Medal Comix">
-                        <a class="card-link" href="store/other-publishers/store-zeromedal" style="font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);">Zero Medal Comix &gt;&gt;</a>
                     </div>
                 </div>
             </div>

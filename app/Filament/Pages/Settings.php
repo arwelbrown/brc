@@ -2,11 +2,12 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\User;
 use Filament\Pages\Page;
 
 class Settings extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-cog';
 
     protected static string $view = 'filament.pages.settings';
 

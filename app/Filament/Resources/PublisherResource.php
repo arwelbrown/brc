@@ -25,8 +25,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class PublisherResource extends Resource
 {
     protected static ?string $model = Publisher::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationGroup = 'Product Management';
+    protected static ?string $navigationIcon = 'heroicon-o-pencil';
 
     public static function form(Form $form): Form
     {

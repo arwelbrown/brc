@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Database\Seeders\SeriesSeeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,11 +14,11 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
     protected $casts = [
         'tags' => 'array',
         'in_development' => 'integer',
         'physical_available' => 'integer'
-
     ];
 
     public function publisher(): BelongsTo
@@ -27,9 +26,9 @@ class Product extends Model
         return $this->belongsTo(Publisher::class);
     }
 
-    public function series(): HasOne
+    public function series(): BelongsTo
     {
-        return $this->hasOne(Series::class);
+        return $this->belongsTo(Series::class);
     }
 
     protected $fillable = [

@@ -34,12 +34,20 @@
     <link rel="stylesheet" href="{{ url('css/Simple-Slider-swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ url('css/Team-Clean.css') }}">
 
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @if ($_ENV['APP_ENVIRONMENT'] === 'local')
+        @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/filament.css'])
+        <!-- Scripts -->
+    @else
+        <link rel="stylesheet" href="{{ url('build/assets/app-3f1c4ee8.css') }}">
+        <link rel="sylesheet" href="{{ url('build/assets/filament-4b36f534.css') }}">
+        <!-- Scripts -->
+        <script src="{{ url('build/assets/app-4ed993c7.js') }}"></script>
+    @endif
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
             integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
             crossorigin="anonymous">
     </script>
+
 </head>
 <body class="bg-black">
 <nav class="navbar navbar-light navbar-expand-lg sticky-top shadow-lg navigation-clean" style="background: rgb(0,0,0);">
@@ -62,7 +70,7 @@
                         <a class="dropdown-item" href="/store/store-saint" style="color: rgb(255,255,255);font-size: 13px;">Saint</a>
                         <a class="dropdown-item" href="/store/store-shadow" style="color: rgb(255,255,255);font-size: 13px;">Shadow</a>
                         <a class="dropdown-item" href="/store/store-thealpha" style="color: rgb(255,255,255);font-size: 13px;">The Alpha</a>
-                        <a class="dropdown-item" href="/store/store-tsds" style="color: rgb(255,255,255);font-size: 13px;">TSDS</a>
+                        <a class="dropdown-item" href="/store/store-thesuperdragonflysentinels" style="color: rgb(255,255,255);font-size: 13px;">TSDS</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown"><a class="dropdown-toggle nav-link text-end" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="font-size: 18px;font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);">More!</a>

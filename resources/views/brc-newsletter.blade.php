@@ -54,20 +54,24 @@
                 </a>
             </div>
             <div class="col-md-3 align-self-center">
-                <h1 style="margin-top: 20px;font-family: Anton, sans-serif;font-size: 30px;color: rgb(255,255,255);">
-                    JUNE 2023
-                </h1>
-                <p style="margin-bottom: 20px;color: rgb(207,207,207);font-family: 'Open Sans', sans-serif;">
-                    Coming Soon!
-                </p>
+                <img class="img-fluid" src="{{ url('img/br_admin/newsletter_june_23.webp') }}" width="80%" alt="">
+                <p style="font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);margin-top: 10px;">June 2023</p>
+                <a class="btn"
+                    role="button"
+                    style="background: rgb(255,255,255);color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-weight: bold;"
+                    href="{{ url('img/br_admin/newsletter_june_23.webp') }}">
+                    View Newsletter!
+                </a>
             </div>
             <div class="col-md-3 align-self-center">
-                <h1 style="margin-top: 20px;font-size: 30px;font-family: Anton, sans-serif;color: rgb(255,255,255);">
-                    JULY 2023
-                </h1>
-                <p style="margin-bottom: 20px;color: rgb(207,207,207);font-family: 'Open Sans', sans-serif;">
-                    Coming Soon!
-                </p>
+                <img class="img-fluid" src="{{ url('img/br_admin/newsletter_july_23.webp') }}" width="80%" alt="">
+                <p style="font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);margin-top: 10px;">July 2023</p>
+                <a class="btn"
+                    role="button"
+                    style="background: rgb(255,255,255);color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-weight: bold;"
+                    href="{{ url('img/br_admin/newsletter_july_23.webp') }}">
+                    View Newsletter!
+                </a>
             </div>
             <div class="col-md-3 align-self-center">
                 <h1 style="margin-top: 20px;font-family: Anton, sans-serif;font-size: 30px;color: rgb(255,255,255);">

@@ -78,28 +78,32 @@
         <div
             x-title="filament-stats-card-chart"
             x-data="{
-                chart: null,
-
                 labels: {{ json_encode(array_keys($chart)) }},
+
                 values: {{ json_encode(array_values($chart)) }},
 
                 init: function () {
-                    this.chart ? this.updateChart() : this.initChart()
+                    this.getChart() === undefined ? this.initChart() : this.updateChart()
                 },
 
                 initChart: function () {
-                    return this.chart = new Chart(this.$refs.canvas, {
+                    return new Chart(this.$refs.canvas, {
                         type: 'line',
                         data: {
                             labels: this.labels,
-                            datasets: [{
-                                data: this.values,
-                                backgroundColor: getComputedStyle($refs.backgroundColorElement).color,
-                                borderColor: getComputedStyle($refs.borderColorElement).color,
-                                borderWidth: 2,
-                                fill: 'start',
-                                tension: 0.5,
-                            }],
+                            datasets: [
+                                {
+                                    data: this.values,
+                                    backgroundColor: getComputedStyle(
+                                        $refs.backgroundColorElement,
+                                    ).color,
+                                    borderColor: getComputedStyle($refs.borderColorElement)
+                                        .color,
+                                    borderWidth: 2,
+                                    fill: 'start',
+                                    tension: 0.5,
+                                },
+                            ],
                         },
                         options: {
                             elements: {
@@ -114,10 +118,10 @@
                                 },
                             },
                             scales: {
-                                x:  {
+                                x: {
                                     display: false,
                                 },
-                                y:  {
+                                y: {
                                     display: false,
                                 },
                             },
@@ -128,16 +132,29 @@
                     })
                 },
 
+                getChart: function () {
+                    return Chart.getChart(this.$refs.canvas)
+                },
+
                 updateChart: function () {
-                    this.chart.data.labels = this.labels
-                    this.chart.data.datasets[0].data = this.values
-                    this.chart.update()
+                    chart = this.getChart()
+                    chart.data.labels = this.labels
+                    chart.data.datasets[0].data = this.values
+                    chart.update()
+                },
+
+                updateChartColors: function () {
+                    chart = this.getChart()
+                    chart.data.datasets[0].backgroundColor = getComputedStyle(
+                        $refs.backgroundColorElement,
+                    ).color
+                    chart.data.datasets[0].borderColor = getComputedStyle(
+                        $refs.borderColorElement,
+                    ).color
+                    chart.update('none')
                 },
             }"
-            x-on:dark-mode-toggled.window="
-                chart.destroy()
-                initChart()
-            "
+            x-on:dark-mode-toggled.window="updateChartColors()"
             class="absolute inset-x-0 bottom-0 overflow-hidden rounded-b-2xl"
         >
             <canvas wire:ignore x-ref="canvas" class="h-6">

@@ -35,38 +35,59 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Livewire\TemporaryUploadedFile;
+use Illuminate\Support\Str;
+use App\Http\Controllers\SeriesController;
+use App\Formatters\SlugFormatter;
 
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-s-book-open';
+    protected static ?string $navigationGroup = 'Product Management';
+
 
     public static function form(Form $form): Form
     {
-//        $fileSysIterator = new FilesystemIterator(__DIR__ . '/../../../storage/app/public/img');
-//
-//        if(!empty($fileSysIterator->current())) {
-//            //
-//        }
-//
-////        move_uploaded_file(
-////            from: __DIR__ . '/../../../storage/app/public/img/series_' . $series . '/covers/' . $coverTitle,
-////            to: __DIR__ . '/../../../public/img/series_' . $series . '/covers/' . $coverTitle
-////        );
-
         return $form
             ->schema([
                 TextInput::make('product_name')
                                 ->required()
                                 ->autofocus()
                                 ->placeholder('New Book #0')
-                                ->maxLength(255),
-                TextInput::make('series')
+                                ->maxLength(255)
+                                ->columnSpan('full'),
+                Select::make('series_id')
+                                ->relationship('series', 'series_name')
+                                ->reactive()
+                                ->afterStateUpdated(
+                                    fn ($state, callable $set) => $set('store_slug', SlugFormatter::formatSlug(SeriesController::getSeries($state)->series_name)))
                                 ->required()
                                 ->autofocus()
-                                ->placeholder('New Series')
-                                ->maxLength(255),
+                                ->createOptionForm([
+                                    TextInput::make('series.series_name')
+                                                ->autofocus()
+                                                ->reactive()
+                                                ->afterStateUpdated(fn (callable $get, callable $set) => $set('series.series_slug', SlugFormatter::formatSlug($get('series.series_name'))))
+                                                ->required()
+                                                ->maxLength(255),
+                                    Textarea::make('series.series_description')
+                                                ->autofocus()
+                                                ->required()
+                                                ->maxLength(2000),
+                                    TextInput::make('series.series_slug')
+                                                ->autofocus()
+                                                ->required()
+                                                ->disabled(),
+                                    Select::make('publisher')
+                                                ->relationship('publisher', 'publisher_name')
+                                                ->required(),
+                                    FileUpload::make('series_banner'),
+                                    FileUpload::make('series_logo')
+                                ]),
+                TextInput::make('store_slug')
+                                ->prefix('store-')
+                                ->disabled(),
                 TagsInput::make('tags')
                                 ->autofocus()
                                 ->placeholder('Series 1, Series 2...')
@@ -77,10 +98,15 @@ class ProductResource extends Resource
                                 ->maxLength(255)
                                 ->label('EJunkie Digital Link'),
                 TextInput::make('ejunkie_link_physical')
+                                ->reactive()
+                                ->afterStateUpdated(
+                                    fn ($state, callable $set) => !empty($state) ? $set('physical_available', true) : $set('physical_available', false)
+                                )
                                 ->nullable()
                                 ->autofocus()
                                 ->maxLength(255)
-                                ->label('Ejunkie Physical Link'),
+                                ->label('Ejunkie Physical Link')
+                                ->required(fn ($state, callable $get) => !empty($get('physical_price')) ? true : false),
                 Select::make('publisher_id')
                                 ->relationship('publisher', 'publisher_name')
                                 ->autofocus()
@@ -120,9 +146,11 @@ class ProductResource extends Resource
                                 ->autofocus()
                                 ->required(),
                 TextInput::make('physical_price')
+                                ->reactive()
                                 ->numeric()
                                 ->autofocus()
-                                ->nullable(),
+                                ->nullable()
+                                ->required(fn ($state, callable $get) => !empty($get('ejunkie_link_physical')) ? true : false),
                 FileUpload::make('img_string')
                             ->autofocus()
                             ->preserveFilenames()
@@ -147,15 +175,10 @@ class ProductResource extends Resource
                 Toggle::make('physical_available')
                             ->autofocus()
                             ->default(false),
-//                Hidden::make('store_slug')
-//                            ->default(function (Closure $get) {
-//                                $store_slug = $get('product_name');
-//                            })
-//                            ->autofocus()
-//                            ->required()
-                TextInput::make('store_slug')
+                Toggle::make('active')
+                            ->onIcon('heroicon-s-lightning-bolt')
                             ->autofocus()
-                            ->required()
+                            ->default(false),
             ]);
     }
 

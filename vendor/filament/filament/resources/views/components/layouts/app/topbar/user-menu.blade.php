@@ -22,14 +22,25 @@
 
     {{ \Filament\Facades\Filament::renderHook('user-menu.account.before') }}
 
-    <x-filament::dropdown.header
-        :color="$accountItem?->getColor() ?? 'secondary'"
-        :icon="$accountItem?->getIcon() ?? 'heroicon-s-user-circle'"
-        :href="$accountItemUrl"
-        :tag="filled($accountItemUrl) ? 'a' : 'div'"
-    >
-        {{ $accountItem?->getLabel() ?? \Filament\Facades\Filament::getUserName($user) }}
-    </x-filament::dropdown.header>
+    @if (filled($accountItemUrl))
+        <x-filament::dropdown.list>
+            <x-filament::dropdown.list.item
+                :color="$accountItem->getColor() ?? 'secondary'"
+                :icon="$accountItem->getIcon() ?? 'heroicon-s-user-circle'"
+                :href="$accountItemUrl"
+                tag="a"
+            >
+                {{ $accountItem->getLabel() ?? \Filament\Facades\Filament::getUserName($user) }}
+            </x-filament::dropdown.list.item>
+        </x-filament::dropdown.list>
+    @else
+        <x-filament::dropdown.header
+            :color="$accountItem?->getColor() ?? 'secondary'"
+            :icon="$accountItem?->getIcon() ?? 'heroicon-s-user-circle'"
+        >
+            {{ $accountItem?->getLabel() ?? \Filament\Facades\Filament::getUserName($user) }}
+        </x-filament::dropdown.header>
+    @endif
 
     {{ \Filament\Facades\Filament::renderHook('user-menu.account.after') }}
 
@@ -77,7 +88,7 @@
             },
         }"
     >
-        <div>
+        <div class="filament-theme-toggle">
             @if (config('filament.dark_mode'))
                 <x-filament::dropdown.list.item
                     icon="heroicon-s-moon"

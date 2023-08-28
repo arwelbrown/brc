@@ -22,6 +22,15 @@
         </div>
     </section>
     <section class="text-center bg-black">
+        <div class="container">
+            <div class="row g-1 justify-content-center align-items-center">
+                <div class="col-lg-9 align-self-center" style="margin-top: 10px;">
+                    <div class="pagination-block">
+                        {{ $products->links('layouts.store-pagination') }}
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-2 col-lg-3 col-xl-3">
@@ -36,25 +45,22 @@
                         <hr><a href="/store/store-godpunk" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">Godpunk</a>
                         <hr><a href="/store/store-legends" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">Legends</a>
                         <hr><a href="/store/store-operationnitro" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">Operation Nitro</a>
-                        <hr><a href="/store/store-saint" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">Saint</a>
                         <hr><a href="/store/store-shadow" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">Shadow</a>
                         <hr><a href="/store/store-chronicrangers" style="font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);">Super Stoner Chronic Rangers</a>
                         <hr><a href="/store/store-thealpha" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">The Alpha</a>
                         <hr><a href="/store/store-thefinalwielder" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">The Final Wielder</a>
-                        <hr><a href="/store/store-tsds" style="font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);">The Super Dragonfly Sentinels</a>
+                        <hr><a href="/store/store-thesuperdragonflysentinels" style="font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);">The Super Dragonfly Sentinels</a>
                         <hr>
-                        <h1 style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;">Other Publishers</h1>
-                        <hr><a href="/store/other-publishers/store-ecru" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">ECRU Comics</a>
-                        <hr><a href="/store/other-publishers/store-awaken" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">Flat Timez Publishing</a>
-                        <hr><a href="/store/store-lumostation" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">Lumostation LLC</a>
-                        <hr><a href="/store/store-zeromedal" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">Zero Medal</a>
+                        <h1 style="color: rgb(255,255,255);font-size: 20px; font-family: 'Open Sans', sans-serif; font-weight: bold;">Other Publishers</h1>
+                        <hr><a style="font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);" href="/store/other-publishers/store-saint">JRD Comics</a>
+                        <hr><a style="font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);" href="/store/other-publishers/store-ecrucomics">ECRU Comics</a>
                     </div>
                 </div>
                 <div class="col-md-10 col-lg-9 col-xl-9">
                         <div class="row justify-content-start projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;">
                             @foreach($products as $product)
                                 <div class="mt-3 col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3 item">
-                                    <div class="card border rounded-0 bg-black">
+                                    <div class="card border rounded-2 bg-black">
                                         <div class="card-body" style="padding-top: 16px;">
                                             <img class="img-fluid" src="{{ url($product->img_string) }}" width="92%" alt="">
                                             <h1 class="name text-white" style="font-family: 'Open Sans', sans-serif;font-size: 16px;padding-top: 15px;font-weight: bold;">{{ $product->product_name }}</h1>
@@ -65,9 +71,9 @@
                                                 Summary
                                             </button>
                                             @if (!empty($product->in_development) && $product->in_development === 1)
-                                                <p style="font-size: 15px;"><strong>In Development!</strong></p>
+                                                <p class="text-white" style="font-size: 15px;"><strong>Coming Soon!</strong></p>
                                             @else
-                                                <p style="color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-size: 12px;">
+                                                <p class="text-white" style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
                                                     Digital: ${{ $product->digital_price }}
                                                 </p>
                                                 <a href='{{ $product->ejunkie_link_digital }}'
@@ -120,7 +126,7 @@
                             </div>
                             <div class="d-flex flex-row">
                                 @if (!empty($product->in_development) && $product->in_development === 1)
-                                    <p style="font-size: 15px;"><strong>In Development!</strong></p>
+                                    <p class="text-white" style="font-size: 15px;"><strong>Coming Soon!</strong></p>
                                 @else
                                     <p class="mx-3 text-white" style="font-size: 13px;">Digital: ${{ $product->digital_price }}</p>
                                     <a href='{{ $product->ejunkie_link_digital }}'
