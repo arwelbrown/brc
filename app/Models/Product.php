@@ -21,11 +21,6 @@ class Product extends Model
         'physical_available' => 'integer'
     ];
 
-    public function publisher(): BelongsTo
-    {
-        return $this->belongsTo(Publisher::class);
-    }
-
     public function series(): BelongsTo
     {
         return $this->belongsTo(Series::class);
@@ -38,7 +33,6 @@ class Product extends Model
         'store_slug',
         'ejunkie_link_digital',
         'ejunkie_link_physical',
-        'publisher_id',
         'summary',
         'digital_price',
         'physical_price',

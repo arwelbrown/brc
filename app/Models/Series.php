@@ -11,15 +11,18 @@ class Series extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id';
+    protected $casts = [
+        'writers' => 'array',
+        'creators' => 'array',
+        'artists' => 'array',
+        'colorists' => 'array',
+        'letterers' => 'array',
+        'editors' => 'array', 
+    ];
 
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
-    }
-
-    public function publisher(): BelongsTo
-    {
-        return $this->belongsTo(Publisher::class);
     }
 
     public function characters(): HasMany

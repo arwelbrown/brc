@@ -3,39 +3,20 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
-use App\Models\Publisher;
-use Exception;
-use Closure;
-use Faker\Core\File;
-use Filament\Forms;
-use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Tables\Actions\DeleteAction;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
-use Filament\Tables;
-use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\Filter;
-use Filament\Tables\Filters\Layout;
-use Filament\Tables\Filters\SelectFilter;
-use FilesystemIterator;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\IconColumn;
 use Livewire\TemporaryUploadedFile;
-use Illuminate\Support\Str;
 use App\Http\Controllers\SeriesController;
 use App\Formatters\SlugFormatter;
 
@@ -79,11 +60,7 @@ class ProductResource extends Resource
                                                 ->autofocus()
                                                 ->required()
                                                 ->disabled(),
-                                    Select::make('publisher')
-                                                ->relationship('publisher', 'publisher_name')
-                                                ->required(),
                                     FileUpload::make('series_banner'),
-                                    FileUpload::make('series_logo')
                                 ]),
                 TextInput::make('store_slug')
                                 ->prefix('store-')
@@ -91,7 +68,8 @@ class ProductResource extends Resource
                 TagsInput::make('tags')
                                 ->autofocus()
                                 ->placeholder('Series 1, Series 2...')
-                                ->separator(),
+                                ->separator()
+                                ->columnSpan(2),
                 TextInput::make('ejunkie_link_digital')
                                 ->required()
                                 ->autofocus()
@@ -107,34 +85,6 @@ class ProductResource extends Resource
                                 ->maxLength(255)
                                 ->label('Ejunkie Physical Link')
                                 ->required(fn ($state, callable $get) => !empty($get('physical_price')) ? true : false),
-                Select::make('publisher_id')
-                                ->relationship('publisher', 'publisher_name')
-                                ->autofocus()
-                                ->preload()
-                                ->createOptionForm([
-                                    TextInput::make('publisher.publisher_name')
-                                                    ->autofocus()
-                                                    ->required()
-                                                    ->maxLength(255),
-                                    TextInput::make('publisher.publisher_email')
-                                                    ->email()
-                                                    ->autofocus()
-                                                    ->maxLength(255)
-                                                    ->required(),
-                                    FileUpload::make('publisher.logo')
-                                                    ->autofocus()
-                                                    ->preserveFilenames()
-                                                    ->nullable(),
-                                    TextInput::make('publisher.description')
-                                                    ->autofocus()
-                                                    ->maxLength(2000)
-                                                    ->nullable(),
-                                    FileUpload::make('publisher.banner')
-                                                    ->autofocus()
-                                                    ->preserveFilenames()
-                                                    ->nullable()
-                                ])
-                                ->required(),
                 Textarea::make('summary')
                                 ->autofocus()
                                 ->columnSpan(2)
@@ -152,6 +102,7 @@ class ProductResource extends Resource
                                 ->nullable()
                                 ->required(fn ($state, callable $get) => !empty($get('ejunkie_link_physical')) ? true : false),
                 FileUpload::make('img_string')
+                            ->reactive()
                             ->autofocus()
                             ->preserveFilenames()
                             ->acceptedFileTypes(['image/webp'])
@@ -159,12 +110,10 @@ class ProductResource extends Resource
                             ->label('Cover Image')
                             ->image()
                             ->directory('/img')
-                            ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
-                                $explode = explode('%', $file->getClientOriginalName());
-                                $series = strtolower($explode[0]);
-                                $coverTitle = $explode[1];
-
-                                return 'series_' . $series . '/covers/' . $coverTitle;
+                            ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
+                                $seriesId = $get('series_id');
+                                $series = SeriesController::getSeries($seriesId)->series_name;
+                                return 'series_' . strtolower(str_replace(' ', '', $series)) . '/covers/' . $file->getClientOriginalName();
                             })
                             ->enableOpen()
                             ->enableDownload()
@@ -181,37 +130,32 @@ class ProductResource extends Resource
                             ->default(false),
             ]);
     }
-
-    /**
-     * @throws Exception
-     */
-
+    
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
                 TextColumn::make('product_name')
-                            ->sortable()
-                            ->searchable(),
-                TextColumn::make('publisher.publisher_name')
-                            ->searchable()
-                            ->sortable(),
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('series.series_name')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('digital_price')
-                            ->money('usd', true)
-                            ->label('Digital Price ($)'),
+                    ->money('usd', true)
+                    ->label('Digital Price ($)'),
                 TextColumn::make('physical_price')
-                            ->money('usd', true)
-                            ->label('Physical Price ($)')
-                            ->placeholder('n/a')
-
+                    ->money('usd', true)
+                    ->label('Physical Price ($)')
+                    ->placeholder('n/a'),
+                IconColumn::make('active')
+                    ->boolean(),
             ])
-            ->defaultSort('product_name')
             ->filters([
                 //
             ])
             ->actions([
                 EditAction::make(),
-                DeleteAction::make()
             ])
             ->bulkActions([
                 //

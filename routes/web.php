@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
@@ -22,13 +21,11 @@ Route::get('/', function () {
 
 Route::resource('/about-us', TeamController::class);
 
-Route::get('/store/store-{slug}', [ProductController::class, 'creatorStore']);
+Route::get('/store/universe/{universe_slug}/{slug}', [ProductController::class, 'creatorStore']);
 
-Route::get('/store/other-publishers/store-{slug}', [ProductController::class, 'otherCreators']);
+Route::get('/store/universe/{slug}', [ProductController::class, 'universeStore']);
 
 Route::resource('/store', ProductController::class);
-
-Route::resource('/publishers', PublisherController::class);
 
 Route::get('/brc-newsletter', function() {
     return view('brc-newsletter');

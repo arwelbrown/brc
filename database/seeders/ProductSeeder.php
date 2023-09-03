@@ -16,7 +16,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Chaos Theory'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1721705',
                 'ejunkie_link_physical' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1770871',
-                'publisher_id' => 1,
                 'summary' => 'The introductory chapter of Chaos Theory we follow our protagonist by diving into his troubled past and realizing some of the motivation for his relentless pursuit of Donovan Green, owner of Majesty Pharmaceuticals and the architect behind the current state of the world.',
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -24,7 +23,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'chaostheory',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Chaos Theory #2',
@@ -32,7 +31,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Chaos Theory'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1721706',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => 'We are introduced to the Spartan unit, a rebel militia dedicated to protecting the people of the outlands from oppressive Majesty activity. On a “routine” supply run they learn that the current rules of engagement are changing, and now they must adapt on the fly to change with it.',
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -40,7 +38,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'chaostheory',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Alexia Midnight #0',
@@ -48,7 +46,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Alexia Midnight', 'Legends'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1743167',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => 'Alexia Midnight, a newborn vampire must understand what it means to be a vampire with the best teacher of them all; Dracula. Meanwhile, being chased by The Vigor, a religious cult bound to hunt the night.',
                 'digital_price' => 1.00,
                 'physical_price' => null,
@@ -56,7 +53,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'alexiamidnight',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Armored Eagle #1',
@@ -64,7 +61,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Armored Eagle'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1743177',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Itzli's conception is no ordinary one as it brings dark secrets around his origin. This series depicts King Itzcoatl and Yaretzi; a slave woman, who are intertwined in a forbidden romance. But when trouble arises the King must choose between his throne or his love. But that is the least of King Itzcoatl's problems.",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -72,7 +68,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'armoredeagle',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Armored Eagle #2',
@@ -80,7 +76,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Armored Eagle'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1743178',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Over 15 years have passed since the events of the Armored Eagle Issue 1, Itzli and the remaining Aztecs have been forced into hiding. Growing tired of hiding in the shadows of a once great empire, Itzli alone dares to take on the invasive Anunnaki. Will Itzli succeed or will he meet the same fate as those before him?",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -88,7 +83,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'armoredeagle',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Armored Eagle #3',
@@ -96,7 +91,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Armored Eagle'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1743179',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "How will Itzli fare against the mighty force of the Anunnaki? How will Enki assist the Aztecs in defeating Enlil? The final showdown between Enlil and Itzli starts now!",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -104,7 +98,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'armoredeagle',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'E. O. A #1',
@@ -112,7 +106,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Elements Of Agony', 'The Final Wielder",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1721708',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Ka`Jal is called to the scene of a murder which the police think was done by a mythical creature. Stunned due to the treaty, Ka`Jal calls for an emergency meeting demanding an answer. This causes the Mythical Creature Trinity to react violently, while Ka`Jal discovers the truth about her parents.",
                 'digital_price' => 2.99,
                 'physical_price' => 6.99,
@@ -120,7 +113,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store-slug' => 'elementsofagony',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'The Final Wielder',
@@ -128,7 +121,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Elements Of Agony', 'The Final Wielder'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1721709',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "While on a dig Charles discovers a magical Amulet created millennia ago that reveals a whole new life to him. This all came with a target being put on his back due to the powers possessed by the amulet, but everything turns for the worst when Charles discovers there's more than 1 Amulet.",
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -136,7 +128,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'thefinalwielder',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Moonage #1',
@@ -144,7 +136,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Moonage'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1743182',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Heartbroken after the disappearance of her mother, Carissa Hinz has to learn how to keep on living as a normal kid. With her father and younger brother by her side, Carissa has not lost hope that one day she will be reunited with her mother, Linda.",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -152,7 +143,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'moonage',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Moonage #2',
@@ -160,7 +151,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Moonage'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1743186',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "With a newly found crew, the Zellonian scientists have given Carissa. The crew will have to go to Dragon's Moon and retrieve the Fire Relic. But this will be no easy task as the Dragons are known for their ferocity.",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -168,7 +158,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'moonage',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Moonage #3',
@@ -176,7 +166,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Moonage'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1752579',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "After months of traveling through space, Carissa and her crew are closing in on the right wormhole that will send them back to Earth.",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -184,7 +173,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'moonage',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'The Sergeant #1',
@@ -192,7 +181,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'The Sergeant'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1743180',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "After the Chicago event, Ramos is sent back to Mexico where he is in custody and awaits prosecution.",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -200,7 +188,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'thesergeant',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'The Sergeant #2',
@@ -208,7 +196,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'The Sergeant'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1743181',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "After Ramos loses someone close to him, he sets his eyes on justice. Only issue, he will need help on this one. With no one left to trust, he has only one option.",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -216,7 +203,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'thesergeant',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Blaze And Vigor #1',
@@ -224,7 +211,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Blaze And Vigor', 'E.H.V.A'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1768667',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Henry and Johnny were orphaned at a young age after a mysterious fire burned down their house, killing both their parents. They were later taken in by E.H.V.A., an agency that deals with “special” occurrences. After a multitude of testing, both Henry and Johnny learned that they carried a unique gene in our DNA that scientists still struggle to understand. Henry's gene mysteriously activated the night of the fire, granting him the power to manifest and control fire. Johnny on the other hand had shown no sign of activity and was ruled as “inactive”.",
                 'digital_price' => 1.99,
                 'physical_price' => null,
@@ -232,7 +218,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'blazeandvigor',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Blaze And Vigor #2',
@@ -240,7 +226,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Blaze And Vigor', 'E.H.V.A'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1768669',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Bent on revenge, Henry is out for blood. Searching every inch of Chicago until he gets his hands on Ramos. But little does Henry know, Ramos is always a step ahead.",
                 'digital_price' => 1.99,
                 'physical_price' => null,
@@ -248,7 +233,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'blazeandvigor',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Blaze And Vigor #3',
@@ -256,7 +241,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Blaze And Vigor', 'E.H.V.A'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1768670',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Crime boss no more, Ramos has his eyes set on a larger goal. It will be up to Henry to stop Ramos from achieving his dream.",
                 'digital_price' => 1.99,
                 'physical_price' => null,
@@ -264,7 +248,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'blazeandvigor',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'E.H.V.A #1',
@@ -272,7 +256,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Blaze And Vigor', 'E.H.V.A'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1768671',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Moon is stranded on an unknown rogue planet and is in need of ship repairs to free her friends and family from Shala, the Anunnaki princess. Meanwhile on earth the heroes at E.H.V.A. are attempting to gather information on the alien relics that have been popping up.",
                 'digital_price' => 1.99,
                 'physical_price' => null,
@@ -280,7 +263,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'ehva',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'E.H.V.A #2',
@@ -288,7 +271,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Blaze And Vigor', 'E.H.V.A'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1768672',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Moon is stranded on an unknown rogue planet and is in need of ship repairs to free her friends and family from Shala, the Anunnaki princess. Meanwhile on earth the heroes at E.H.V.A. are attempting to gather information on the alien relics that have been popping up.",
                 'digital_price' => 1.99,
                 'physical_price' => null,
@@ -296,7 +278,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'ehva',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'E.H.V.A #3',
@@ -304,7 +286,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Blaze And Vigor', 'E.H.V.A'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1768674',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Enlil has found a new purpose in life, his new destiny! It will be up to E.H.V.A. to put an end to Enlil’s plot.",
                 'digital_price' => 1.99,
                 'physical_price' => null,
@@ -312,7 +293,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'ehva',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'E.H.V.A #4',
@@ -320,7 +301,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Blaze And Vigor', 'E.H.V.A'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1768675',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "The epic showdown against Enlil begins now!",
                 'digital_price' => 1.99,
                 'physical_price' => null,
@@ -328,7 +308,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'ehva',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Operation: Nitro',
@@ -336,7 +316,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'The Alpha', 'Operation: Nitro'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1738407',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => 'Operation: Nitro takes place one month after the events of The Alpha Prototype Trilogy. James (Jim) White former United States Special Forces, is reunited with his former members of his unit and was called once again on a dangerous mission where they need the help of an "enhanced".',
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -344,7 +323,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'operationnitro',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'The Alpha #1',
@@ -352,7 +331,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'The Alpha', 'Operation: Nitro'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1721712',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "A new threat of adaptables is terrorizing New York City. Follow Jason Perez (The Alpha) on a journey to find out who's responsible for these recent attacks.",
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -360,7 +338,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'thealpha',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'The Alpha #2',
@@ -368,7 +346,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'The Alpha', 'Operation: Nitro'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1721711',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Continuing the events of The Alpha 1; Jason uncovers the mysteries behind the attacks which leads to an epic showdown with a familiar foe!",
                 'digital_price' => 3.99,
                 'physical_price' => null,
@@ -376,7 +353,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'thealpha',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'The Alpha #3',
@@ -384,7 +361,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'The Alpha', 'Operation: Nitro'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1722133',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "An epic 37 page conclusion to the Prototype Trilogy where the stakes are driven high and heroes are molded through pressure. The Alpha goes head to head with Phantom for the last time, with a new suit and new set of powers!",
                 'digital_price' => 3.99,
                 'physical_price' => null,
@@ -392,7 +368,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'thealpha',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'The Alpha #1 (R)',
@@ -400,7 +376,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'The Alpha', 'Operation: Nitro'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1743143',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "A new threat of adaptables is terrorizing New York City. Follow Jason Perez (The Alpha) on a journey to find out who's responsible for these recent attacks, in this remastered edition of the story that started it all!",
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -408,7 +383,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'thealpha',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'The Alpha #4',
@@ -416,7 +391,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'The Alpha', 'Operation: Nitro'",
                 'ejunkie_link_digital' => '',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "",
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -424,7 +398,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 1,
                 'physical_available' => 0,
                 'store_slug' => 'thealpha',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'T.S.D.S #1',
@@ -432,15 +406,14 @@ class ProductSeeder extends Seeder
                 'tags' => "'The Super Dragonfly Sentinels'",
                 'ejunkie_link_digital' => '',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Michigan Ramirez, Grayson Lore, and Matthew Sel Basma are the last line of defense for the Kido Galaxy as the invading Alien Race The Alnoe wants to get rid of life across the Kido Galaxy and reign as the only species to survive. Beltox creates The Super Dragonfly Sentinels in which he uses Michigan and Co to transfigure their DNA with Dragonfly ones, in which he creates a superhuman fighting force to combat the alien threat.",
                 'digital_price' => 2.99,
                 'physical_price' => null,
-                'img_string' => 'img/series_tsds/covers/tsds_1_Cover.webp',
+                'img_string' => 'img/series_thesuperdragonflysentinels/covers/tsds_1_Cover.webp',
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'thesuperdragonflysentinels',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Tiny Tokes #1',
@@ -448,7 +421,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Super Stoner Chronic Ranger'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1743149',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "",
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -456,7 +428,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'chronicrangers',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Tiny Tokes #2',
@@ -464,7 +436,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Super Stoner Chronic Ranger'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1743150',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "",
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -472,7 +443,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'chronicrangers',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Saint #1',
@@ -480,7 +451,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Saint'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1724890',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "A nameless vigilante finds himself in a drug warehouse disguised as a construction business, in pursuit of a missing girl. Although the criminals he faces seem outclassed at first, the tables swiftly turn when the hero abruptly makes a horrific discovery. Faced with imminent doom, is it truly the end for the mysterious blue hero… Or is it somehow a new beginning?",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -488,7 +458,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'saint',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Saint #2',
@@ -496,7 +466,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Saint'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1724891',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "After dying at the hand of one of the city's most notorious drug lords, Jake Barker awakens in a  mysterious place called the After Realm. Given a second chance at life, it is now his mission to serve the  timeless being coined as “Judge” and re-establish The Balance as the super-powered being known as Saint.",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -504,7 +473,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'saint',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Saint #3',
@@ -512,7 +481,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Saint'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1724892',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "With a handful of victories under his belt, Saint has adjusted to his new life as a superhero… Or at least so he had thought. When faced with an all-out attack at a busy amusement park, our hero not only learns the hard way that he cannot be everywhere at once, but also that he is perhaps far more vulnerable than he had thought.",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -520,7 +488,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'saint',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Saint #4',
@@ -528,7 +496,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Saint'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1724894',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "While viewing the Cos-Orb in the After Realm, Judge sees an unsettling image of a dead Saint. Luckily, the real Saint is standing safely beside him. The dead impersonator lures Saint to the scene of the crime, where he finds a hostage situation underway at a comic book convention in his home city of Sprymouth. After mysteriously losing his powers, can Saint manage to save the day, or will the blood of countless innocent cosplayers be on his hands?",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -536,7 +503,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'saint',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Saint #5',
@@ -544,7 +511,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Saint'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1724895',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "In this gripping final chapter, Saint battles increasingly powerful enemies as he advances through the levels of the convention building. With the odds stacked heavily against him, he must find a way to win and save all the hostages that desperately wait for him on the main floor below. Unfortunately, Saint now feels as powerless as his fans. Will the hero somehow triumph over those who inflict pain on the innocent and get vengeance once and for all?",
                 'digital_price' => 3.00,
                 'physical_price' => null,
@@ -552,7 +518,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'saint',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Saint (Vol. 1)',
@@ -560,7 +526,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Saint'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1724896',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Jake Barker always wanted to be a superhero. Acting as a vigilante for years, one day he finally got his wish… Too bad he had to die for it. As the world's first superhero, he is finding that his new life is not all that it's cracked up to be. Now out for vengeance, will his abilities be enough, or will vengeance find him first as he struggles to understand his new life while attempting to maintain The Balance? This volume contains the full compilation of all 5 chapters, plus an epilogue and bonus art!",
                 'digital_price' => 12.00,
                 'physical_price' => null,
@@ -568,7 +533,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'saint',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Shadow #1',
@@ -576,7 +541,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Shadow'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1738406',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Jason Lynch has been invited into a new partnership with the mayor of Chicago and the city’s new E.C.U. Advisor Harry Shuester. Suspicious of the new project Jason investigates as the local vigilante (Shadow) only to find out the task may be tougher than expected.",
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -584,7 +548,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'shadow',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Legends #1',
@@ -592,7 +556,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Legends', 'Escape The Pit'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1721703',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Follow Lancelot, the last surviving member of the round table, as he hunts down the monsters that mean to bring an end to the modern world as we know it.",
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -600,7 +563,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'legends',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Legends #2',
@@ -608,7 +571,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Legends', 'Escape The Pit'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1734485',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "With the sudden increase of the dead rising around the globe Lancelot must bring an end to Merlin's plans before it's too late.",
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -616,7 +578,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'legends',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Godpunk #0',
@@ -624,15 +586,14 @@ class ProductSeeder extends Seeder
                 'tags' => "'Godpunk'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1734068',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "When Connor Thorne, a young archaeology student, takes a mysterious trip to a dig site in Greece he finds himself in the middle of a millennia old conflict. The god Tithonus has chosen Connor to wield the CICADA CHANGER and transform into GODPUNK! Now he faces armed mercenaries, vengeful gods, and many more challenges fit for ancient myth.",
-                'digital_price' => 7.50,
+                'digital_price' => 6.00,
                 'physical_price' => null,
                 'img_string' => 'img/series_godpunk/covers/Godpunk.webp',
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'godpunk',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Broken Realities #1',
@@ -640,7 +601,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Broken Realities'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1770873',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => 'With the first universal war coming to end, the Entities break reality by destroying one of their own. The sudden cascade of cosmic energies that were released when Tenebris met her end had broken space itself, resulting in the formation of the three territories that make up the universe as we know it.',
                 'digital_price' => 2.99,
                 'physical_price' => null,
@@ -648,7 +608,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'brokenrealities',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Escape The Pit',
@@ -656,7 +616,6 @@ class ProductSeeder extends Seeder
                 'tags' => "'Escape The Pit'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1721446',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "The world's deadliest monsters have escaped",
                 'digital_price' => 1.00,
                 'physical_price' => null,
@@ -664,7 +623,7 @@ class ProductSeeder extends Seeder
                 'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'escapethepit',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'Shadow #2',
@@ -672,15 +631,14 @@ class ProductSeeder extends Seeder
                 'tags' => "'Shadow'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1785216',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "Defeated by the Street Mercenary Trogon, the Chicago vigilante seeks out allies as Harry Shuesters sinister plan continues. Cassandra Reynolds and Detectives Deac Nights are recruited and informed on the current situation by Shadow and they  agree to help him defend the city from further harm.",
                 'digital_price' => 2.99,
                 'physical_price' => null,
                 'img_string' => 'img/series_shadow/covers/Shadow_2.webp',
-                'in_development' => 1,
+                'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'shadow',
-                'active' => 1
+                'active' => 1,
             ],
             [
                 'product_name' => 'T.S.D.S #2',
@@ -688,16 +646,30 @@ class ProductSeeder extends Seeder
                 'tags' => "'tsds'",
                 'ejunkie_link_digital' => 'https://www.fatfreecartpro.com/ecom/gb.php?&c=cart&ejc=2&cl=382587&i=1768679',
                 'ejunkie_link_physical' => null,
-                'publisher_id' => 1,
                 'summary' => "The Super Dragonfly Sentinels, chase the Alnoe across space, but an unexpected wormhole shifts them into the planet of Melcanay while the Alnoe escape. Meanwhile, on the planet Nekera, an Alnoian Teen is tired of the tyrant known as the Supreme Alnoe and wants to find a way to get others to rebel. While back at Selusha a weird rabies-zombie-like virus has started to infect the citizens of the planet, and it`s up to Beltox to save the day until the sentinels return.",
                 'digital_price' => 2.99,
                 'physical_price' => null,
-                'img_string' => 'img/series_tsds/covers/tsds_2_Cover.webp',
-                'in_development' => 1,
+                'img_string' => 'img/series_thesuperdragonflysentinels/covers/tsds_2_Cover.webp',
+                'in_development' => 0,
                 'physical_available' => 0,
                 'store_slug' => 'thesuperdragonflysentinels',
-                'active' => 1
+                'active' => 1,
             ],
+            [
+                'product_name' => 'Emerald Coyote',
+                'series_id' => 21,
+                'tags' => "'The Emerald Coyote', 'The Alpha'",
+                'ejunkie_link_digital' => '__blank',
+                'ejunkie_link_physical' => null,
+                'summary' => "",
+                'digital_price' => 2.99,
+                'physical_price' => null,
+                'img_string' => 'img/series_theemeraldcoyote/covers/ec1_cover.webp',
+                'in_development' => 1,
+                'physical_available' => 0,
+                'store_slug' => 'theemeraldcoyote',
+                'active' => 1,
+            ]
         ]);
     }
 }

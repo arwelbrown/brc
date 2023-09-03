@@ -2,25 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PublisherResource\RelationManagers\ProductsRelationManager;
 use App\Filament\Resources\SeriesResource\Pages;
-use App\Filament\Resources\SeriesResource\RelationManagers;
 use App\Models\Series;
-use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
-use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextArea;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
 use App\Formatters\SlugFormatter;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\DeleteAction;
+use App\Filament\Resources\SeriesResource\RelationManagers\ProductsRelationManager;
+use Filament\Forms\Components\TagsInput;
 
 class SeriesResource extends Resource
 {
@@ -38,22 +33,29 @@ class SeriesResource extends Resource
                     ->afterStateUpdated(fn (callable $set, $state) => !empty($state) ? $set('series_slug', SlugFormatter::formatSlug($state)) : $set('series_slug', ''))
                     ->autofocus()
                     ->required()
-                    ->maxLength(255)
-                    ->columnSpan(2),
+                    ->maxLength(255),
                 TextInput::make('series_slug')
                     ->autofocus()
                     ->required()
                     ->disabled(),
-                Select::make('publisher')
-                    ->relationship('publisher', 'publisher_name')
-                    ->required(),
+                TagsInput::make('creators')
+                    ->autofocus(),
+                TagsInput::make('writers')
+                    ->autofocus(),
+                TagsInput::make('artists')
+                    ->autofocus(),
+                TagsInput::make('editors')
+                    ->autofocus(),
+                TagsInput::make('colorists')
+                    ->autofocus(),
+                TagsInput::make('letterers')
+                    ->autofocus(),
                 Textarea::make('series_description')
                     ->autofocus()
                     ->columnSpanFull()
                     ->required()
                     ->maxLength(2000),
                 FileUpload::make('series_banner'),
-                FileUpload::make('series_logo')
             ]);
     }
 
