@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StoreController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,16 +21,16 @@ Route::get('/', function () {
 
 Route::resource('/about-us', TeamController::class);
 
-Route::get('/store/universe/{universe_slug}/{slug}', [ProductController::class, 'creatorStore']);
+Route::get('/store/universe/{universe_slug}/{slug}', [StoreController::class, 'seriesStore']);
 
-Route::get('/store/universe/{slug}', [ProductController::class, 'universeStore']);
+Route::get('/store/universe/{slug}', [StoreController::class, 'universeStore']);
 
-Route::resource('/store', ProductController::class);
+Route::resource('/store', StoreController::class);
 
 Route::get('/brc-newsletter', function() {
     return view('brc-newsletter');
 });
 
-Route::get('/ejunkie-test', [ProductController::class, 'getAllFromEjunkie']);
+Route::get('/ejunkie-test', [ProductStoreControllerController::class, 'getAllFromEjunkie']);
 
-Route::get('/ejunkie-test/{productId}', [ProductController::class, 'getProductByProductId']);
+Route::get('/ejunkie-test/{productId}', [StoreController::class, 'getProductByProductId']);

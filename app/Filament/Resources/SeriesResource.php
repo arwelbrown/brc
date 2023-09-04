@@ -16,6 +16,7 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\DeleteAction;
 use App\Filament\Resources\SeriesResource\RelationManagers\ProductsRelationManager;
 use Filament\Forms\Components\TagsInput;
+use Filament\Forms\Components\Select;
 
 class SeriesResource extends Resource
 {
@@ -55,6 +56,10 @@ class SeriesResource extends Resource
                     ->columnSpanFull()
                     ->required()
                     ->maxLength(2000),
+                Select::make('universe_id')
+                    ->relationship('universe', 'universe_name')
+                    ->autofocus()
+                    ->required(),
                 FileUpload::make('series_banner'),
             ]);
     }

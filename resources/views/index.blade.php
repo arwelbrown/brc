@@ -70,7 +70,7 @@
                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;margin-top: 20px;"><a class="d-inline-block" href="/store/universe/bruniverse/legends"><img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/series_legends/Legends_ICON.webp') }}"></a></div>
                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;margin-top: 20px;"><a class="d-inline-block" href="/store/universe/bruniverse/shadow"><img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/series_shadow/Shadow_Icon.webp') }}"></a></div>
                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;"><a class="d-inline-block" href="/store/universe/bruniverse/chronicrangers"><img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/series_chronicrangers/TheStoner_Icon.webp') }}"></a></div>
-                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;"><a class="d-inline-block" href="/store/universe/bruniversethealpha"><img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/series_thealpha/The_Alpha_ICON.webp') }}"></a></div>
+                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;"><a class="d-inline-block" href="/store/universe/bruniverse/thealpha"><img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/series_thealpha/The_Alpha_ICON.webp') }}"></a></div>
             </div>
         </div>
     </section>

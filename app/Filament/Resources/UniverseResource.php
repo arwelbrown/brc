@@ -5,16 +5,13 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UniverseResource\Pages;
 use App\Filament\Resources\UniverseResource\RelationManagers\SeriesRelationManager;
 use App\Models\Universe;
-use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\EditAction;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Formatters\SlugFormatter;
 
 class UniverseResource extends Resource
 {
@@ -28,6 +25,15 @@ class UniverseResource extends Resource
         return $form
             ->schema([
                 TextInput::make('universe_name')
+                    ->autofocus()
+                    ->required()
+                    ->reactive()
+                    ->afterStateUpdated(fn (callable $set, $state) => !empty($state) ? $set('universe_slug', SlugFormatter::formatSlug($state)) : $set('universe_slug', '')),
+                TextInput::make('universe_slug')
+                    ->disabled()
+                    ->autofocus()
+                    ->required()
+                    ->reactive(),
             ]);
     }
 

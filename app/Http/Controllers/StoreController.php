@@ -12,7 +12,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Contracts\Foundation\Application as FoundationApplication;
 use DataProviders\eJunkie\EjProductDataProvider;
 
-class ProductController extends Controller
+class StoreController extends Controller
 {
     public function index(): View|Application|Factory|FoundationApplication
     {
@@ -28,7 +28,7 @@ class ProductController extends Controller
         return view('store', ['products' => $products, 'featuredProducts' => $featuredProducts]);
     }
 
-    public function creatorStore(string $universeSlug, string $slug): View|Application|Factory|FoundationApplication
+    public function seriesStore(string $universeSlug, string $slug): View|Application|Factory|FoundationApplication
     {
         $universe = Universe::where('universe_slug', '=', $universeSlug)->get()->all();
         $products = Product::all()->where('store_slug', $slug)->paginate(24);
@@ -40,9 +40,8 @@ class ProductController extends Controller
             'letterers' => $series->letterers,
         ];
 
-
         return view(
-            'creator-store',
+            'store-series',
             [
                 'products' => $products,
                 'series' => $series,

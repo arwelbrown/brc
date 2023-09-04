@@ -47,20 +47,37 @@ class ProductResource extends Resource
                                 ->autofocus()
                                 ->createOptionForm([
                                     TextInput::make('series.series_name')
-                                                ->autofocus()
-                                                ->reactive()
-                                                ->afterStateUpdated(fn (callable $get, callable $set) => $set('series.series_slug', SlugFormatter::formatSlug($get('series.series_name'))))
-                                                ->required()
-                                                ->maxLength(255),
-                                    Textarea::make('series.series_description')
-                                                ->autofocus()
-                                                ->required()
-                                                ->maxLength(2000),
+                                    ->reactive()
+                                    ->afterStateUpdated(fn (callable $set, $state) => !empty($state) ? $set('series.series_slug', SlugFormatter::formatSlug($state)) : $set('series.series_slug', ''))
+                                    ->autofocus()
+                                    ->required()
+                                    ->maxLength(255),
                                     TextInput::make('series.series_slug')
-                                                ->autofocus()
-                                                ->required()
-                                                ->disabled(),
-                                    FileUpload::make('series_banner'),
+                                        ->autofocus()
+                                        ->required()
+                                        ->disabled(),
+                                    TagsInput::make('series.creators')
+                                        ->autofocus(),
+                                    TagsInput::make('series.writers')
+                                        ->autofocus(),
+                                    TagsInput::make('series.artists')
+                                        ->autofocus(),
+                                    TagsInput::make('series.editors')
+                                        ->autofocus(),
+                                    TagsInput::make('series.colorists')
+                                        ->autofocus(),
+                                    TagsInput::make('series.letterers')
+                                        ->autofocus(),
+                                    Select::make('universe_id')
+                                        ->relationship('universe', 'universe_name')
+                                        ->autofocus()
+                                        ->required(),
+                                    Textarea::make('series.series_description')
+                                        ->autofocus()
+                                        ->columnSpanFull()
+                                        ->required()
+                                        ->maxLength(2000),
+                                    FileUpload::make('series.series_banner'),
                                 ]),
                 TextInput::make('store_slug')
                                 ->prefix('store-')

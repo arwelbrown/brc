@@ -35,29 +35,31 @@
                                     <section class="py-4 py-xl-5"><img class="img-fluid" src="{{ url($series->series_banner) }}"></section>
                                     <div class="row projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;">
                                         @foreach($products as $product)
-                                            <div class="col-4 col-sm-4 col-md-5 col-lg-3 col-xl-3 col-xxl-3 item">
+                                            <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 col-xxl-3 item">
                                                 <div class="card border rounded-0" style="background: rgba(255,255,255,0);">
                                                     <div class="card-body text-center" style="padding-top: 16px;">
                                                         <img class="img-fluid" src="{{ url($product->img_string) }}">
                                                         <h1 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">{{ $product->product_name }}</h1>
                                                         @if (!empty($product->in_development) && $product->in_development === 1)
                                                             <p class="text-white" style="font-size: 13px;"><strong>Coming Soon!</strong></p>
-                                                            <a disabled href='{{ $product->ejunkie_link_digital }}'
-                                                                onclick='return EJEJC_lc(this);'
+                                                            <a disabled href=''
                                                                 style='display:inline-block;background:black; cursor:default;center/100px no-repeat;border: none;padding: 7px 55px;border-radius: 3px;box-shadow: 1px 2px 2px rgba(0,0,0,0.2);text-decoration: none;'
-                                                                target='ej_ejc'
-                                                                class='ec_ejc_thkbx'>&nbsp;
+                                                                class='ec_ejc_thkbx'>
                                                             </a>
                                                         @else
                                                             <p class="text-white" style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
                                                                 Digital: ${{ $product->digital_price }}
                                                             </p>
-                                                            <a href='{{ $product->ejunkie_link_digital }}'
-                                                                onclick='return EJEJC_lc(this);'
-                                                                style='display:inline-block;background: #3da5d9 url(https://www.e-junkie.com/ej/images/newaddtocart.png) center/100px no-repeat;border: none;padding: 7px 55px;border-radius: 3px;box-shadow: 1px 2px 2px rgba(0,0,0,0.2);text-decoration: none;'
-                                                                target='ej_ejc'
-                                                                class='ec_ejc_thkbx'>&nbsp;
-                                                            </a>
+                                                            <button class="btn btn-light">
+                                                                <a href='{{ $product->ejunkie_link_digital }}'
+                                                                    onclick='return EJEJC_lc(this);'
+                                                                    target='ej_ejc'
+                                                                    class='ec_ejc_thkbx'
+                                                                    style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:10px;text-decoration:none;"
+                                                                >
+                                                                    ADD TO CART
+                                                                </a>
+                                                            </button>
                                                         @endif
                                                         @if (
                                                                 !empty($product->physical_price) &&
@@ -65,12 +67,16 @@
                                                                 (int) $product->physical_available === 1
                                                             )
                                                             <p style="font-size: 15px;">Physical: ${{ $product->physical_price }}</p>
-                                                            <a href='{{ $product->ejunkie_link_physical }}'
-                                                                onclick='return EJEJC_lc(this);'
-                                                                style='display: inline-block; background: #49be25 url(https://www.e-junkie.com/ej/images/newaddtocart.png) center/100px no-repeat; border: none;padding: 7px 55px;border-radius: 3px;box-shadow: 1px 2px 2px rgba(0,0,0,0.2); text-decoration: none;'
-                                                                target='ej_ejc'
-                                                                class='ec_ejc_thkbx'>&nbsp;
-                                                            </a>
+                                                            <button class="btn btn-light">
+                                                                <a href='{{ $product->ejunkie_link_physical }}'
+                                                                    onclick='return EJEJC_lc(this);'
+                                                                    target='ej_ejc'
+                                                                    class='ec_ejc_thkbx'
+                                                                    style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:10px;text-decoration:none;"
+                                                                >
+                                                                    ADD TO CART
+                                                                </a>
+                                                            </button>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -125,7 +131,7 @@
                         @endforeach
                     </p>
                 @endif
-                @if (!empty($artTeam) && !empty($artTeam[0]))
+                @if (!empty($artTeam))
                     <h1 style="text-align: left;color: rgb(255,255,255);font-size: 25px;font-family: 'Open Sans', sans-serif;font-weight: bold;">Art Team:</h1>
                     @foreach ($artTeam as $deptName => $dept)
                         @if (!empty($dept))
