@@ -19,72 +19,98 @@
     </div>          
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-9 col-lg-9 col-xl-8">
-                <div class="row justify-content-center">
-                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-11 col-xxl-11">
-                        <div>
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1" style="color: rgb(255,255,255);background: var(--bs-card-cap-bg);font-family: 'Open Sans', sans-serif;font-weight: bold;">
-                                        {{ $series->series_name }}
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="tab-content" style="margin-bottom: 50px;">
-                                <div class="tab-pane fade show active" role="tabpanel" id="tab-1">
-                                    <section class="py-4 py-xl-5">
-                                        <img class="img-fluid" src="{{ url($series->series_banner) }}">
-                                    </section>
-                                    <div class="row justify-content-start projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;">
-                                        @foreach($products as $product)
-                                            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3 item">
-                                                <div class="card border rounded-0 mb-3" style="background: rgba(255,255,255,0);">
-                                                    <div class="card-body text-center" style="padding-top: 16px;">
-                                                        <img class="img-fluid" src="{{ url($product->img_string) }}">
-                                                        <h1 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">{{ $product->product_name }}</h1>
-                                                        @if (!empty($product->in_development) && $product->in_development === 1)
-                                                            <p class="text-white" style="font-size: 13px;"><strong>Coming Soon!</strong></p>
-                                                            <a disabled href=''
-                                                                style='display:inline-block;background:black; cursor:default;center/100px no-repeat;border: none;padding: 7px 55px;border-radius: 3px;box-shadow: 1px 2px 2px rgba(0,0,0,0.2);text-decoration: none;'
-                                                                class='ec_ejc_thkbx'>
-                                                            </a>
-                                                        @else
-                                                            <p class="text-white" style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
-                                                                Digital: ${{ $product->digital_price }}
-                                                            </p>
-                                                            <button class="btn btn-light">
-                                                                <a href='{{ $product->ejunkie_link_digital }}'
-                                                                    onclick='return EJEJC_lc(this);'
-                                                                    target='ej_ejc'
-                                                                    class='ec_ejc_thkbx'
-                                                                    style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:12px;text-decoration:none;"
-                                                                >
-                                                                    ADD TO CART
-                                                                </a>
-                                                            </button>
-                                                        @endif
-                                                        @if (
-                                                                !empty($product->physical_price) &&
-                                                                !empty($product->ejunkie_link_physical) &&
-                                                                (int) $product->physical_available === 1
-                                                            )
-                                                            <p style="font-size: 15px;">Physical: ${{ $product->physical_price }}</p>
-                                                            <button class="btn btn-light">
-                                                                <a href='{{ $product->ejunkie_link_physical }}'
-                                                                    onclick='return EJEJC_lc(this);'
-                                                                    target='ej_ejc'
-                                                                    class='ec_ejc_thkbx'
-                                                                    style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:12px;text-decoration:none;"
-                                                                >
-                                                                    ADD TO CART
-                                                                </a>
-                                                            </button>
-                                                        @endif
-                                                    </div>
-                                                </div>
+            <div class="col-sm-9 col-md-9 col-lg-9 col-xl-8 col-xxl-8 align-self-center">
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1" style="color: rgb(255,255,255);background: var(--bs-card-cap-bg);font-family: 'Open Sans', sans-serif;font-weight: bold;">
+                                {{ $series->series_name }}
+                            </a>
+                        </li>
+
+                        @if (!empty($characters)) 
+                            <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;background: rgba(255,255,255,0);">Character Bio</a></li>
+                        @endif
+                    </ul>
+                    <div class="tab-content" style="margin-bottom: 50px;">
+                        <div class="tab-pane fade show active" role="tabpanel" id="tab-1">
+                            <section class="py-4 py-xl-5">
+                                <img class="img-fluid" src="{{ url($series->series_banner) }}">
+                            </section>
+                            <div class="row justify-content-start projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;">
+                                @foreach($products as $product)
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3 item">
+                                        <div class="card border rounded-0 mb-3" style="background: rgba(255,255,255,0);">
+                                            <div class="card-body text-center" style="padding-top: 16px;">
+                                                <img class="img-fluid" src="{{ url($product->img_string) }}">
+                                                <h1 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">{{ $product->product_name }}</h1>
+                                                @if (!empty($product->in_development) && $product->in_development === 1)
+                                                    <p class="text-white" style="font-size: 13px;"><strong>Coming Soon!</strong></p>
+                                                    <a disabled href=''
+                                                        style='display:inline-block;background:black; cursor:default;center/100px no-repeat;border: none;padding: 7px 55px;border-radius: 3px;box-shadow: 1px 2px 2px rgba(0,0,0,0.2);text-decoration: none;'
+                                                        class='ec_ejc_thkbx'>
+                                                    </a>
+                                                @else
+                                                    <p class="text-white" style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
+                                                        Digital: ${{ $product->digital_price }}
+                                                    </p>
+                                                    <button class="btn btn-light">
+                                                        <a href='{{ $product->ejunkie_link_digital }}'
+                                                            onclick='return EJEJC_lc(this);'
+                                                            target='ej_ejc'
+                                                            class='ec_ejc_thkbx'
+                                                            style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:12px;text-decoration:none;"
+                                                        >
+                                                            ADD TO CART
+                                                        </a>
+                                                    </button>
+                                                @endif
+                                                @if (
+                                                        !empty($product->physical_price) &&
+                                                        !empty($product->ejunkie_link_physical) &&
+                                                        (int) $product->physical_available === 1
+                                                    )
+                                                    <p style="font-size: 15px;">Physical: ${{ $product->physical_price }}</p>
+                                                    <button class="btn btn-light">
+                                                        <a href='{{ $product->ejunkie_link_physical }}'
+                                                            onclick='return EJEJC_lc(this);'
+                                                            target='ej_ejc'
+                                                            class='ec_ejc_thkbx'
+                                                            style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:12px;text-decoration:none;"
+                                                        >
+                                                            ADD TO CART
+                                                        </a>
+                                                    </button>
+                                                @endif
                                             </div>
-                                        @endforeach
+                                        </div>
                                     </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" role="tabpanel" id="tab-2">
+                            <div class="row justify-content-start projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;margin-top: 20px;">
+                                <div class="col-sm-12 col-md-6 col-lg-6 align-self-center">
+                                    <img class="img-fluid" src="assets/img/series_thealpha/Alpha%20(Hero%20Suit).webp">
+                                </div>
+                                <div class="col-lg-6">
+                                    <h1 class="text-start" style="font-family: Iceberg, serif;font-weight: bold;">
+                                        <span style="color: rgb(255, 255, 255);">
+                                            THE ALPHA
+                                        </span>
+                                    </h1>
+                                    <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Name</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: Jason Perez&nbsp;</span></p>
+                                    <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Alias</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: The Alpha. ThePrototype. A. Hero of New York.</span></p>
+                                    <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Race</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: Adaptable A-tier</span></p>
+                                    <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Abilities</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: Extreme Heightened senses. Adaptability and Invulnerability. Super Hearing and Scent. Healing factor, and long lasting stamina, sonic scream. Flight. Super Strength and Speed. Limit breaker transformation.</span></p>
+                                    <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Weaknesses</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: Byzantium. High blunt force trauma caused by other super powered beings.</span></p>
+                                    <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Affiliation</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: The Four.</span></p>
+                                    <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Appearances</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: The Alpha, Operation&nbsp;Nitro, Broken Realities, The Emerald Coyote</span></p>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-11">
+                                    <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">History</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: Jason was abducted by a secret organization called The Corp. His DNA was genetically altered and modified to create the very first successful lab tested "super-being" i.e. The Prototype with the goal of reshaping humanity. Jason along with three others became a notoriously dangerous mercenary group called The Four who for a certain amount of time has worked for The Corp. He took on the role of leader in the group (The Alpha). Due to unpredicted circumstances and a terrible accident The Four have disappeared from the public image and the control of The Corp for years (including The Alpha). He has lived in hiding under his normal name and has vowed to never become The Alpha again until a set of particular circumstances occurs.&nbsp;</span></p>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +118,7 @@
                 </div>
             </div>
             <div 
-                class="col-sm-12 col-md-3 col-lg-3 col-xxl-3 text-start text-white"
+                class="col-sm-12 col-md-9 col-lg-3 col-xxl-3 text-start text-white"
                 data-aos="fade-down"
                 data-aos-delay="200"
                 style="font-family:'Open Sans', sans-serif';color: rgb(255,255,255);"

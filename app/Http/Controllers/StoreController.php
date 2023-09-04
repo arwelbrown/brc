@@ -40,6 +40,8 @@ class StoreController extends Controller
             'letterers' => $series->letterers,
         ];
 
+        $characters = ['test' => []];
+
         return view(
             'store-series',
             [
@@ -50,6 +52,7 @@ class StoreController extends Controller
                 'editors' => $series->editors,
                 'writers' => $series->writers,
                 'artTeam' => $artTeam,
+                'characters' => $characters,
             ]
         );
     }
