@@ -57,7 +57,7 @@
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
         <!-- Scripts -->
     @else
-        <link rel="stylesheet" href="{{ url('build/assets/app-26ab4b75.css') }}">
+        <link rel="stylesheet" href="{{ url('build/assets/app-847e1446.css') }}">
         <link rel="sylesheet" href="{{ url('build/assets/filament-c46a082f.css') }}">
         <!-- Scripts -->
         <script src="{{ url('build/assets/app-4ed993c7.js') }}"></script>
@@ -82,13 +82,13 @@
             </button>
                 <div class="collapse navbar-collapse" id="navcol-2">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item text-end"><a class="nav-link" href="/store" style="color: var(--bs-white);font-size: 18px;font-family: 'Open Sans', sans-serif;">Comic Book Store</a></li>
+                        <li class="nav-item text-end"><a class="nav-link hover" href="/store" style="color: var(--bs-white);font-size: 18px;font-family: 'Open Sans', sans-serif;">Comic Book Store</a></li>
                         <li class="nav-item text-end"><a class="nav-link" href="https://www.redbubble.com/people/BRCStore/shop" style="color: var(--bs-white);font-size: 18px;font-family: 'Open Sans', sans-serif;">Merch Store</a></li>
                         <li class="nav-item text-end"></li>
                         <li class="nav-item dropdown"><a class="dropdown-toggle nav-link text-end" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="font-size: 18px;font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);">More!</a>
                             <div class="dropdown-menu text-end" style="font-size: 13px;background: rgb(0,0,0);">
-                                <a class="dropdown-item" href="/about-us" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">About Us</a>
-                                <a class="dropdown-item" href="/brc-newsletter" style="color: rgb(255,255,255);">BRC Newsletter</a>
+                                <a class="dropdown-item text-white" href="/about-us" style="font-family: 'Open Sans', sans-serif;">About Us</a>
+                                <a class="dropdown-item text-white" href="/brc-newsletter" style="font-family: 'Open Sans', sans-serif;">BRC Newsletter</a>
                             </div>
                         </li>
                         <li class="nav-item text-end">
