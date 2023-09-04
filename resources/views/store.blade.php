@@ -107,7 +107,7 @@
                 <div class="col-auto col-md-10 col-lg-9 col-xl-9 col-xxl-11">
                     <div class="row projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;">
                         @foreach ($products as $product)
-                            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-2 item" style="padding-bottom: 10px;">
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 item" style="padding-bottom: 10px;">
                                 <div class="card border rounded-0" style="background: rgb(0,0,0);">
                                     <div class="card-body" style="padding-top: 16px;">
                                         <img class="img-fluid" src="{{ asset($product->img_string) }}">
@@ -123,7 +123,7 @@
                                                     onclick='return EJEJC_lc(this);'
                                                     target='ej_ejc'
                                                     class='ec_ejc_thkbx'
-                                                    style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:10px;text-decoration:none;"
+                                                    style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:12px;text-decoration:none;"
                                                 >
                                                     ADD TO CART
                                                 </a>
@@ -140,7 +140,7 @@
                                                     onclick='return EJEJC_lc(this);'
                                                     target='ej_ejc'
                                                     class='ec_ejc_thkbx'
-                                                    style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:10px;text-decoration:none;"
+                                                    style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:12px;text-decoration:none;"
                                                 >
                                                     ADD TO CART
                                                 </a>

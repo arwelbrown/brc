@@ -32,11 +32,13 @@
                             </ul>
                             <div class="tab-content" style="margin-bottom: 50px;">
                                 <div class="tab-pane fade show active" role="tabpanel" id="tab-1">
-                                    <section class="py-4 py-xl-5"><img class="img-fluid" src="{{ url($series->series_banner) }}"></section>
-                                    <div class="row projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;">
+                                    <section class="py-4 py-xl-5">
+                                        <img class="img-fluid" src="{{ url($series->series_banner) }}">
+                                    </section>
+                                    <div class="row justify-content-start projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;">
                                         @foreach($products as $product)
-                                            <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 col-xxl-3 item">
-                                                <div class="card border rounded-0" style="background: rgba(255,255,255,0);">
+                                            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3 item">
+                                                <div class="card border rounded-0 mb-3" style="background: rgba(255,255,255,0);">
                                                     <div class="card-body text-center" style="padding-top: 16px;">
                                                         <img class="img-fluid" src="{{ url($product->img_string) }}">
                                                         <h1 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">{{ $product->product_name }}</h1>
@@ -55,7 +57,7 @@
                                                                     onclick='return EJEJC_lc(this);'
                                                                     target='ej_ejc'
                                                                     class='ec_ejc_thkbx'
-                                                                    style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:10px;text-decoration:none;"
+                                                                    style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:12px;text-decoration:none;"
                                                                 >
                                                                     ADD TO CART
                                                                 </a>
@@ -72,7 +74,7 @@
                                                                     onclick='return EJEJC_lc(this);'
                                                                     target='ej_ejc'
                                                                     class='ec_ejc_thkbx'
-                                                                    style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:10px;text-decoration:none;"
+                                                                    style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:12px;text-decoration:none;"
                                                                 >
                                                                     ADD TO CART
                                                                 </a>
