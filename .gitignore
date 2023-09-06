@@ -1,7 +1,9 @@
 node_modules
-storage/db-data
-vendor
 .htaccess
+vendor
+
+### db ###
+storage/db-data
 database/seeders
 
 ### vite hotreloader ###
