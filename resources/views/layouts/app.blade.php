@@ -54,7 +54,7 @@
     <link rel="stylesheet" href="{{ url('css/Team-Clean.css') }}">
     
     @if ($_ENV['APP_ENVIRONMENT'] === 'local')
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+        @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/filament.css'])
         <!-- Scripts -->
     @else
         <link rel="stylesheet" href="{{ url('build/assets/app-847e1446.css') }}">
@@ -66,7 +66,6 @@
             integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
             crossorigin="anonymous">
     </script>
-
 </head>
 <body class="bg-black" style="background: rgb(18,21,24);color: rgb(33, 37, 41);">
     <nav class="navbar navbar-expand-lg sticky-top shadow-lg navigation-clean navbar-light" style="background: rgb(0,0,0);">

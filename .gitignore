@@ -4,3 +4,5 @@ vendor
 .htaccess
 database/seeders
 public/storage/hot
+
+.env.uat
