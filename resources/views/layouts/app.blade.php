@@ -54,11 +54,10 @@
     <link rel="stylesheet" href="{{ url('css/Team-Clean.css') }}">
     
     @if ($_ENV['APP_ENVIRONMENT'] === 'local')
-        @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/filament.css'])
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
         <!-- Scripts -->
     @else
         <link rel="stylesheet" href="{{ url('build/assets/app-847e1446.css') }}">
-        <link rel="sylesheet" href="{{ url('build/assets/filament-c46a082f.css') }}">
         <!-- Scripts -->
         <script src="{{ url('build/assets/app-4ed993c7.js') }}"></script>
     @endif
