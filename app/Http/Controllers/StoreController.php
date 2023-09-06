@@ -34,13 +34,19 @@ class StoreController extends Controller
         $products = Product::all()->where('store_slug', $slug)->paginate(24);
         $series = Series::where('series_slug', $slug)->first();
 
+        $charactersInSeries = $series->characters()->get()->all();
+
+        $characters = [];
+
+        foreach ($charactersInSeries as $character) {
+            $characters[] = $character->get()->all();
+        }
+
         $artTeam = [
             'artists' => $series->artists,
             'colorists' => $series->colorists,
             'letterers' => $series->letterers,
         ];
-
-        $characters = ['test' => []];
 
         return view(
             'store-series',
@@ -52,7 +58,7 @@ class StoreController extends Controller
                 'editors' => $series->editors,
                 'writers' => $series->writers,
                 'artTeam' => $artTeam,
-                'characters' => $characters,
+                'characters' => $characters[0],
             ]
         );
     }

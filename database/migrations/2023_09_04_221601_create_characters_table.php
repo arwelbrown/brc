@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
+            $table->string('real_name');
             $table->string('name');
             $table->string('aliases');
             $table->string('race');
             $table->string('abilities');
             $table->string('weaknesses');
             $table->string('affiliations');
+            $table->string('appearances');
             $table->longText('history');
             $table->string('img_string');
             $table->foreignId('series_id')->constrained('series')->cascadeOnDelete()->default(0);
