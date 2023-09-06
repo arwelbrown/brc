@@ -4,7 +4,7 @@ vendor
 
 ### db ###
 storage/db-data
-database/seeders
+database/seeders/UserSeeder.php
 
 ### vite hotreloader ###
 public/hot
