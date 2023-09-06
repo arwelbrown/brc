@@ -58,7 +58,6 @@
         <!-- Scripts -->
     @else
         <link rel="stylesheet" href="{{ url('build/assets/app-847e1446.css') }}">
-        <link rel="sylesheet" href="{{ url('build/assets/filament-c46a082f.css') }}">
         <!-- Scripts -->
         <script src="{{ url('build/assets/app-4ed993c7.js') }}"></script>
     @endif
@@ -66,7 +65,6 @@
             integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
             crossorigin="anonymous">
     </script>
-
 </head>
 <body class="bg-black" style="background: rgb(18,21,24);color: rgb(33, 37, 41);">
     <nav class="navbar navbar-expand-lg sticky-top shadow-lg navigation-clean navbar-light" style="background: rgb(0,0,0);">

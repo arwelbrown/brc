@@ -1,7 +1,14 @@
 node_modules
-storage/db-data
-database
-vendor
 .htaccess
+vendor
 
-public/storage/hot
+### db ###
+storage/db-data
+database/seeders/UserSeeder.php
+
+### vite hotreloader ###
+public/hot
+
+.env.local
+.env.uat
+.env
