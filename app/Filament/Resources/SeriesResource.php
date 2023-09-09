@@ -13,7 +13,6 @@ use Filament\Forms\Components\FileUpload;
 use App\Formatters\SlugFormatter;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\DeleteAction;
 use App\Filament\Resources\SeriesResource\RelationManagers\ProductsRelationManager;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Select;
@@ -78,7 +77,6 @@ class SeriesResource extends Resource
             ])
             ->actions([
                 EditAction::make(),
-                DeleteAction::make()
             ])
             ->bulkActions([
                 //

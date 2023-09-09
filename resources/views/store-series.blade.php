@@ -88,34 +88,45 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="tab-pane fade" role="tabpanel" id="tab-2">
-                            <div class="row justify-content-start projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;margin-top: 20px;">
-                                @foreach ($characters as $character)
-                                    <div class="col-sm-12 col-md-6 col-lg-6 align-self-center">
-                                        <img class="img-fluid" src="assets/img/series_thealpha/Alpha%20(Hero%20Suit).webp">
+                        @if (!empty($characters))
+                            <div class="tab-pane fade" role="tabpanel" id="tab-2">
+                                <div class="row justify-content-start projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;margin-top: 20px;">
+                                    @foreach ($characters as $character)
+                                        <div class="col-sm-12 col-md-6 col-lg-6 align-self-center">
+                                            <img class="img-fluid" src="{{ url($character->img_string) }}">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <h1 class="text-start" style="font-family: Iceberg, serif;font-weight: bold;">
+                                                <span style="color: rgb(255, 255, 255);">
+                                                    {{ $character->name }}
+                                                </span>
+                                            </h1>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Name</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->real_name }}</span></p>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Alias</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ implode(', ', $character->aliases) }}</span></p>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Race</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->race }}</span></p>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Abilities</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ implode(', ', $character->abilities) }}</span></p>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Weaknesses</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ implode(', ', $character->weaknesses) }}</span></p>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Affiliation</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ implode(', ', $character->affiliations) }}</span></p>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;">
+                                                <strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Appearances</span></strong>:
+                                                <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                    @foreach ($character->appearances as $index => $appearance)
+                                                        <a class="text-white" href='store/{{ $appearance['universe_slug'] }}/{{ $appearance['series_slug'] }}'>
+                                                            {{ $appearance['series_name'] }}{{ $index == count($character['appearances']) ? '' : ', ' }}
+                                                        </a>
+                                                    @endforeach
+                                                </span>
+                                            </p>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-11">
+                                        <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">History</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->history }}</span></p>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <h1 class="text-start" style="font-family: Iceberg, serif;font-weight: bold;">
-                                            <span style="color: rgb(255, 255, 255);">
-                                                {{ $character->name }}
-                                            </span>
-                                        </h1>
-                                        <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Name</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->real_name }}</span></p>
-                                        <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Alias</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->aliases }}</span></p>
-                                        <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Race</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->race }}</span></p>
-                                        <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Abilities</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->abilities }}</span></p>
-                                        <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Weaknesses</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->weaknesses }}</span></p>
-                                        <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Affiliation</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->affiliations }}</span></p>
-                                        <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Appearances</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->appearances }} </span></p>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="col-lg-11">
-                                    <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">History</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->history }}</span></p>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

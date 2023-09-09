@@ -8,7 +8,7 @@
         >
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-9 col-md-7 col-lg-5 align-self-center" data-aos="fade-up">
-                    <img class="img-fluid" data-aos="fade-up" src="{{ asset('/img/br_admin/hexa_final_1.webp') }}" width="100%" style="margin-bottom: 15px;margin-top: 15px;">
+                    <img class="img-fluid" data-aos="fade-up" src="{{ asset('/img/br_admin/hexa_final_1.webp') }}" width="80%" style="margin-bottom: 15px;margin-top: 15px;">
                     <p class="text-center" data-aos="fade-down" style="font-family: Anton, sans-serif;color: rgb(255,255,255);font-size: 40px;letter-spacing: 1px;margin-bottom: 0px;">JOIN THE NEW REALITY!</p>
                     <p class="text-center" data-aos="fade-down" style="font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);font-size: 30px;letter-spacing: 1px;">#BRUNIVERSE</p>
                 </div>

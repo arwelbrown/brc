@@ -1,26 +1,25 @@
 <?php
 
-namespace App\Filament\Resources\UniverseResource\RelationManagers;
+namespace App\Filament\Resources\CharacterResource\RelationManagers;
 
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
+use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\CreateAction;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\FileUpload;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Select;
 use App\Formatters\SlugFormatter;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
 
 class SeriesRelationManager extends RelationManager
 {
     protected static string $relationship = 'series';
-
     protected static ?string $recordTitleAttribute = 'id';
 
     public static function form(Form $form): Form
@@ -67,17 +66,16 @@ class SeriesRelationManager extends RelationManager
         return $table
             ->columns([
                 TextColumn::make('series_name'),
-                TextColumn::make('series_slug'),
+                TextColumn::make('universe.universe_name')
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                CreateAction::make(),
+                Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 //
