@@ -29,7 +29,7 @@
                         </li>
 
                         @if (!empty($characters) && count($characters) > 0) 
-                            <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;background: rgba(255,255,255,0);">Character Bio</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;background: rgba(255,255,255,0);"><strong>Character Bio</strong></a></li>
                         @endif
                     </ul>
                     <div class="tab-content" style="margin-bottom: 50px;">
@@ -90,25 +90,46 @@
                         </div>
                         @if (!empty($characters))
                             <div class="tab-pane fade" role="tabpanel" id="tab-2">
+                            @foreach ($characters as $character)
                                 <div class="row justify-content-start projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;margin-top: 20px;">
-                                    @foreach ($characters as $character)
-                                        <div class="col-sm-12 col-md-6 col-lg-6 align-self-center">
-                                            <img class="img-fluid" src="{{ url($character->img_string) }}">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <h1 class="text-start" style="font-family: Iceberg, serif;font-weight: bold;">
-                                                <span style="color: rgb(255, 255, 255);">
-                                                    {{ $character->name }}
-                                                </span>
-                                            </h1>
+                                    
+                                    <div class="col-sm-12 col-md-6 col-lg-6 align-self-center">
+                                        <img class="img-fluid" src="{{ url($character->img_string) }}">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h1 class="text-start" style="font-family: Iceberg, serif;font-weight: bold;">
+                                            <span style="color: rgb(255, 255, 255);">
+                                                {{ strtoupper($character->name) }}
+                                            </span>
+                                        </h1>
+
+                                        @if (!empty($character->real_name))
                                             <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Name</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->real_name }}</span></p>
+                                        @endif
+
+                                        @if (!empty($character->aliases))
                                             <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Alias</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ implode(', ', $character->aliases) }}</span></p>
+                                        @endif
+
+                                        @if (!empty($character->race))
                                             <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Race</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->race }}</span></p>
+                                        @endif
+
+                                        @if (!empty($character->abilities)) 
                                             <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Abilities</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ implode(', ', $character->abilities) }}</span></p>
+                                        @endif
+
+                                        @if (!empty($character->weaknesses))
                                             <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Weaknesses</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ implode(', ', $character->weaknesses) }}</span></p>
+                                        @endif
+
+                                        @if (!empty($character->affiliations))
                                             <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Affiliation</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ implode(', ', $character->affiliations) }}</span></p>
+                                        @endif
+
+                                        @if (!empty($character->appearances))
                                             <p class="text-start" style="font-family: 'Open Sans', sans-serif;">
-                                                <strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Appearances</span></strong>:
+                                                <strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Appearances:</span></strong>:
                                                 <span style="color: rgb(255, 255, 255); background-color: transparent;">
                                                     @foreach ($character->appearances as $index => $appearance)
                                                         <a class="text-white" href='store/{{ $appearance['universe_slug'] }}/{{ $appearance['series_slug'] }}'>
@@ -117,14 +138,15 @@
                                                     @endforeach
                                                 </span>
                                             </p>
-                                        </div>
-                                    @endforeach
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="row justify-content-center">
                                     <div class="col-lg-11">
                                         <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">History</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->history }}</span></p>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         @endif
                     </div>

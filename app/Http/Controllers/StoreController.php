@@ -39,9 +39,9 @@ class StoreController extends Controller
         $characters = [];
 
         foreach ($charactersInSeries as $character) {
-            $characterToInsert = $character->get()->all();
+            $characterToInsert = $character->where('series_id', '=', $series->id)->get()->all();
 
-            // link other series
+            // link other series    
             if (!empty($characterToInsert[0]->appearances)) {
                 $showsUpIn = $characterToInsert[0]->appearances;    
                 $characterToInsert[0]->appearances = [];

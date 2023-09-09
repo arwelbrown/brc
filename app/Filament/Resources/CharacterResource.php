@@ -17,6 +17,7 @@ use Filament\Forms\Components\Select;
 use Livewire\TemporaryUploadedFile;
 use Filament\Tables\Actions\EditAction;
 use App\Models\Series;
+use Filament\Forms\Components\Textarea;
 
 class CharacterResource extends Resource
 {
@@ -40,7 +41,6 @@ class CharacterResource extends Resource
                     ->autofocus(),
                 TextInput::make('real_name')
                     ->autofocus()
-                    ->required()
                     ->placeholder('Enter here...'),
                 TextInput::make('race')
                     ->autofocus()
@@ -59,7 +59,6 @@ class CharacterResource extends Resource
                     ->getSearchResultsUsing(fn (string $search): array => Series::where('series_name', 'like', "%{$search}%")->limit(50)->pluck('series_name', 'id')->toArray())
                     ->getOptionLabelsUsing(fn (array $values): array => Series::whereIn('id', $values)->pluck('series_name', 'id')->toArray())
                     ->autofocus()
-                    ->required()
                     ->preload(),
                 FileUpload::make('img_string')
                     ->reactive()
@@ -77,7 +76,10 @@ class CharacterResource extends Resource
                         $series = SeriesController::getSeries($seriesId)->series_name;
 
                         return 'series_' . strtolower(str_replace(' ', '', $series)) . '/characters/' . $file->getClientOriginalName();
-                    })
+                    }),
+                Textarea::make('history')
+                    ->autofocus()
+                    ->columnspan(2),
             ]);
     }
 
