@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="./public/img/br_admin/hexa_final_1.webp" width="400" alt="BRC Hex"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="./storage/app/public/img/br_admin/hexa_final_1.webp" width="400" alt="BRC Hex"></a></p>
 
 <h2 align="center">Broken Reality Comics</h2>
 

@@ -28,11 +28,44 @@ class StoreController extends Controller
         return view('store', ['products' => $products, 'featuredProducts' => $featuredProducts]);
     }
 
-    public function seriesStore(string $universeSlug, string $slug): View|Application|Factory|FoundationApplication
+    public function seriesStore(string $universeSlug, string $slug): View
     {
         $universe = Universe::where('universe_slug', '=', $universeSlug)->get()->all();
         $products = Product::all()->where('store_slug', $slug)->paginate(24);
         $series = Series::where('series_slug', $slug)->first();
+
+        $charactersInSeries = $series->characters()->get()->all();
+
+        $characters = [];
+
+        foreach ($charactersInSeries as $character) {
+            $characterToInsert = $character->get()->all();
+
+            // link other series
+            if (!empty($characterToInsert[0]->appearances)) {
+                $showsUpIn = $characterToInsert[0]->appearances;    
+                $characterToInsert[0]->appearances = [];
+
+                $appearances = [];
+
+                foreach ($showsUpIn as $seriesId) {
+                    $seriesToInsert = Series::where('id', '=', (int) $seriesId)->get()->all();
+                    $universeToInsert =  $seriesToInsert[0]->universe()->get()->all();
+                    
+                    $appearance = [
+                        'series_name' => $seriesToInsert[0]->series_name,
+                        'series_slug' => $seriesToInsert[0]->series_slug,
+                        'universe_slug' => $universeToInsert[0]->universe_slug,
+                    ];
+
+                    $appearances[] = $appearance;
+                }
+
+                $characterToInsert[0]->appearances = array_merge($characterToInsert[0]->appearances, $appearances);
+            }
+            
+            $characters[] = $characterToInsert;
+        }
 
         $artTeam = [
             'artists' => $series->artists,
@@ -50,6 +83,7 @@ class StoreController extends Controller
                 'editors' => $series->editors,
                 'writers' => $series->writers,
                 'artTeam' => $artTeam,
+                'characters' => isset($characters[0]) ? $characters[0] : [],
             ]
         );
     }
