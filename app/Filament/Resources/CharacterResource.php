@@ -90,6 +90,9 @@ class CharacterResource extends Resource
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('series.series_name')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
