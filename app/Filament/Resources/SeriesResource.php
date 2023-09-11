@@ -59,7 +59,11 @@ class SeriesResource extends Resource
                     ->relationship('universe', 'universe_name')
                     ->autofocus()
                     ->required(),
-                FileUpload::make('series_banner'),
+                FileUpload::make('series_banner')
+                    ->columnSpan(2)
+                    ->required()
+                    ->autofocus()
+                    ->enableDownload(),
             ]);
     }
 

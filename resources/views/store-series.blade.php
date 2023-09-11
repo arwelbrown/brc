@@ -132,7 +132,7 @@
                                                 <strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Appearances:</span></strong>:
                                                 <span style="color: rgb(255, 255, 255); background-color: transparent;">
                                                     @foreach ($character->appearances as $index => $appearance)
-                                                        <a class="text-white" href='store/{{ $appearance['universe_slug'] }}/{{ $appearance['series_slug'] }}'>
+                                                        <a class="text-white" href='/store/universe/{{ $appearance['universe_slug'] }}/{{ $appearance['series_slug'] }}'>
                                                             {{ $appearance['series_name'] }}{{ $index == count($character['appearances']) ? '' : ', ' }}
                                                         </a>
                                                     @endforeach

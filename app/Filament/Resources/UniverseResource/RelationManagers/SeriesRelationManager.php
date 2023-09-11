@@ -77,7 +77,6 @@ class SeriesRelationManager extends RelationManager
             ])
             ->actions([
                 EditAction::make(),
-                DeleteAction::make(),
             ])
             ->bulkActions([
                 //
