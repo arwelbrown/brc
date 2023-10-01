@@ -14,6 +14,7 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Hash;
 
 class UserResource extends Resource
 {
@@ -21,7 +22,7 @@ class UserResource extends Resource
 
     protected static ?string $navigationGroup = 'Users';
 
-    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     public static function form(Form $form): Form
     {
@@ -38,9 +39,13 @@ class UserResource extends Resource
                     ->native(false),
                 TextInput::make('password')
                     ->password()
-                    ->maxLength(255),
-                Select::make('role')
-                    ->required(),
+                    ->maxLength(255)
+                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                    ->dehydrated(fn ($state) => filled($state)),
+                Select::make('roles')
+                    ->multiple()
+                    ->relationship('roles', 'name')
+                    ->preload(),
             ]);
     }
 

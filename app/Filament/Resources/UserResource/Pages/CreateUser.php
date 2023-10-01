@@ -10,15 +10,20 @@ class CreateUser extends CreateRecord
 {
     protected static string $resource = UserResource::class;
 
-    protected function handleRecordCreation(array $data): Model
+    protected function getRedirectUrl(): string
     {
-        /** @var App\Models\User $user */
-        $user = parent::handleRecordCreation($data);
-
-        $role = $user->role;
-
-        $user->assignRole($role);
-
-        return $user;
+        return $this->getResource()::getUrl('index');
     }
+
+    // protected function handleRecordCreation(array $data): Model
+    // {
+    //     /** @var App\Models\User $user */
+    //     $user = parent::handleRecordCreation($data);
+
+    //     $role = $user->role;
+
+    //     $user->assignRole($role);
+
+    //     return $user;
+    // }
 }

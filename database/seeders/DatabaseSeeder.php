@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,9 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create(['name' => 'brc']);
-        Role::create(['name' => 'jrd']);
-        Role::create(['name' => 'ecru']);
+        $user = User::where('id', '=', 3)->get()->all()[0];
+        $user->assignRole('admin');
 
         // $this->call([
         // UniverseSeeder::class,

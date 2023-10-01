@@ -18,7 +18,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->hasRole('brc') && $this->hasVerifiedEmail();
+        return $this->hasRole(['admin', 'brc', 'ecru', 'jrd']) && $this->hasVerifiedEmail();
     }
 
     public function getFilamentAvatarUrl(): ?string
@@ -59,6 +59,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
 
     public function canManageSettings(): bool
     {
-        return $this->can('manage.settings');
+        return $this->hasRole('admin');
     }
 }

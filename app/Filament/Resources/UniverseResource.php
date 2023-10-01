@@ -6,6 +6,7 @@ use App\Filament\Resources\UniverseResource\Pages;
 use App\Filament\Resources\UniverseResource\RelationManagers\SeriesRelationManager;
 use App\Formatters\SlugFormatter;
 use App\Models\Universe;
+use Filament\Forms\Components\Card;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -25,16 +26,22 @@ class UniverseResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('universe_name')
-                    ->autofocus()
-                    ->required()
-                    ->reactive()
-                    ->afterStateUpdated(fn (callable $set, $state) => ! empty($state) ? $set('universe_slug', SlugFormatter::formatSlug($state)) : $set('universe_slug', '')),
-                TextInput::make('universe_slug')
-                    ->disabled()
-                    ->autofocus()
-                    ->required()
-                    ->reactive(),
+                Card::make()
+                    ->schema([
+                        TextInput::make('universe_name')
+                            ->autofocus()
+                            ->required()
+                            ->reactive()
+                            ->columnSpan(1)
+                            ->afterStateUpdated(fn (callable $set, $state) => ! empty($state) ? $set('universe_slug', SlugFormatter::formatSlug($state)) : $set('universe_slug', '')),
+                        TextInput::make('universe_slug')
+                            ->disabled()
+                            ->autofocus()
+                            ->required()
+                            ->columnSpan(1)
+                            ->reactive(),
+                    ])
+                    ->columns(2),
             ]);
     }
 
