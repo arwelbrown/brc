@@ -20,14 +20,22 @@ return [
 
         ],
 
+    ],
+
+    'content' => [
+
         'tab' => [
             'label' => 'Szerkesztés',
         ],
 
     ],
 
-    'messages' => [
-        'saved' => 'Mentve',
+    'notifications' => [
+
+        'saved' => [
+            'title' => 'Mentve',
+        ],
+
     ],
 
 ];

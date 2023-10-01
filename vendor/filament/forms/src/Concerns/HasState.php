@@ -2,14 +2,14 @@
 
 namespace Filament\Forms\Concerns;
 
-use Filament\Forms\Components\BaseFileUpload;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 trait HasState
 {
     protected ?string $statePath = null;
+
+    protected string $cachedFullStatePath;
 
     public function callAfterStateHydrated(): void
     {
@@ -31,10 +31,8 @@ trait HasState
                 return true;
             }
 
-            if ($component instanceof BaseFileUpload && Str::of($path)->startsWith("{$component->getStatePath()}.")) {
+            if (str($path)->startsWith("{$component->getStatePath()}.")) {
                 $component->callAfterStateUpdated();
-
-                return true;
             }
 
             foreach ($component->getChildComponentContainers() as $container) {
@@ -66,6 +64,10 @@ trait HasState
         }
     }
 
+    /**
+     * @param  array<string, mixed>  $state
+     * @return array<string, mixed>
+     */
     public function dehydrateState(array &$state = []): array
     {
         foreach ($this->getComponents() as $component) {
@@ -79,6 +81,10 @@ trait HasState
         return $state;
     }
 
+    /**
+     * @param  array<string, mixed>  $state
+     * @return array<string, mixed>
+     */
     public function mutateDehydratedState(array &$state = []): array
     {
         foreach ($this->getComponents() as $component) {
@@ -118,6 +124,9 @@ trait HasState
         return $state;
     }
 
+    /**
+     * @param  array<string, mixed> | null  $state
+     */
     public function fill(?array $state = null): static
     {
         $hydratedDefaultState = null;
@@ -143,6 +152,9 @@ trait HasState
         return $this;
     }
 
+    /**
+     * @param  array<string, mixed> | null  $hydratedDefaultState
+     */
     public function hydrateState(?array &$hydratedDefaultState): void
     {
         foreach ($this->getComponents(withHidden: true) as $component) {
@@ -164,6 +176,9 @@ trait HasState
         return $this;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getState(bool $shouldCallHooksBefore = true): array
     {
         $state = $this->validate();
@@ -184,16 +199,27 @@ trait HasState
         return $state;
     }
 
+    /**
+     * @return array<string, mixed> | Arrayable
+     */
     public function getRawState(): array | Arrayable
     {
         return data_get($this->getLivewire(), $this->getStatePath()) ?? [];
     }
 
+    /**
+     * @param  array<string>  $keys
+     * @return array<string, mixed>
+     */
     public function getStateOnly(array $keys): array
     {
         return Arr::only($this->getState(), $keys);
     }
 
+    /**
+     * @param  array<string>  $keys
+     * @return array<string, mixed>
+     */
     public function getStateExcept(array $keys): array
     {
         return Arr::except($this->getState(), $keys);
@@ -201,6 +227,10 @@ trait HasState
 
     public function getStatePath(bool $isAbsolute = true): string
     {
+        if (isset($this->cachedFullStatePath)) {
+            return $this->cachedFullStatePath;
+        }
+
         $pathComponents = [];
 
         if ($isAbsolute && $parentComponentStatePath = $this->getParentComponent()?->getStatePath()) {
@@ -211,6 +241,11 @@ trait HasState
             $pathComponents[] = $statePath;
         }
 
-        return implode('.', $pathComponents);
+        return $this->cachedFullStatePath = implode('.', $pathComponents);
+    }
+
+    protected function flushCachedStatePath(): void
+    {
+        unset($this->cachedFullStatePath);
     }
 }

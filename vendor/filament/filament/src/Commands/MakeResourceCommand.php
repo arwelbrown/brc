@@ -2,14 +2,18 @@
 
 namespace Filament\Commands;
 
+use Filament\Facades\Filament;
 use Filament\Forms\Commands\Concerns\CanGenerateForms;
+use Filament\Panel;
 use Filament\Support\Commands\Concerns\CanIndentStrings;
 use Filament\Support\Commands\Concerns\CanManipulateFiles;
 use Filament\Support\Commands\Concerns\CanReadModelSchemas;
-use Filament\Support\Commands\Concerns\CanValidateInput;
 use Filament\Tables\Commands\Concerns\CanGenerateTables;
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\text;
 
 class MakeResourceCommand extends Command
 {
@@ -18,18 +22,18 @@ class MakeResourceCommand extends Command
     use CanIndentStrings;
     use CanManipulateFiles;
     use CanReadModelSchemas;
-    use CanValidateInput;
 
     protected $description = 'Create a new Filament resource class and default page classes';
 
-    protected $signature = 'make:filament-resource {name?} {--soft-deletes} {--view} {--G|generate} {--S|simple} {--F|force}';
+    protected $signature = 'make:filament-resource {name?} {--soft-deletes} {--view} {--G|generate} {--S|simple} {--panel=} {--F|force}';
 
     public function handle(): int
     {
-        $path = config('filament.resources.path', app_path('Filament/Resources/'));
-        $namespace = config('filament.resources.namespace', 'App\\Filament\\Resources');
-
-        $model = (string) Str::of($this->argument('name') ?? $this->askRequired('Model (e.g. `BlogPost`)', 'name'))
+        $model = (string) str($this->argument('name') ?? text(
+            label: 'What is the model name?',
+            placeholder: 'BlogPost',
+            required: true,
+        ))
             ->studly()
             ->beforeLast('Resource')
             ->trim('/')
@@ -42,11 +46,44 @@ class MakeResourceCommand extends Command
             $model = 'Resource';
         }
 
-        $modelClass = (string) Str::of($model)->afterLast('\\');
-        $modelNamespace = Str::of($model)->contains('\\') ?
-            (string) Str::of($model)->beforeLast('\\') :
+        $modelClass = (string) str($model)->afterLast('\\');
+        $modelNamespace = str($model)->contains('\\') ?
+            (string) str($model)->beforeLast('\\') :
             '';
-        $pluralModelClass = (string) Str::of($modelClass)->pluralStudly();
+        $pluralModelClass = (string) str($modelClass)->pluralStudly();
+
+        $panel = $this->option('panel');
+
+        if ($panel) {
+            $panel = Filament::getPanel($panel);
+        }
+
+        if (! $panel) {
+            $panels = Filament::getPanels();
+
+            /** @var Panel $panel */
+            $panel = (count($panels) > 1) ? $panels[select(
+                label: 'Which panel would you like to create this in?',
+                options: array_map(
+                    fn (Panel $panel): string => $panel->getId(),
+                    $panels,
+                ),
+                default: Filament::getDefaultPanel()->getId()
+            )] : Arr::first($panels);
+        }
+
+        $resourceDirectories = $panel->getResourceDirectories();
+        $resourceNamespaces = $panel->getResourceNamespaces();
+
+        $namespace = (count($resourceNamespaces) > 1) ?
+            select(
+                label: 'Which namespace would you like to create this in?',
+                options: $resourceNamespaces
+            ) :
+            (Arr::first($resourceNamespaces) ?? 'App\\Filament\\Resources');
+        $path = (count($resourceDirectories) > 1) ?
+            $resourceDirectories[array_search($namespace, $resourceNamespaces)] :
+            (Arr::first($resourceDirectories) ?? app_path('Filament/Resources/'));
 
         $resource = "{$model}Resource";
         $resourceClass = "{$modelClass}Resource";
@@ -59,7 +96,7 @@ class MakeResourceCommand extends Command
         $viewResourcePageClass = "View{$modelClass}";
 
         $baseResourcePath =
-            (string) Str::of($resource)
+            (string) str($resource)
                 ->prepend('/')
                 ->prepend($path)
                 ->replace('\\', '/')
@@ -159,7 +196,7 @@ class MakeResourceCommand extends Command
             'resource' => "{$namespace}\\{$resourceClass}",
             'resourceClass' => $resourceClass,
             'tableActions' => $this->indentString($tableActions, 4),
-            'tableBulkActions' => $this->indentString($tableBulkActions, 4),
+            'tableBulkActions' => $this->indentString($tableBulkActions, 5),
             'tableColumns' => $this->indentString($this->option('generate') ? $this->getResourceTableColumns(
                 'App\Models' . ($modelNamespace !== '' ? "\\{$modelNamespace}" : '') . '\\' . $modelClass,
             ) : '//', 4),
@@ -224,7 +261,7 @@ class MakeResourceCommand extends Command
             ]);
         }
 
-        $this->info("Successfully created {$resource}!");
+        $this->components->info("Successfully created {$resource}!");
 
         return static::SUCCESS;
     }

@@ -4,22 +4,18 @@ return [
 
     'direction' => 'ltr',
 
-    'buttons' => [
-
-        'dark_mode' => [
-            'label' => 'Dark Mode einschalten',
-        ],
-
-        'database_notifications' => [
-            'label' => 'Benachrichtigungen öffnen',
-        ],
-
-        'light_mode' => [
-            'label' => 'Light Mode einschalten',
-        ],
+    'actions' => [
 
         'logout' => [
             'label' => 'Abmelden',
+        ],
+
+        'open_database_notifications' => [
+            'label' => 'Benachrichtigungen öffnen',
+        ],
+
+        'open_user_menu' => [
+            'label' => 'Benutzermenü',
         ],
 
         'sidebar' => [
@@ -34,8 +30,20 @@ return [
 
         ],
 
-        'user_menu' => [
-            'label' => 'Benutzermenü',
+        'theme_switcher' => [
+
+            'dark' => [
+                'label' => 'Dark Mode einschalten',
+            ],
+
+            'light' => [
+                'label' => 'Light Mode einschalten',
+            ],
+
+            'system' => [
+                'label' => 'Systemthema benutzen',
+            ],
+
         ],
 
     ],

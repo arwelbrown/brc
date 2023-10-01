@@ -8,6 +8,8 @@
 ])
 
 @php
+    use Filament\Support\Enums\Alignment;
+
     $action = $column->getAction();
     $name = $column->getName();
     $shouldOpenUrlInNewTab = $column->shouldOpenUrlInNewTab();
@@ -15,13 +17,13 @@
     $url = $column->getUrl();
 
     $columnClasses = \Illuminate\Support\Arr::toCssClasses([
-        'flex w-full',
+        'flex w-full disabled:pointer-events-none',
         match ($column->getAlignment()) {
-            'center' => 'justify-center text-center',
-            'end' => 'justify-end text-end',
-            'left' => 'justify-start text-left',
-            'right' => 'justify-end text-right',
-            'justify' => 'justify-between text-justify',
+            Alignment::Center, 'center' => 'justify-center text-center',
+            Alignment::End, 'end' => 'justify-end text-end',
+            Alignment::Left, 'left' => 'justify-start text-left',
+            Alignment::Right, 'right' => 'justify-end text-right',
+            Alignment::Justify, 'justify' => 'justify-between text-justify',
             default => 'justify-start text-start',
         },
     ]);
@@ -32,14 +34,16 @@
 <div
     @if ($tooltip)
         x-data="{}"
-        x-tooltip.raw="{{ $tooltip }}"
+        x-tooltip="{
+            content: @js($tooltip),
+            theme: $store.theme,
+        }"
     @endif
-    {{ $attributes->class(['filament-tables-column-wrapper']) }}
+    {{ $attributes->class(['fi-ta-col-wrp']) }}
 >
     @if (($url || ($recordUrl && $action === null)) && (! $isClickDisabled))
         <a
-            href="{{ $url ?: $recordUrl }}"
-            {!! $shouldOpenUrlInNewTab ? 'target="_blank"' : null !!}
+            {{ \Filament\Support\generate_href_html($url ?: $recordUrl, $shouldOpenUrlInNewTab) }}
             class="{{ $columnClasses }}"
         >
             {{ $slot }}
@@ -51,7 +55,7 @@
             } elseif ($action) {
                 $wireClickAction = "callTableColumnAction('{$name}', '{$recordKey}')";
             } else {
-                if ($this->getCachedTableAction($recordAction)) {
+                if ($this->getTable()->getAction($recordAction)) {
                     $wireClickAction = "mountTableAction('{$recordAction}', '{$recordKey}')";
                 } else {
                     $wireClickAction = "{$recordAction}('{$recordKey}')";
@@ -60,11 +64,10 @@
         @endphp
 
         <button
-            wire:click="{{ $wireClickAction }}"
-            wire:target="{{ $wireClickAction }}"
-            wire:loading.attr="disabled"
-            wire:loading.class="cursor-wait opacity-70"
             type="button"
+            wire:click="{{ $wireClickAction }}"
+            wire:loading.attr="disabled"
+            wire:target="{{ $wireClickAction }}"
             class="{{ $columnClasses }}"
         >
             {{ $slot }}

@@ -4,60 +4,22 @@ return [
 
     'columns' => [
 
-        'tags' => [
-            'more' => 'e :count mais',
+        'text' => [
+            'more_list_items' => 'e :count mais',
         ],
 
     ],
 
     'fields' => [
 
-        'search_query' => [
+        'search' => [
             'label' => 'Procurar',
             'placeholder' => 'Procurar',
         ],
 
     ],
 
-    'pagination' => [
-
-        'label' => 'Paginação',
-
-        'overview' => 'A mostrar :first a :last de :total resultados',
-
-        'fields' => [
-
-            'records_per_page' => [
-
-                'label' => 'por página',
-
-                'options' => [
-                    'all' => 'Todas',
-                ],
-
-            ],
-
-        ],
-
-        'buttons' => [
-
-            'go_to_page' => [
-                'label' => 'Ir para página :page',
-            ],
-
-            'next' => [
-                'label' => 'Próximo',
-            ],
-
-            'previous' => [
-                'label' => 'Anterior',
-            ],
-
-        ],
-
-    ],
-
-    'buttons' => [
+    'actions' => [
 
         'disable_reordering' => [
             'label' => 'Concluir a reordenação de registos',
@@ -71,7 +33,7 @@ return [
             'label' => 'Filtrar',
         ],
 
-        'open_actions' => [
+        'open_bulk_actions' => [
             'label' => 'Ações abertas',
         ],
 
@@ -87,7 +49,7 @@ return [
 
     'filters' => [
 
-        'buttons' => [
+        'actions' => [
 
             'remove' => [
                 'label' => 'Remover filtro',
@@ -136,9 +98,9 @@ return [
 
     'selection_indicator' => [
 
-        'selected_count' => '1 registo selecionado.|:count registos selecionados.',
+        'selected_count' => '1 registo selecionado|:count registos selecionados',
 
-        'buttons' => [
+        'actions' => [
 
             'select_all' => [
                 'label' => 'Selecionar todos :count',

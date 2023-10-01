@@ -4,43 +4,41 @@ return [
 
     'builder' => [
 
-        'collapsed' => 'Innehåll komprimerat',
+        'actions' => [
 
-        'buttons' => [
-
-            'clone_item' => [
+            'clone' => [
                 'label' => 'Klona',
             ],
 
-            'create_item' => [
+            'add' => [
                 'label' => 'Lägg till i :label',
             ],
 
-            'create_item_between' => [
+            'add_item_between' => [
                 'label' => 'Infoga',
             ],
 
-            'delete_item' => [
+            'delete' => [
                 'label' => 'Radera',
             ],
 
-            'move_item' => [
+            'reorder' => [
                 'label' => 'Flytta',
             ],
 
-            'move_item_down' => [
+            'move_down' => [
                 'label' => 'Flytta ned',
             ],
 
-            'move_item_up' => [
+            'move_up' => [
                 'label' => 'Flytta upp',
             ],
 
-            'collapse_item' => [
+            'collapse' => [
                 'label' => 'Komprimera',
             ],
 
-            'expand_item' => [
+            'expand' => [
                 'label' => 'Expandera',
             ],
 
@@ -58,7 +56,7 @@ return [
 
     'checkbox_list' => [
 
-        'buttons' => [
+        'actions' => [
 
             'deselect_all' => [
                 'label' => 'Avmarkera alla',
@@ -72,9 +70,111 @@ return [
 
     ],
 
+    'file_upload' => [
+
+        'editor' => [
+
+            'actions' => [
+
+                'cancel' => [
+                    'label' => 'Ångra',
+                ],
+
+                'drag_crop' => [
+                    'label' => 'Dragläge "beskär"',
+                ],
+
+                'drag_move' => [
+                    'label' => 'Dragläge "flytta"',
+                ],
+
+                'flip_horizontal' => [
+                    'label' => 'Vänd bilden horisontellt',
+                ],
+
+                'flip_vertical' => [
+                    'label' => 'Vänd bilden vertikalt',
+                ],
+
+                'move_down' => [
+                    'label' => 'Flytta bilden nedåt',
+                ],
+
+                'move_left' => [
+                    'label' => 'Flytta bilden åt vänster',
+                ],
+
+                'move_right' => [
+                    'label' => 'Flytta bilden åt höger',
+                ],
+
+                'move_up' => [
+                    'label' => 'Flytta bilden uppåt',
+                ],
+
+                'reset' => [
+                    'label' => 'Reset',
+                ],
+
+                'rotate_left' => [
+                    'label' => 'Rotera bilden åt vänster',
+                ],
+
+                'rotate_right' => [
+                    'label' => 'Rotera bilden åt höger',
+                ],
+
+                'save' => [
+                    'label' => 'Spara',
+                ],
+
+                'zoom_100' => [
+                    'label' => 'Zooma bilden till 100%',
+                ],
+
+                'zoom_in' => [
+                    'label' => 'Zooma in',
+                ],
+
+                'zoom_out' => [
+                    'label' => 'Zooma ut',
+                ],
+
+            ],
+
+            'fields' => [
+
+                'height' => [
+                    'label' => 'Höjd',
+                ],
+
+                'rotation' => [
+                    'label' => 'Rotera',
+                ],
+
+                'width' => [
+                    'label' => 'Bredd',
+                ],
+
+            ],
+
+            'aspect_ratios' => [
+
+                'label' => 'Aspect ratios',
+
+                'no_fixed' => [
+                    'label' => 'Fritt',
+                ],
+
+            ],
+
+        ],
+
+    ],
+
     'key_value' => [
 
-        'buttons' => [
+        'actions' => [
 
             'add' => [
                 'label' => 'Lägg till rad',
@@ -123,39 +223,37 @@ return [
 
     'repeater' => [
 
-        'collapsed' => 'Innehåll komprimerat',
+        'actions' => [
 
-        'buttons' => [
-
-            'create_item' => [
+            'add' => [
                 'label' => 'Lägg till i :label',
             ],
 
-            'delete_item' => [
+            'delete' => [
                 'label' => 'Radera',
             ],
 
-            'clone_item' => [
+            'clone' => [
                 'label' => 'Klona',
             ],
 
-            'move_item' => [
+            'reorder' => [
                 'label' => 'Flytta',
             ],
 
-            'move_item_down' => [
+            'move_down' => [
                 'label' => 'Flytta ned',
             ],
 
-            'move_item_up' => [
+            'move_up' => [
                 'label' => 'Flytta upp',
             ],
 
-            'collapse_item' => [
+            'collapse' => [
                 'label' => 'Komprimera',
             ],
 
-            'expand_item' => [
+            'expand' => [
                 'label' => 'Expandera',
             ],
 
@@ -177,7 +275,7 @@ return [
 
             'link' => [
 
-                'buttons' => [
+                'actions' => [
                     'link' => 'Länka',
                     'unlink' => 'Ta bort länk',
                 ],
@@ -258,7 +356,7 @@ return [
 
     'wizard' => [
 
-        'buttons' => [
+        'actions' => [
 
             'previous_step' => [
                 'label' => 'Föregående',

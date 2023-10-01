@@ -2,65 +2,67 @@
 
 return [
 
+    'column_toggle' => [
+
+        'heading' => 'Oszlopok',
+
+    ],
+
     'columns' => [
 
-        'tags' => [
-            'more' => 'és további :count',
-        ],
-
-        'messages' => [
-            'copied' => 'Kimásolva',
+        'text' => [
+            'more_list_items' => 'és további :count',
         ],
 
     ],
 
     'fields' => [
 
-        'search_query' => [
+        'bulk_select_page' => [
+            'label' => 'Az összes elem kiválasztása vagy megszüntetése tömeges műveletekhez.',
+        ],
+
+        'bulk_select_record' => [
+            'label' => ':key elem kiválasztása vagy megszüntetése tömeges műveletekhez.',
+        ],
+
+        'search' => [
             'label' => 'Keresés',
-            'placeholder' => 'Keres',
+            'placeholder' => 'Keresés',
+            'indicator' => 'Keres',
         ],
 
     ],
 
-    'pagination' => [
+    'summary' => [
 
-        'label' => 'Lapozás',
+        'heading' => 'Összesítés',
 
-        'overview' => ':first től :last ig mutatása a :total találatból',
-
-        'fields' => [
-
-            'records_per_page' => [
-
-                'label' => 'oldalanként',
-
-                'options' => [
-                    'all' => 'Összes',
-                ],
-            ],
-
+        'subheadings' => [
+            'all' => 'Összes :label',
+            'group' => ':group összesítése',
+            'page' => 'Ezen az oldalon',
         ],
 
-        'buttons' => [
+        'summarizers' => [
 
-            'go_to_page' => [
-                'label' => 'Ugrás az oldalra: :page',
+            'average' => [
+                'label' => 'Átlag',
             ],
 
-            'next' => [
-                'label' => 'Következő',
+            'count' => [
+                'label' => 'Darab',
             ],
 
-            'previous' => [
-                'label' => 'Előző',
+            'sum' => [
+                'label' => 'Összeg',
             ],
 
         ],
 
     ],
 
-    'buttons' => [
+    'actions' => [
 
         'disable_reordering' => [
             'label' => 'Sorba rendezés befejezése',
@@ -74,23 +76,31 @@ return [
             'label' => 'Szűrés',
         ],
 
-        'open_actions' => [
-            'label' => 'Műveletek magjelenítése',
+        'group' => [
+            'label' => 'Csoport',
+        ],
+
+        'open_bulk_actions' => [
+            'label' => 'Műveletek',
         ],
 
         'toggle_columns' => [
-            'label' => 'Oszlopok mutatása/elrejtése',
+            'label' => 'Oszlopok láthatósága',
         ],
 
     ],
 
     'empty' => [
+
         'heading' => 'Nincs találat',
+
+        'description' => 'Hozzon létre egy újat a kezdéshez.',
+
     ],
 
     'filters' => [
 
-        'buttons' => [
+        'actions' => [
 
             'remove' => [
                 'label' => 'Szűrés megszűntetése',
@@ -102,10 +112,12 @@ return [
             ],
 
             'reset' => [
-                'label' => 'Alapértelmezés',
+                'label' => 'Alaphelyzet',
             ],
 
         ],
+
+        'heading' => 'Szűrők',
 
         'indicator' => 'Aktív szűrők',
 
@@ -123,9 +135,33 @@ return [
 
             'only_trashed' => 'Csak a törölt elemek',
 
-            'with_trashed' => 'A törölt elemekkel',
+            'with_trashed' => 'Törölt elemekkel',
 
-            'without_trashed' => 'A törölt elemek nélkül',
+            'without_trashed' => 'Törölt elemek nélkül',
+
+        ],
+
+    ],
+
+    'grouping' => [
+
+        'fields' => [
+
+            'group' => [
+                'label' => 'Csoportosítás',
+                'placeholder' => 'Csoportosítás',
+            ],
+
+            'direction' => [
+
+                'label' => 'Csoportosítás iránya',
+
+                'options' => [
+                    'asc' => 'Növekvő',
+                    'desc' => 'Csökkenő',
+                ],
+
+            ],
 
         ],
 
@@ -135,9 +171,9 @@ return [
 
     'selection_indicator' => [
 
-        'selected_count' => '1 elem kiválasztva .|:count elem kiválasztva.',
+        'selected_count' => '1 elem kiválasztva|:count elem kiválasztva',
 
-        'buttons' => [
+        'actions' => [
 
             'select_all' => [
                 'label' => 'Kijelöli mind a(z) :count elemet',

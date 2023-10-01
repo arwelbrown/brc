@@ -1,12 +1,17 @@
+@php
+    $id = $getId();
+    $isContained = $getContainer()->getParentComponent()->isContained();
+
+    $visibleTabClasses = \Illuminate\Support\Arr::toCssClasses([
+        'p-6' => $isContained,
+        'mt-6' => ! $isContained,
+    ]);
+
+    $invisibleTabClasses = 'invisible h-0 overflow-y-hidden p-0';
+@endphp
+
 <div
-    aria-labelledby="{{ $getId() }}"
-    id="{{ $getId() }}"
-    role="tabpanel"
-    tabindex="0"
-    x-bind:class="{
-        'invisible h-0 p-0 overflow-y-hidden': tab !== '{{ $getId() }}',
-        'p-6': tab === '{{ $getId() }}',
-    }"
+    x-bind:class="tab === @js($id) ? @js($visibleTabClasses) : @js($invisibleTabClasses)"
     x-on:expand-concealing-component.window="
         error = $el.querySelector('[data-validation-error]')
 
@@ -14,7 +19,7 @@
             return
         }
 
-        tab = @js($getId())
+        tab = @js($id)
 
         if (document.body.querySelector('[data-validation-error]') !== error) {
             return
@@ -30,8 +35,18 @@
             200,
         )
     "
-    {{ $attributes->merge($getExtraAttributes())->class(['filament-forms-tabs-component-tab outline-none']) }}
-    wire:key="{{ $this->id }}.{{ $getStatePath() }}.{{ \Filament\Forms\Components\Tab::class }}.tabs.{{ $getId() }}"
+    {{
+        $attributes
+            ->merge([
+                'aria-labelledby' => $id,
+                'id' => $id,
+                'role' => 'tabpanel',
+                'tabindex' => '0',
+                'wire:key' => "{$this->getId()}.{$getStatePath()}." . \Filament\Forms\Components\Tab::class . ".tabs.{$id}",
+            ], escape: false)
+            ->merge($getExtraAttributes(), escape: false)
+            ->class(['fi-fo-tabs-tab outline-none'])
+    }}
 >
     {{ $getChildComponentContainer() }}
 </div>

@@ -2,15 +2,19 @@
 
 namespace Filament\Http\Middleware;
 
+use Filament\Facades\Filament;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Database\Eloquent\Model;
 
 class Authenticate extends Middleware
 {
+    /**
+     * @param  array<string>  $guards
+     */
     protected function authenticate($request, array $guards): void
     {
-        $guardName = config('filament.auth.guard');
-        $guard = $this->auth->guard($guardName);
+        $guard = Filament::auth();
 
         if (! $guard->check()) {
             $this->unauthenticated($request, $guards);
@@ -18,21 +22,23 @@ class Authenticate extends Middleware
             return;
         }
 
-        $this->auth->shouldUse($guardName);
+        $this->auth->shouldUse(Filament::getAuthGuard());
 
+        /** @var Model $user */
         $user = $guard->user();
 
-        if ($user instanceof FilamentUser) {
-            abort_if(! $user->canAccessFilament(), 403);
+        $panel = Filament::getCurrentPanel();
 
-            return;
-        }
-
-        abort_if(config('app.env') !== 'local', 403);
+        abort_if(
+            $user instanceof FilamentUser ?
+                (! $user->canAccessPanel($panel)) :
+                (config('app.env') !== 'local'),
+            403,
+        );
     }
 
-    protected function redirectTo($request): string
+    protected function redirectTo($request): ?string
     {
-        return route('filament.auth.login');
+        return Filament::getLoginUrl();
     }
 }

@@ -8,68 +8,18 @@ return [
             'more' => 'და კიდევ :count',
         ],
 
-        'messages' => [
-            'copied' => 'დაკოპირებულია',
-        ],
-
     ],
 
     'fields' => [
 
-        'bulk_select_page' => [
-            'label' => 'Select/deselect all items for bulk actions.',
-        ],
-
-        'bulk_select_record' => [
-            'label' => 'Select/deselect item :key for bulk actions.',
-        ],
-
-        'search_query' => [
+        'search' => [
             'label' => 'ძიება',
             'placeholder' => 'ძიება',
         ],
 
     ],
 
-    'pagination' => [
-
-        'label' => 'გვერდებზე ნავიგაცია',
-
-        'overview' => '{1} ნაჩვენებია ერთი შედეგი|[2,*] ნაჩვენებია :first-დან :last-მდე :total-დან',
-
-        'fields' => [
-
-            'records_per_page' => [
-
-                'label' => 'ჩანაწერი თითო გვერდზე',
-
-                'options' => [
-                    'all' => 'ყველა',
-                ],
-
-            ],
-
-        ],
-
-        'buttons' => [
-
-            'go_to_page' => [
-                'label' => '{1} :page-ელ გვერდზე გადასვლა|[2,*] მე-:page გვერდზე გადასვლა',
-            ],
-
-            'next' => [
-                'label' => 'შემდეგი',
-            ],
-
-            'previous' => [
-                'label' => 'წინა',
-            ],
-
-        ],
-
-    ],
-
-    'buttons' => [
+    'actions' => [
 
         'disable_reordering' => [
             'label' => 'ჩანაწერების გადანაცვლების დასრულება',
@@ -97,19 +47,11 @@ return [
 
         'heading' => 'ჩანაწერები ვერ მოიძებნა',
 
-        'buttons' => [
-
-            'reset_column_searches' => [
-                'label' => 'სვეტის ძიების წაშლა',
-            ],
-
-        ],
-
     ],
 
     'filters' => [
 
-        'buttons' => [
+        'actions' => [
 
             'remove' => [
                 'label' => 'ფილტრის მოხსნა',
@@ -154,9 +96,9 @@ return [
 
     'selection_indicator' => [
 
-        'selected_count' => 'მონიშნულია :count ჩანაწერი.',
+        'selected_count' => 'მონიშნულია :count ჩანაწერი',
 
-        'buttons' => [
+        'actions' => [
 
             'select_all' => [
                 'label' => '{1} მონიშნე ყველა|[2,*] მონიშნე :count-ივე',

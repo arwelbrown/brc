@@ -11,17 +11,18 @@ class NavigationItem extends Component
 
     protected ?Closure $isActiveWhen = null;
 
-    protected string | Closure $icon;
+    protected string | Closure | null $icon = null;
 
     protected string | Closure | null $activeIcon = null;
-
-    protected string | Closure | null $iconColor = null;
 
     protected string | Closure $label;
 
     protected string | Closure | null $badge = null;
 
-    protected string | Closure | null $badgeColor = null;
+    /**
+     * @var string | array{50: string, 100: string, 200: string, 300: string, 400: string, 500: string, 600: string, 700: string, 800: string, 900: string, 950: string} | Closure | null
+     */
+    protected string | array | Closure | null $badgeColor = null;
 
     protected bool | Closure $shouldOpenUrlInNewTab = false;
 
@@ -33,19 +34,25 @@ class NavigationItem extends Component
 
     protected bool | Closure $isVisible = true;
 
-    final public function __construct(?string $label = null)
+    final public function __construct(string | Closure | null $label = null)
     {
         if (filled($label)) {
             $this->label($label);
         }
     }
 
-    public static function make(?string $label = null): static
+    public static function make(string | Closure | null $label = null): static
     {
-        return app(static::class, ['label' => $label]);
+        $static = app(static::class, ['label' => $label]);
+        $static->configure();
+
+        return $static;
     }
 
-    public function badge(string | Closure | null $badge, string | Closure | null $color = null): static
+    /**
+     * @param  string | array{50: string, 100: string, 200: string, 300: string, 400: string, 500: string, 600: string, 700: string, 800: string, 900: string, 950: string} | Closure | null  $color
+     */
+    public function badge(string | Closure | null $badge, string | array | Closure | null $color = null): static
     {
         $this->badge = $badge;
         $this->badgeColor = $color;
@@ -60,7 +67,7 @@ class NavigationItem extends Component
         return $this;
     }
 
-    public function icon(string | Closure $icon): static
+    public function icon(string | Closure | null $icon): static
     {
         $this->icon = $icon;
 
@@ -81,16 +88,9 @@ class NavigationItem extends Component
         return $this;
     }
 
-    public function activeIcon(string | Closure $activeIcon): static
+    public function activeIcon(string | Closure | null $activeIcon): static
     {
         $this->activeIcon = $activeIcon;
-
-        return $this;
-    }
-
-    public function iconColor(string | Closure | null $iconColor): static
-    {
-        $this->iconColor = $iconColor;
 
         return $this;
     }
@@ -125,7 +125,7 @@ class NavigationItem extends Component
 
     public function url(string | Closure | null $url, bool | Closure $shouldOpenInNewTab = false): static
     {
-        $this->shouldOpenUrlInNewTab = $shouldOpenInNewTab;
+        $this->openUrlInNewTab($shouldOpenInNewTab);
         $this->url = $url;
 
         return $this;
@@ -136,7 +136,10 @@ class NavigationItem extends Component
         return $this->evaluate($this->badge);
     }
 
-    public function getBadgeColor(): ?string
+    /**
+     * @return string | array{50: string, 100: string, 200: string, 300: string, 400: string, 500: string, 600: string, 700: string, 800: string, 900: string, 950: string} | null
+     */
+    public function getBadgeColor(): string | array | null
     {
         return $this->evaluate($this->badgeColor);
     }
@@ -146,7 +149,7 @@ class NavigationItem extends Component
         return $this->evaluate($this->group);
     }
 
-    public function getIcon(): string
+    public function getIcon(): ?string
     {
         return $this->evaluate($this->icon);
     }
@@ -170,11 +173,6 @@ class NavigationItem extends Component
         return $this->evaluate($this->activeIcon);
     }
 
-    public function getIconColor(): ?string
-    {
-        return $this->evaluate($this->iconColor);
-    }
-
     public function getLabel(): string
     {
         return $this->evaluate($this->label);
@@ -182,11 +180,7 @@ class NavigationItem extends Component
 
     public function getSort(): int
     {
-        if (! $this->sort) {
-            return -1;
-        }
-
-        return $this->evaluate($this->sort);
+        return $this->evaluate($this->sort) ?? -1;
     }
 
     public function getUrl(): ?string

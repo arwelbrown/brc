@@ -1,5 +1,5 @@
-export default (Alpine) => {
-    Alpine.data('keyValueFormComponent', ({ state }) => ({
+export default function keyValueFormComponent({ state }) {
+    return {
         state,
 
         rows: [],
@@ -13,12 +13,26 @@ export default (Alpine) => {
                 this.addRow()
             }
 
-            this.shouldUpdateRows = true
+            this.updateState()
 
-            this.$watch('state', () => {
-                if (!this.shouldUpdateRows) {
-                    this.shouldUpdateRows = true
+            this.$watch('state', (state, oldState) => {
+                const getLength = (value) => {
+                    if (value === null) {
+                        return 0
+                    }
 
+                    if (Array.isArray(value)) {
+                        return value.length
+                    }
+
+                    if (typeof value !== 'object') {
+                        return 0
+                    }
+
+                    return Object.keys(value).length
+                }
+
+                if (getLength(state) === 0 && getLength(oldState) === 0) {
                     return
                 }
 
@@ -40,8 +54,6 @@ export default (Alpine) => {
             }
 
             this.updateState()
-
-            this.shouldUpdateRows = true
         },
 
         reorderRows: function (event) {
@@ -56,6 +68,12 @@ export default (Alpine) => {
         },
 
         updateRows: function () {
+            if (!this.shouldUpdateRows) {
+                this.shouldUpdateRows = true
+
+                return
+            }
+
             let rows = []
 
             for (let [key, value] of Object.entries(this.state ?? {})) {
@@ -88,5 +106,5 @@ export default (Alpine) => {
 
             this.state = state
         },
-    }))
+    }
 }

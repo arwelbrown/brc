@@ -4,20 +4,21 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UniverseResource\Pages;
 use App\Filament\Resources\UniverseResource\RelationManagers\SeriesRelationManager;
+use App\Formatters\SlugFormatter;
 use App\Models\Universe;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\EditAction;
-use App\Formatters\SlugFormatter;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 
 class UniverseResource extends Resource
 {
     protected static ?string $model = Universe::class;
 
-    protected static ?string $navigationGroup = 'Product Management';
+    protected static ?string $navigationGroup = 'Wiki';
+
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
 
     public static function form(Form $form): Form
@@ -28,7 +29,7 @@ class UniverseResource extends Resource
                     ->autofocus()
                     ->required()
                     ->reactive()
-                    ->afterStateUpdated(fn (callable $set, $state) => !empty($state) ? $set('universe_slug', SlugFormatter::formatSlug($state)) : $set('universe_slug', '')),
+                    ->afterStateUpdated(fn (callable $set, $state) => ! empty($state) ? $set('universe_slug', SlugFormatter::formatSlug($state)) : $set('universe_slug', '')),
                 TextInput::make('universe_slug')
                     ->disabled()
                     ->autofocus()
@@ -38,10 +39,10 @@ class UniverseResource extends Resource
     }
 
     public static function table(Table $table): Table
-{
+    {
         return $table
             ->columns([
-                TextColumn::make('universe_name')
+                TextColumn::make('universe_name'),
             ])
             ->filters([
                 //
@@ -50,17 +51,17 @@ class UniverseResource extends Resource
                 EditAction::make(),
             ])
             ->bulkActions([
-                // 
+                //
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
-            SeriesRelationManager::class
+            SeriesRelationManager::class,
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -68,5 +69,5 @@ class UniverseResource extends Resource
             'create' => Pages\CreateUniverse::route('/create'),
             'edit' => Pages\EditUniverse::route('/{record}/edit'),
         ];
-    }    
+    }
 }

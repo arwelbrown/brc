@@ -2,32 +2,36 @@
 
 return [
 
-    'title' => 'دروستکردن',
+    'title' => 'دروسکردنی :label',
 
-    'breadcrumb' => 'دروستکردن',
+    'breadcrumb' => 'دروسکردن',
 
     'form' => [
 
         'actions' => [
 
             'cancel' => [
-                'label' => 'ڕەتکردنەوە',
+                'label' => 'پاشگەزبوونەوە',
             ],
 
             'create' => [
-                'label' => 'دروستکردن',
+                'label' => 'دروسکردن',
             ],
 
             'create_another' => [
-                'label' => 'دروستکردن و دانەیەکی تر',
+                'label' => 'دروسکردن و تۆمارێکی تر',
             ],
 
         ],
 
     ],
 
-    'messages' => [
-        'created' => 'دروستکرا',
+    'notifications' => [
+
+        'created' => [
+            'title' => 'دروسکرا',
+        ],
+
     ],
 
 ];

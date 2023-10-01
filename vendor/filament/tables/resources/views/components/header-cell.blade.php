@@ -1,66 +1,65 @@
 @props([
-    'extraAttributes' => [],
-    'isSortColumn' => false,
+    'activelySorted' => false,
+    'alignment' => null,
     'name',
     'sortable' => false,
     'sortDirection',
-    'alignment' => null,
+    'wrap' => false,
 ])
+
+@php
+    use Filament\Support\Enums\Alignment;
+@endphp
 
 <th
     {{
         $attributes
-            ->merge($extraAttributes)
-            ->class(['filament-tables-header-cell p-0'])
+            ->class(['fi-ta-header-cell px-3 py-3.5 sm:first-of-type:ps-6 sm:last-of-type:pe-6'])
     }}
 >
-    <button
+    <{{ $sortable ? 'button' : 'span' }}
         @if ($sortable)
+            type="button"
             wire:click="sortTable('{{ $name }}')"
         @endif
-        type="button"
         @class([
-            'flex w-full items-center gap-x-1 whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-600',
-            'dark:text-gray-300' => config('tables.dark_mode'),
-            'cursor-default' => ! $sortable,
+            'group flex w-full items-center gap-x-1',
+            'whitespace-nowrap' => ! $wrap,
+            'whitespace-normal' => $wrap,
             match ($alignment) {
-                'start' => 'justify-start',
-                'center' => 'justify-center',
-                'end' => 'justify-end',
-                'left' => 'justify-start rtl:flex-row-reverse',
-                'center' => 'justify-center',
-                'right' => 'justify-end rtl:flex-row-reverse',
+                Alignment::Center, 'center' => 'justify-center',
+                Alignment::End, 'end' => 'justify-end',
+                Alignment::Left, 'left' => 'justify-start rtl:flex-row-reverse',
+                Alignment::Right, 'right' => 'justify-end rtl:flex-row-reverse',
+                Alignment::Start, 'start' => 'justify-start',
                 default => null,
             },
         ])
     >
         @if ($sortable)
             <span class="sr-only">
-                {{ __('tables::table.sorting.fields.column.label') }}
+                {{ __('filament-tables::table.sorting.fields.column.label') }}
             </span>
         @endif
 
-        <span>
+        <span class="text-sm font-semibold text-gray-950 dark:text-white">
             {{ $slot }}
         </span>
 
         @if ($sortable)
+            <x-filament::icon
+                :alias="$activelySorted && $sortDirection === 'asc' ? 'tables::header-cell.sort-asc-button' : 'tables::header-cell.sort-desc-button'"
+                :icon="$activelySorted && $sortDirection === 'asc' ? 'heroicon-m-chevron-up' : 'heroicon-m-chevron-down'"
+                @class([
+                    'fi-ta-header-cell-sort-icon h-5 w-5 transition duration-75',
+                    'text-gray-950 dark:text-white' => $activelySorted,
+                    'text-gray-400 dark:text-gray-500 group-hover:text-gray-500 group-focus:text-gray-500 dark:group-hover:text-gray-400 dark:group-focus:text-gray-400' => ! $activelySorted,
+                ])
+            />
+
             <span class="sr-only">
-                {{ $sortDirection === 'asc' ? __('tables::table.sorting.fields.direction.options.desc') : __('tables::table.sorting.fields.direction.options.asc') }}
+                {{ $sortDirection === 'asc' ? __('filament-tables::table.sorting.fields.direction.options.desc') : __('filament-tables::table.sorting.fields.direction.options.asc') }}
             </span>
         @endif
-
-        @if ($sortable)
-            <x-dynamic-component
-                :component="$isSortColumn && $sortDirection === 'asc' ? 'heroicon-s-chevron-up' : 'heroicon-s-chevron-down'"
-                :class="
-                    \Illuminate\Support\Arr::toCssClasses([
-                        'filament-tables-header-cell-sort-icon h-3 w-3',
-                        'dark:text-gray-300' => config('tables.dark_mode'),
-                        'opacity-25' => ! $isSortColumn,
-                    ])
-                "
-            />
-        @endif
-    </button>
+    </{{ $sortable ? 'button' : 'span' }}>
 </th>

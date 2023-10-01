@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('universe_slug');
             $table->string('universe_summary');
             $table->string('universe_description');
+            $table->string('img_string');
             $table->timestamps();
         });
     }

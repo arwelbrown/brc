@@ -7,9 +7,9 @@ use Illuminate\Support\Arr;
 
 trait HasIndicators
 {
-    public string | Closure | null $indicateUsing = null;
+    protected string | Closure | null $indicateUsing = null;
 
-    public string | Closure | null $indicator = null;
+    protected string | Closure | null $indicator = null;
 
     public function indicator(string | Closure | null $indicator): static
     {
@@ -18,13 +18,16 @@ trait HasIndicators
         return $this;
     }
 
-    public function indicateUsing(Closure | null $callback): static
+    public function indicateUsing(?Closure $callback): static
     {
         $this->indicateUsing = $callback;
 
         return $this;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getIndicators(): array
     {
         $state = $this->getState();

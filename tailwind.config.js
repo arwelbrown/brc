@@ -1,6 +1,6 @@
-import colors from 'tailwindcss/colors'
 import forms from '@tailwindcss/forms'
 import typography from '@tailwindcss/typography'
+import autoprefixer from 'autoprefixer'
 
 export default {
     content: [
@@ -8,18 +8,9 @@ export default {
         './vendor/filament/**/*.blade.php',
     ],
     darkMode: 'class',
-    theme: {
-        extend: {
-            colors: {
-                danger: colors.rose,
-                primary: colors.purple,
-                success: colors.green,
-                warning: colors.yellow,
-            },
-        },
-    },
     plugins: [
         forms,
         typography,
+        autoprefixer,
     ],
 }

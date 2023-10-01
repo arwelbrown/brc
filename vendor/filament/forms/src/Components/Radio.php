@@ -4,16 +4,24 @@ namespace Filament\Forms\Components;
 
 use Closure;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Htmlable;
 
 class Radio extends Field
 {
     use Concerns\HasExtraInputAttributes;
+    use Concerns\HasGridDirection;
     use Concerns\HasOptions;
 
-    protected string $view = 'forms::components.radio';
+    /**
+     * @var view-string
+     */
+    protected string $view = 'filament-forms::components.radio';
 
     protected bool | Closure $isInline = false;
 
+    /**
+     * @var array<string | Htmlable> | Arrayable | Closure
+     */
     protected array | Arrayable | Closure $descriptions = [];
 
     protected bool | Closure | null $isOptionDisabled = null;
@@ -47,6 +55,9 @@ class Radio extends Field
         return $this;
     }
 
+    /**
+     * @param  array<string | Htmlable> | Arrayable | Closure  $descriptions
+     */
     public function descriptions(array | Arrayable | Closure $descriptions): static
     {
         $this->descriptions = $descriptions;
@@ -54,16 +65,25 @@ class Radio extends Field
         return $this;
     }
 
+    /**
+     * @param  array-key  $value
+     */
     public function hasDescription($value): bool
     {
         return array_key_exists($value, $this->getDescriptions());
     }
 
-    public function getDescription($value): ?string
+    /**
+     * @param  array-key  $value
+     */
+    public function getDescription($value): string | Htmlable | null
     {
         return $this->getDescriptions()[$value] ?? null;
     }
 
+    /**
+     * @return array<string | Htmlable>
+     */
     public function getDescriptions(): array
     {
         $descriptions = $this->evaluate($this->descriptions);
@@ -80,6 +100,9 @@ class Radio extends Field
         return (bool) $this->evaluate($this->isInline);
     }
 
+    /**
+     * @param  array-key  $value
+     */
     public function isOptionDisabled($value, string $label): bool
     {
         if ($this->isOptionDisabled === null) {
@@ -90,5 +113,16 @@ class Radio extends Field
             'label' => $label,
             'value' => $value,
         ]);
+    }
+
+    public function getDefaultState(): mixed
+    {
+        $state = parent::getDefaultState();
+
+        if (is_bool($state)) {
+            return $state ? 1 : 0;
+        }
+
+        return $state;
     }
 }

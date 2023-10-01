@@ -3,7 +3,7 @@
 <section class="py-2" style="border-color: rgb(0,0,0);background: #000000;">
     <div class="container-fluid">
         <div 
-            class="text-center border rounded border-0 d-flex flex-column justify-content-center align-items-center p-4 py-5"
+            class="text-center rounded border-0 d-flex flex-column justify-content-center align-items-center p-4 py-5"
             style="background: linear-gradient(rgba(36,0,52,0.62) 0%, rgb(0,0,0) 88%), url({{ url('img/br_admin/Broken_Reality_Banners.webp') }}) center / cover no-repeat;"
         >
             <div class="row justify-content-center">

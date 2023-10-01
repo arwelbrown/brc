@@ -1,10 +1,17 @@
+@php
+    $id = $getId();
+    $isContained = $getContainer()->getParentComponent()->isContained();
+
+    $visibleStepClasses = \Illuminate\Support\Arr::toCssClasses([
+        'p-6' => $isContained,
+        'mt-6' => ! $isContained,
+    ]);
+
+    $invisibleStepClasses = 'invisible h-0 overflow-y-hidden p-0';
+@endphp
+
 <div
-    aria-labelledby="{{ $getId() }}"
-    id="{{ $getId() }}"
-    x-ref="step-{{ $getId() }}"
-    role="tabpanel"
-    tabindex="0"
-    x-bind:class="{ 'invisible h-0 overflow-y-hidden': step !== @js($getId()) }"
+    x-bind:class="step === @js($id) ? @js($visibleStepClasses) : @js($invisibleStepClasses)"
     x-on:expand-concealing-component.window="
         error = $el.querySelector('[data-validation-error]')
 
@@ -12,11 +19,11 @@
             return
         }
 
-        if (! isStepAccessible(step, @js($getId()))) {
+        if (! isStepAccessible(step, @js($id))) {
             return
         }
 
-        step = @js($getId())
+        step = @js($id)
 
         if (document.body.querySelector('[data-validation-error]') !== error) {
             return
@@ -32,7 +39,18 @@
             200,
         )
     "
-    {{ $attributes->merge($getExtraAttributes())->class(['filament-forms-wizard-component-step outline-none']) }}
+    x-ref="step-{{ $id }}"
+    {{
+        $attributes
+            ->merge([
+                'aria-labelledby' => $id,
+                'id' => $id,
+                'role' => 'tabpanel',
+                'tabindex' => '0',
+            ], escape: false)
+            ->merge($getExtraAttributes(), escape: false)
+            ->class(['fi-fo-wizard-step outline-none'])
+    }}
 >
     {{ $getChildComponentContainer() }}
 </div>

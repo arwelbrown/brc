@@ -3,29 +3,29 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CharacterResource\Pages;
-use App\Models\Character;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TagsInput;
 use App\Filament\Resources\CharacterResource\RelationManagers\SeriesRelationManager;
 use App\Http\Controllers\SeriesController;
-use Filament\Forms\Components\Select;
-use Livewire\TemporaryUploadedFile;
-use Filament\Tables\Actions\EditAction;
+use App\Models\Character;
 use App\Models\Series;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use Livewire\TemporaryUploadedFile;
 
 class CharacterResource extends Resource
 {
     protected static ?string $model = Character::class;
 
     protected static ?string $navigationIcon = 'heroicon-s-user';
-    protected static ?string $navigationGroup = 'Wiki';
 
+    protected static ?string $navigationGroup = 'Wiki';
 
     public static function form(Form $form): Form
     {
@@ -58,7 +58,6 @@ class CharacterResource extends Resource
                     ->multiple()
                     ->getSearchResultsUsing(fn (string $search): array => Series::where('series_name', 'like', "%{$search}%")->limit(50)->pluck('series_name', 'id')->toArray())
                     ->getOptionLabelsUsing(fn (array $values): array => Series::whereIn('id', $values)->pluck('series_name', 'id')->toArray())
-                    ->autofocus()
                     ->preload(),
                 FileUpload::make('img_string')
                     ->reactive()
@@ -75,7 +74,7 @@ class CharacterResource extends Resource
                         $seriesId = $get('series_id');
                         $series = SeriesController::getSeries($seriesId)->series_name;
 
-                        return 'series_' . strtolower(str_replace(' ', '', $series)) . '/characters/' . $file->getClientOriginalName();
+                        return 'series_'.strtolower(str_replace(' ', '', $series)).'/characters/'.$file->getClientOriginalName();
                     }),
                 Textarea::make('history')
                     ->autofocus()
@@ -104,14 +103,14 @@ class CharacterResource extends Resource
                 //
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             SeriesRelationManager::class,
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -119,5 +118,5 @@ class CharacterResource extends Resource
             'create' => Pages\CreateCharacter::route('/create'),
             'edit' => Pages\EditCharacter::route('/{record}/edit'),
         ];
-    }    
+    }
 }

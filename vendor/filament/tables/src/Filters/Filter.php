@@ -8,7 +8,7 @@ use Filament\Forms\Components\Toggle;
 
 class Filter extends BaseFilter
 {
-    public string $formComponent = Checkbox::class;
+    protected string $formComponent = Checkbox::class;
 
     protected function setUp(): void
     {
@@ -44,7 +44,7 @@ class Filter extends BaseFilter
         return $this;
     }
 
-    protected function getFormField(): Field
+    public function getFormField(): Field
     {
         $field = $this->formComponent::make('isActive')
             ->label($this->getLabel());
@@ -54,5 +54,17 @@ class Filter extends BaseFilter
         }
 
         return $field;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getResetState(): array
+    {
+        if ($this->hasFormSchema()) {
+            return parent::getResetState();
+        }
+
+        return ['isActive' => false];
     }
 }

@@ -1,27 +1,28 @@
+@php
+    use Filament\Support\Enums\Alignment;
+@endphp
+
 <div
     {{
         $attributes
-            ->merge($getExtraAttributes())
+            ->merge($getExtraAttributes(), escape: false)
             ->class([
                 'flex flex-col',
                 match ($getAlignment()) {
-                    'start' => 'items-start',
-                    'center' => 'items-center',
-                    'end' => 'items-end',
-                    'left' => 'items-start',
-                    'right' => 'items-end',
+                    Alignment::Center, 'center' => 'items-center',
+                    Alignment::End, Alignment::Right, 'end', 'right' => 'items-end',
                     default => 'items-start',
                 },
-                match ($getSpace()) {
+                match ($space = $getSpace()) {
                     1 => 'space-y-1',
                     2 => 'space-y-2',
                     3 => 'space-y-3',
-                    default => null,
+                    default => $space,
                 },
             ])
     }}
 >
-    <x-tables::columns.layout
+    <x-filament-tables::columns.layout
         :components="$getComponents()"
         :record="$getRecord()"
         :record-key="$recordKey"

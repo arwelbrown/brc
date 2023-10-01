@@ -4,43 +4,41 @@ return [
 
     'builder' => [
 
-        'collapsed' => 'Inhoud ingeklapt',
+        'actions' => [
 
-        'buttons' => [
-
-            'clone_item' => [
+            'clone' => [
                 'label' => 'Klonen',
             ],
 
-            'create_item' => [
+            'add' => [
                 'label' => 'Toevoegen aan :label',
             ],
 
-            'create_item_between' => [
+            'add_between' => [
                 'label' => 'Invoegen',
             ],
 
-            'delete_item' => [
+            'delete' => [
                 'label' => 'Verwijderen',
             ],
 
-            'move_item' => [
+            'reorder' => [
                 'label' => 'Verplaatsen',
             ],
 
-            'move_item_down' => [
+            'move_down' => [
                 'label' => 'Naar beneden',
             ],
 
-            'move_item_up' => [
+            'move_up' => [
                 'label' => 'Naar boven',
             ],
 
-            'collapse_item' => [
+            'collapse' => [
                 'label' => 'Inklappen',
             ],
 
-            'expand_item' => [
+            'expand' => [
                 'label' => 'Uitklappen',
             ],
 
@@ -58,7 +56,7 @@ return [
 
     'checkbox_list' => [
 
-        'buttons' => [
+        'actions' => [
 
             'deselect_all' => [
                 'label' => 'Alles deselecteren',
@@ -72,9 +70,128 @@ return [
 
     ],
 
+    'file_upload' => [
+
+        'editor' => [
+
+            'actions' => [
+
+                'cancel' => [
+                    'label' => 'Annuleren',
+                ],
+
+                'drag_crop' => [
+                    'label' => 'Sleepmodus "bijsnijden"',
+                ],
+
+                'drag_move' => [
+                    'label' => 'Sleepmodus "verplaatsen"',
+                ],
+
+                'flip_horizontal' => [
+                    'label' => 'Afbeelding horizontaal spiegelen',
+                ],
+
+                'flip_vertical' => [
+                    'label' => 'Afbeelding verticaal spiegelen',
+                ],
+
+                'move_down' => [
+                    'label' => 'Afbeelding naar beneden verplaatsen',
+                ],
+
+                'move_left' => [
+                    'label' => 'Afbeelding naar links verplaatsen',
+                ],
+
+                'move_right' => [
+                    'label' => 'Afbeelding naar rechts verplaatsen',
+                ],
+
+                'move_up' => [
+                    'label' => 'Afbeelding naar boven verplaatsen',
+                ],
+
+                'reset' => [
+                    'label' => 'Resetten',
+                ],
+
+                'rotate_left' => [
+                    'label' => 'Afbeelding naar links draaien',
+                ],
+
+                'rotate_right' => [
+                    'label' => 'Afbeelding naar rechts draaien',
+                ],
+
+                'set_aspect_ratio' => [
+                    'label' => 'Beeldverhouding instellen op :ratio',
+                ],
+
+                'save' => [
+                    'label' => 'Opslaan',
+                ],
+
+                'zoom_100' => [
+                    'label' => 'Afbeelding uitzoomen naar 100%',
+                ],
+
+                'zoom_in' => [
+                    'label' => 'Inzoomen',
+                ],
+
+                'zoom_out' => [
+                    'label' => 'Uitzoomen',
+                ],
+
+            ],
+
+            'fields' => [
+
+                'height' => [
+                    'label' => 'Hoogte',
+                    'unit' => 'px',
+                ],
+
+                'rotation' => [
+                    'label' => 'Rotatie',
+                    'unit' => 'gr',
+                ],
+
+                'width' => [
+                    'label' => 'Breedte',
+                    'unit' => 'px',
+                ],
+
+                'x_position' => [
+                    'label' => 'X',
+                    'unit' => 'px',
+                ],
+
+                'y_position' => [
+                    'label' => 'Y',
+                    'unit' => 'px',
+                ],
+
+            ],
+
+            'aspect_ratios' => [
+
+                'label' => 'Beeldverhoudingen',
+
+                'no_fixed' => [
+                    'label' => 'Geen',
+                ],
+
+            ],
+
+        ],
+
+    ],
+
     'key_value' => [
 
-        'buttons' => [
+        'actions' => [
 
             'add' => [
                 'label' => 'Rij toevoegen',
@@ -108,54 +225,55 @@ return [
 
         'toolbar_buttons' => [
             'attach_files' => 'Bestanden bijvoegen',
+            'blockquote' => 'Blokcitaat',
             'bold' => 'Vet',
             'bullet_list' => 'Ongeordende lijst',
             'code_block' => 'Codeblok',
-            'edit' => 'Bewerken',
+            'heading' => 'Kop',
             'italic' => 'Cursief',
             'link' => 'Link',
             'ordered_list' => 'Genummerde lijst',
-            'preview' => 'Voorvertoning',
+            'redo' => 'Opnieuw',
             'strike' => 'Doorhalen',
+            'table' => 'Tabel',
+            'undo' => 'Herstellen',
         ],
 
     ],
 
     'repeater' => [
 
-        'collapsed' => 'Inhoud ingeklapt',
+        'actions' => [
 
-        'buttons' => [
-
-            'create_item' => [
+            'add' => [
                 'label' => 'Toevoegen aan :label',
             ],
 
-            'delete_item' => [
+            'delete' => [
                 'label' => 'Verwijderen',
             ],
 
-            'clone_item' => [
+            'clone' => [
                 'label' => 'Klonen',
             ],
 
-            'move_item' => [
+            'reorder' => [
                 'label' => 'Verplaatsen',
             ],
 
-            'move_item_down' => [
+            'move_down' => [
                 'label' => 'Naar beneden',
             ],
 
-            'move_item_up' => [
+            'move_up' => [
                 'label' => 'Naar boven',
             ],
 
-            'collapse_item' => [
+            'collapse' => [
                 'label' => 'Inklappen',
             ],
 
-            'expand_item' => [
+            'expand' => [
                 'label' => 'Uitklappen',
             ],
 
@@ -177,7 +295,7 @@ return [
 
             'link' => [
 
-                'buttons' => [
+                'actions' => [
                     'link' => 'Link',
                     'unlink' => 'Unlink',
                 ],
@@ -226,6 +344,28 @@ return [
                             'label' => 'Aanmaken',
                         ],
 
+                        'create_another' => [
+                            'label' => 'Aanmaken & nieuwe aanmaken',
+                        ],
+
+                    ],
+
+                ],
+
+            ],
+
+            'edit_option' => [
+
+                'modal' => [
+
+                    'heading' => 'Bewerken',
+
+                    'actions' => [
+
+                        'save' => [
+                            'label' => 'Opslaan',
+                        ],
+
                     ],
 
                 ],
@@ -259,7 +399,7 @@ return [
 
     'wizard' => [
 
-        'buttons' => [
+        'actions' => [
 
             'previous_step' => [
                 'label' => 'Vorige',

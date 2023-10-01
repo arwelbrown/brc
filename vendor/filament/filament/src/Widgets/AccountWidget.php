@@ -6,5 +6,8 @@ class AccountWidget extends Widget
 {
     protected static ?int $sort = -3;
 
-    protected static string $view = 'filament::widgets.account-widget';
+    /**
+     * @var view-string
+     */
+    protected static string $view = 'filament-panels::widgets.account-widget';
 }

@@ -4,12 +4,8 @@ return [
 
     'columns' => [
 
-        'tags' => [
-            'more' => 'un :count vēl',
-        ],
-
-        'messages' => [
-            'copied' => 'Kopēts',
+        'text' => [
+            'more_list_items' => 'un :count vēl',
         ],
 
     ],
@@ -31,45 +27,7 @@ return [
 
     ],
 
-    'pagination' => [
-
-        'label' => 'Lapdales navigācija',
-
-        'overview' => '{1} Rāda 1 rezultātu|[2,*] Rāda :first līdz :last no :total rezultātiem',
-
-        'fields' => [
-
-            'records_per_page' => [
-
-                'label' => 'vienā lappusē',
-
-                'options' => [
-                    'all' => 'Visi',
-                ],
-
-            ],
-
-        ],
-
-        'buttons' => [
-
-            'go_to_page' => [
-                'label' => 'Doties uz lapu :page',
-            ],
-
-            'next' => [
-                'label' => 'Nākamais',
-            ],
-
-            'previous' => [
-                'label' => 'Iepriekšējais',
-            ],
-
-        ],
-
-    ],
-
-    'buttons' => [
+    'actions' => [
 
         'disable_reordering' => [
             'label' => 'Pabeigt ierakstu kārtošanu',
@@ -95,20 +53,11 @@ return [
 
     'empty' => [
         'heading' => 'Nav atrasts neviens ieraksts',
-
-        'buttons' => [
-
-            'reset_column_searches' => [
-                'label' => 'Notīrīt kolonnas meklēšanu',
-            ],
-
-        ],
-
     ],
 
     'filters' => [
 
-        'buttons' => [
+        'actions' => [
 
             'remove' => [
                 'label' => 'Noņemt filtru',
@@ -153,9 +102,9 @@ return [
 
     'selection_indicator' => [
 
-        'selected_count' => 'Izvēlēts 1 ieraksts.|:count ieraksti izvēlēti.',
+        'selected_count' => 'Izvēlēts 1 ieraksts|:count ieraksti izvēlēti',
 
-        'buttons' => [
+        'actions' => [
 
             'select_all' => [
                 'label' => 'Atlasīt visus :count',
