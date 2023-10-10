@@ -7,12 +7,14 @@ use App\Filament\Resources\UniverseResource\RelationManagers\SeriesRelationManag
 use App\Formatters\SlugFormatter;
 use App\Models\Universe;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class UniverseResource extends Resource
 {
@@ -40,6 +42,38 @@ class UniverseResource extends Resource
                             ->required()
                             ->columnSpan(1)
                             ->reactive(),
+                        FileUpload::make('universe_banner_img_string')
+                            ->reactive()
+                            ->autofocus()
+                            ->preserveFilenames()
+                            ->acceptedFileTypes(['image/webp'])
+                            ->columnSpan(2)
+                            ->label('Banner Image')
+                            ->image()
+                            ->directory('/img')
+                            ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
+                                return '/br_admin/universe_banners/'.$file->getClientOriginalName();
+                            })
+                            ->enableOpen()
+                            ->enableDownload()
+                            ->required()
+                            ->columnSpan(1),
+                        FileUpload::make('universe_background_img_string')
+                            ->reactive()
+                            ->autofocus()
+                            ->preserveFilenames()
+                            ->acceptedFileTypes(['image/webp'])
+                            ->columnSpan(2)
+                            ->label('Background Image')
+                            ->image()
+                            ->directory('/img')
+                            ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
+                                return '/universe_'.$get('universe_slug').'/'.$file->getClientOriginalName();
+                            })
+                            ->enableOpen()
+                            ->enableDownload()
+                            ->required()
+                            ->columnspan(1),
                     ])
                     ->columns(2),
             ]);

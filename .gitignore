@@ -1,6 +1,6 @@
 node_modules
 .htaccess
-vendor
+vendor/*
 
 ### db ###
 storage/db-data
