@@ -12,3 +12,5 @@ public/hot
 .env.local
 .env.uat
 .env
+
+artisan
