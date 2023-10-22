@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -13,16 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::where('id', '=', 3)->get()->all()[0];
-        $user->assignRole('admin');
+        $this->call([
+            UniverseSeeder::class,
+            SeriesSeeder::class,
+            ProductSeeder::class,
+            TeamSeeder::class,
+            CharacterSeeder::class,
+        ]);
 
-        // $this->call([
-        // UniverseSeeder::class,
-        // SeriesSeeder::class,
-        // ProductSeeder::class,
-        // TeamSeeder::class,
-        // UserSeeder::class,
-        // CharacterSeeder::class,
-        // ]);
+        $role = Role::create(['name' => 'admin']);
+        $permission = Permission::create(['name' => 'Edit All']);
+
+        $role->givePermissionTo($permission);
+
+        $user = User::where('name', '=', 'Arwel Brown')->get()->all()[0];
+        $user->assignRole('admin');
     }
 }
