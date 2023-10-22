@@ -27,10 +27,12 @@ Route::get('/store/universe/{slug}', [StoreController::class, 'universeStore']);
 
 Route::resource('/store', StoreController::class);
 
-Route::get('/brc-newsletter', function() {
+Route::get('/brc-newsletter', function () {
     return view('brc-newsletter');
 });
 
 Route::get('/ejunkie-test', [ProductStoreControllerController::class, 'getAllFromEjunkie']);
 
 Route::get('/ejunkie-test/{productId}', [StoreController::class, 'getProductByProductId']);
+
+Route::get('/submissions', [StoreController::class, 'submissionsPage']);

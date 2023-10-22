@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Formatters\StringFormatter;
 use App\Models\Product;
 use App\Models\Series;
 use App\Models\Universe;
+use DataProviders\eJunkie\EjProductDataProvider;
+use Illuminate\Contracts\Foundation\Application as FoundationApplication;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
-use Illuminate\Contracts\Foundation\Application as FoundationApplication;
-use DataProviders\eJunkie\EjProductDataProvider;
 
 class StoreController extends Controller
 {
@@ -41,17 +40,17 @@ class StoreController extends Controller
         foreach ($charactersInSeries as $character) {
             $characterToInsert = $character->where('series_id', '=', $series->id)->get()->all();
 
-            // link other series    
-            if (!empty($characterToInsert[0]->appearances)) {
-                $showsUpIn = $characterToInsert[0]->appearances;    
+            // link other series
+            if (! empty($characterToInsert[0]->appearances)) {
+                $showsUpIn = $characterToInsert[0]->appearances;
                 $characterToInsert[0]->appearances = [];
 
                 $appearances = [];
 
                 foreach ($showsUpIn as $seriesId) {
                     $seriesToInsert = Series::where('id', '=', (int) $seriesId)->get()->all();
-                    $universeToInsert =  $seriesToInsert[0]->universe()->get()->all();
-                    
+                    $universeToInsert = $seriesToInsert[0]->universe()->get()->all();
+
                     $appearance = [
                         'series_name' => $seriesToInsert[0]->series_name,
                         'series_slug' => $seriesToInsert[0]->series_slug,
@@ -63,7 +62,7 @@ class StoreController extends Controller
 
                 $characterToInsert[0]->appearances = array_merge($characterToInsert[0]->appearances, $appearances);
             }
-            
+
             $characters[] = $characterToInsert;
         }
 
@@ -88,19 +87,17 @@ class StoreController extends Controller
         );
     }
 
-    public function universeStore(string $slug) 
+    public function universeStore(string $slug)
     {
         $universe = Universe::where('universe_slug', $slug)->first();
         $seriesInUniverse = $universe->series()->get()->all();
 
         $products = [];
 
-
         foreach ($seriesInUniverse as $series) {
             $productsInSeries = $series->products()->get()->all();
             $products = array_merge($productsInSeries, $products);
         }
-
 
         return view('store-universe', ['universe' => $universe, 'seriesInUniverse' => $seriesInUniverse, 'products' => $products]);
     }
@@ -113,11 +110,16 @@ class StoreController extends Controller
         return view('ejunkie.ejunkie', ['result' => $result]);
     }
 
-    public function getProductByProductId(int $productId, ?int $page = null)
+    public function getProductByProductId(int $productId, int $page = null)
     {
         $ej = new EjProductDataProvider();
         $result = $ej->getProductByProductId($productId, $page);
 
         return view('ejunkie.ejunkie-single-product', ['result' => $result]);
+    }
+
+    public function submissionsPage(): View
+    {
+        return view('submissions');
     }
 }

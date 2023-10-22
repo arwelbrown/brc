@@ -8,9 +8,9 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
@@ -26,7 +26,7 @@ class ProductsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'id';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -140,7 +140,7 @@ class ProductsRelationManager extends RelationManager
                     ->autofocus()
                     ->default(false),
                 Toggle::make('active')
-                    ->onIcon('heroicon-s-lightning-bolt')
+                    ->onIcon('heroicon-m-bolt')
                     ->autofocus()
                     ->default(false),
             ]);
@@ -149,7 +149,7 @@ class ProductsRelationManager extends RelationManager
     /**
      * @throws Exception
      */
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([

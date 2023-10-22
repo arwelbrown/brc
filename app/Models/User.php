@@ -5,18 +5,29 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, HasAvatar
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, HasRoles, Notifiable;
 
-    public function canAccessFilament(): bool
+    public function canAccessPanel(Panel $panel): bool
     {
-        return str_ends_with($this->email, '@brc.com') && $this->hasVerifiedEmail();
+        $roles = Role::all();
+        $roleNames = [];
+
+        foreach ($roles as $role) {
+            if ($role->getAttribute('name') != 'customer') {
+                $roleNames[] = $role->getAttribute('name');
+            }
+        }
+
+        return $this->hasRole($roleNames) && $this->hasVerifiedEmail();
     }
 
     public function getFilamentAvatarUrl(): ?string
@@ -33,7 +44,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         'name',
         'email',
         'password',
-        'email_verified_at'
+        'email_verified_at',
     ];
 
     /**
@@ -57,6 +68,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
 
     public function canManageSettings(): bool
     {
-        return $this->can('manage.settings');
+        return $this->hasRole('admin');
     }
 }
