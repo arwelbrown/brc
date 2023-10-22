@@ -35,8 +35,7 @@ class UserResource extends Resource
                     ->autofocus()
                     ->required(),
                 DateTimePicker::make('email_verified_at')
-                    ->seconds(false)
-                    ->native(false),
+                    ->seconds(false),
                 TextInput::make('password')
                     ->password()
                     ->maxLength(255)

@@ -117,4 +117,9 @@ class StoreController extends Controller
 
         return view('ejunkie.ejunkie-single-product', ['result' => $result]);
     }
+
+    public function submissionsPage(): View
+    {
+        return view('submissions');
+    }
 }
