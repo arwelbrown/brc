@@ -11,8 +11,10 @@ database/seeders
 ### vite hotreloader ###
 public/hot
 
+### envs ###
 .env.local
 .env.uat
 .env
 
+### laravel ###
 artisan
