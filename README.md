@@ -15,7 +15,7 @@ Once you have these set up, clone the project, and run
 composer install
 ```
 
-We now need to create a shell function for entering the docker container we will be creating with Laravel Sail. To do this, follow these commands (I use bash, this might be different for you if you use zsh, or fish).
+We now need to create a shell function for entering the docker container we will be creating. To do this, follow these commands (I use bash, this might be different for you if you use zsh, or fish).
 
 ```sh
 touch ~/.bash_functions
@@ -27,7 +27,7 @@ Write the following function in your .bash_functions file
 ```sh                                      
 function dockin() {
         if [ -z "$1" -o -z "$2" ]; then
-                docker exec -it brc-laravel-1 /bin/bash
+                docker exec -it brc-web /bin/bash
         fi
 }
 ```
@@ -41,8 +41,8 @@ You'll now be able to enter the container from anywhere within your system by ru
 Next, cd into the directory where the project is cloned, and run the following;
 
 ```sh
-php artisan sail:install
-./vendor/bin/sail up
+docker-compose build
+docker-compose up -d
 ```
 
 Next, once the container has built, run:
@@ -52,15 +52,9 @@ docker ps
 ```
 To verify that it's working.
 
-Next up, we'll create an alias for running the sail command. Drop the following at the end of your shell startup file
-
-```sh
-alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
-```
-
 You'll now be able to start up your docker container in your directory by calling
 ```
-sail up -d
+docker-compose up -d
 ```
 
 ## Database
