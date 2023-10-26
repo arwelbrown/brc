@@ -3,7 +3,8 @@ version: "3.8"
 services:
   web:
     container_name: brc_web
-    build: .
+    build:
+      dockerfile: ./conf/web/Dockerfile
     volumes:
       - ./:/var/www/html
     ports:
@@ -12,7 +13,8 @@ services:
   # DB
   mysql:
     container_name: brc_db
-    image: mysql:latest
+    build:
+      dockerfile: ./conf/db/Dockerfile
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: brc_core
@@ -23,7 +25,8 @@ services:
   #PHPMYADMIN SERVER
   phpmyadmin:
     container_name: brc_phpmyadmin
-    image: phpmyadmin:latest
+    build:
+      dockerfile: ./conf/phpmyadmin/Dockerfile
     ports:
       - 8001:80
     environment:
