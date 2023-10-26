@@ -1,5 +1,8 @@
 node_modules
 .htaccess
+
+### composer ###
+composer.lock
 vendor/*
 
 ### db ###
