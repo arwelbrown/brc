@@ -1,5 +1,7 @@
 node_modules
 .htaccess
+
+### composer ###
 vendor/*
 
 ### db ###
@@ -9,8 +11,10 @@ database/seeders
 ### vite hotreloader ###
 public/hot
 
+### envs ###
 .env.local
 .env.uat
 .env
 
+### laravel ###
 artisan
