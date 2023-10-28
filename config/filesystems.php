@@ -49,7 +49,15 @@ return [
             'root' => storage_path('app/img'),
             'url' => env('APP_URL' . '/img'),
             'visibility' => 'public',
-            'throw' => false
+            'throw' => false,
+        ],
+        
+        'submissions' => [
+            'driver' => 'local',
+            'root' => storage_path('app/submissions'),
+            'url' => env('APP_URL' . '/storage/submissions'),
+            'visibility' => 'private',
+            'throw' => false,
         ],
 
         's3' => [
