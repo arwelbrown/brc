@@ -39,7 +39,7 @@ class SubmissionResource extends Resource
                 DateTimePicker::make('created_at')
                     ->autofocus()
                     ->label('Uploaded At'),
-                FileUpload::make('file_path')
+                FileUpload::make('file_name')
                     ->autofocus()
                     ->directory('../submissions')
                     ->columnSpanFull()

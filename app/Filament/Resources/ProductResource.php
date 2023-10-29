@@ -174,6 +174,9 @@ class ProductResource extends Resource
                     ->placeholder('n/a'),
                 IconColumn::make('active')
                     ->boolean(),
+                IconColumn::make('in_development')
+                    ->boolean()
+                    ->label('In Development'),
             ])
             ->filters([
                 //

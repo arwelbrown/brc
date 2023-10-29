@@ -6,6 +6,7 @@ use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +21,13 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             TeamSeeder::class,
             CharacterSeeder::class,
+        ]);
+
+        User::create([
+            'name' => 'Arwel Brown',
+            'email' => 'arwel@brc.com',
+            'password' => 'Jazzmaster03!',
+            'email_verified_at' => Carbon::now(),
         ]);
 
         $role = Role::create(['name' => 'admin']);
