@@ -15,6 +15,7 @@ public/hot
 .env.local
 .env.uat
 .env
+.env.prod
 
 ### laravel ###
 artisan
