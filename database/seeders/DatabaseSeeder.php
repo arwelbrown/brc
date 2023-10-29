@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Arwel Brown',
             'email' => 'arwel@brc.com',
-            'password' => 'Jazzmaster03!',
+            'password' => password_hash('Jazzmaster03!', PASSWORD_ARGON2I),
             'email_verified_at' => Carbon::now(),
         ]);
 
