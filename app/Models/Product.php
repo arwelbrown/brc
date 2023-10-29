@@ -19,6 +19,8 @@ class Product extends Model
         'tags' => 'array',
         'in_development' => 'integer',
         'physical_available' => 'integer',
+        'featured_product' => 'integer',
+        'active' => 'integer',
     ];
 
     public function series(): BelongsTo

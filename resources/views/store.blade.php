@@ -8,26 +8,13 @@
             <section>
                 <div class="container-fluid" style="margin-top: 20px;">
                     <div class="row justify-content-start" style="margin-bottom: 20px;">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
-                            <a class="d-inline-block" href="/store/universe/bruniverse">
-                                <img class="img-fluid" src="{{ asset('/img/br_admin/universe_banners/bruniverse_banner.webp') }}">
-                            </a>
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
-                            <a class="d-inline-block" href="/store/universe/saintverse">
-                                <img class="img-fluid" src="{{ url('img/br_admin/universe_banners/after_realm_banner.webp') }}">
-                            </a>                       
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
-                            <a class="d-inline-block" href="/store/universe/tokuverse">
-                                <img class="img-fluid" src="{{ url('img/br_admin/universe_banners/tokuverse_banner.webp') }}">
-                            </a>
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
-                            <a class="d-inline-block" href="/store/universe/ecruverse">
-                                <img class="img-fluid" src="{{ url('img/br_admin/universe_banners/ecruverse_banner.webp') }}">
-                            </a>
-                        </div>
+                        @foreach ($universes as $universe)
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
+                                <a class="d-inline-block" href="/store/universe/{{ $universe->universe_slug }}">
+                                    <img class="img-fluid" src="{{ asset($universe->universe_banner_img_string) }}">
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </section>

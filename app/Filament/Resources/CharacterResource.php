@@ -8,6 +8,7 @@ use App\Http\Controllers\SeriesController;
 use App\Models\Character;
 use App\Models\Series;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
@@ -17,7 +18,7 @@ use Filament\Resources\Resource;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Livewire\TemporaryUploadedFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class CharacterResource extends Resource
 {
@@ -31,54 +32,61 @@ class CharacterResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
-                    ->autofocus()
-                    ->required()
-                    ->placeholder('Enter here...'),
-                Select::make('series_id')
-                    ->relationship('series', 'series_name')
-                    ->required()
-                    ->autofocus(),
-                TextInput::make('real_name')
-                    ->autofocus()
-                    ->placeholder('Enter here...'),
-                TextInput::make('race')
-                    ->autofocus()
-                    ->required()
-                    ->placeholder('Adaptable X-Tier...'),
-                TagsInput::make('aliases')
-                    ->autofocus(),
-                TagsInput::make('abilities')
-                    ->autofocus(),
-                TagsInput::make('weaknesses')
-                    ->autofocus(),
-                TagsInput::make('affiliations')
-                    ->autofocus(),
-                Select::make('appearances')
-                    ->multiple()
-                    ->getSearchResultsUsing(fn (string $search): array => Series::where('series_name', 'like', "%{$search}%")->limit(50)->pluck('series_name', 'id')->toArray())
-                    ->getOptionLabelsUsing(fn (array $values): array => Series::whereIn('id', $values)->pluck('series_name', 'id')->toArray())
-                    ->preload(),
-                FileUpload::make('img_string')
-                    ->reactive()
-                    ->preserveFilenames()
-                    ->acceptedFileTypes(['image/webp'])
-                    ->autofocus()
-                    ->required()
-                    ->label('Character art')
-                    ->directory('/img')
-                    ->columnspan(2)
-                    ->enableOpen()
-                    ->enableDownload()
-                    ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
-                        $seriesId = $get('series_id');
-                        $series = SeriesController::getSeries($seriesId)->series_name;
+                Section::make('Character Info')
+                    ->schema([
+                        TextInput::make('name')
+                            ->autofocus()
+                            ->required()
+                            ->placeholder('Enter here...'),
+                        Select::make('series_id')
+                            ->relationship('series', 'series_name')
+                            ->required()
+                            ->autofocus(),
+                        TextInput::make('real_name')
+                            ->autofocus()
+                            ->placeholder('Enter here...'),
+                        TextInput::make('race')
+                            ->autofocus()
+                            ->required()
+                            ->placeholder('Adaptable X-Tier...'),
+                        TagsInput::make('aliases')
+                            ->autofocus(),
+                        TagsInput::make('abilities')
+                            ->autofocus(),
+                        TagsInput::make('weaknesses')
+                            ->autofocus(),
+                        TagsInput::make('affiliations')
+                            ->autofocus(),
+                        Select::make('appearances')
+                            ->multiple()
+                            ->getSearchResultsUsing(fn (string $search): array => Series::where('series_name', 'like', "%{$search}%")->limit(50)->pluck('series_name', 'id')->toArray())
+                            ->getOptionLabelsUsing(fn (array $values): array => Series::whereIn('id', $values)->pluck('series_name', 'id')->toArray())
+                            ->preload(),
+                        Textarea::make('history')
+                            ->autofocus()
+                            ->columnspan(2),
+                    ])
+                    ->columns(2),
+                    Section::make('Character Images')
+                        ->schema([
+                            FileUpload::make('img_string')
+                                ->reactive()
+                                ->preserveFilenames()
+                                ->acceptedFileTypes(['image/webp'])
+                                ->autofocus()
+                                ->required()
+                                ->label('Character art')
+                                ->directory('/img')
+                                ->columnspan(2)
+                                ->openable()
+                                ->downloadable()
+                                ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
+                                    $seriesId = $get('series_id');
+                                    $series = SeriesController::getSeries($seriesId)->series_name;
 
-                        return 'series_'.strtolower(str_replace(' ', '', $series)).'/characters/'.$file->getClientOriginalName();
-                    }),
-                Textarea::make('history')
-                    ->autofocus()
-                    ->columnspan(2),
+                                    return 'series_'.strtolower(str_replace(' ', '', $series)).'/characters/'.$file->getClientOriginalName();
+                                }),
+                            ])
             ]);
     }
 

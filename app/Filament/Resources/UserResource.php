@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -28,23 +29,27 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
-                    ->autofocus()
-                    ->required(),
-                TextInput::make('email')
-                    ->autofocus()
-                    ->required(),
-                DateTimePicker::make('email_verified_at')
-                    ->seconds(false),
-                TextInput::make('password')
-                    ->password()
-                    ->maxLength(255)
-                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
-                    ->dehydrated(fn ($state) => filled($state)),
-                Select::make('roles')
-                    ->multiple()
-                    ->relationship('roles', 'name')
-                    ->preload(),
+                Section::make()
+                    ->schema([
+                        TextInput::make('name')
+                        ->autofocus()
+                        ->required(),
+                        TextInput::make('email')
+                            ->autofocus()
+                            ->required(),
+                        DateTimePicker::make('email_verified_at')
+                            ->seconds(false),
+                        TextInput::make('password')
+                            ->password()
+                            ->maxLength(255)
+                            ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                            ->dehydrated(fn ($state) => filled($state)),
+                        Select::make('roles')
+                            ->multiple()
+                            ->relationship('roles', 'name')
+                            ->preload(),
+                    ])
+                    ->columns(2)
             ]);
     }
 

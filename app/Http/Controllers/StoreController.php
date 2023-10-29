@@ -17,15 +17,9 @@ class StoreController extends Controller
     {
         $products = Product::orderByDesc('id')->where('active', 1)->paginate(24);
 
-        $featuredProducts = [];
-
-        // quick and dirty fix
-
-        $featuredProducts[] = Product::find(42);
-        $featuredProducts[] = Product::find(43);
+        $featuredProducts = Product::orderByDesc('id')->where('active', '=', 1)->where('featured_product', '=', 1)->get();
 
         // get universes
-
         $universes = Universe::all();
 
         return view('store', ['products' => $products, 'featuredProducts' => $featuredProducts, 'universes' => $universes]);

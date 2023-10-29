@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('universe_description');
             $table->string('universe_banner_img_string');
             $table->string('universe_background_img_string');
+            $table->string('universe_logo_img_string');
             $table->timestamps();
         });
     }

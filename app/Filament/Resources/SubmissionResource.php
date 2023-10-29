@@ -8,6 +8,7 @@ use App\Models\Submission;
 use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -32,19 +33,21 @@ class SubmissionResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
-                    ->autofocus(),
-                TextInput::make('email')
-                    ->autofocus(),
-                DateTimePicker::make('created_at')
-                    ->autofocus()
-                    ->label('Uploaded At'),
-                FileUpload::make('file_name')
-                    ->autofocus()
-                    ->directory('../submissions')
-                    ->columnSpanFull()
-                    ->label('Uploaded File'),
-                Toggle::make('approved'),
+                Section::make()
+                    ->schema([
+                        TextInput::make('name')
+                            ->autofocus(),
+                        TextInput::make('email')
+                            ->autofocus(),
+                        DateTimePicker::make('created_at')
+                            ->autofocus()
+                            ->label('Uploaded At'),
+                        FileUpload::make('file_name')
+                            ->autofocus()
+                            ->columnSpanFull()
+                            ->label('Uploaded File'),
+                        Toggle::make('approved'),
+                    ])
             ]);
     }
 

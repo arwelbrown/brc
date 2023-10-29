@@ -8,6 +8,8 @@ use App\Formatters\SlugFormatter;
 use App\Models\Universe;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -28,45 +30,71 @@ class UniverseResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('universe_name')
-                    ->autofocus()
-                    ->required()
-                    ->reactive()
-                    ->columnSpan(1)
-                    ->afterStateUpdated(fn (callable $set, $state) => ! empty($state) ? $set('universe_slug', SlugFormatter::formatSlug($state)) : $set('universe_slug', '')),
-                TextInput::make('universe_slug')
-                    ->disabled()
-                    ->autofocus()
-                    ->required()
-                    ->columnSpan(1)
-                    ->reactive(),
-                FileUpload::make('universe_banner_img_string')
-                    ->reactive()
-                    ->autofocus()
-                    ->preserveFilenames()
-                    ->columnSpan(2)
-                    ->label('Banner Image')
-                    ->directory('/img')
-                    ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
-                        return '/universe_' . $get('universe_slug') . '/' . $file->getClientOriginalName();
-                    })
-                    ->downloadable()
-                    ->required()
-                    ->columnSpan(1),
-                FileUpload::make('universe_background_img_string')
-                    ->reactive()
-                    ->autofocus()
-                    ->preserveFilenames()
-                    ->columnSpan(2)
-                    ->label('Background Image')
-                    ->directory('/img')
-                    ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
-                        return '/universe_' . $get('universe_slug') . '/' . $file->getClientOriginalName();
-                    })
-                    ->downloadable()
-                    ->columnspan(1),
-            ])
-            ->columns(2);
+                Section::make('Universe Info')
+                    ->schema([
+                        TextInput::make('universe_name')
+                            ->autofocus()
+                            ->required()
+                            ->reactive()
+                            ->columnSpan(1)
+                            ->afterStateUpdated(fn (callable $set, $state) => ! empty($state) ? $set('universe_slug', SlugFormatter::formatSlug($state)) : $set('universe_slug', '')),
+                        TextInput::make('universe_slug')
+                            ->disabled()
+                            ->autofocus()
+                            ->required()
+                            ->columnSpan(1)
+                            ->reactive(),
+                        Textarea::make('universe_summary')
+                            ->columnSpanFull(),
+                        Textarea::make('universe_description')
+                            ->columnSpanFull(),
+                    ])
+                ->columns(2),
+                Section::make('Universe Images')
+                    ->schema([
+                        FileUpload::make('universe_banner_img_string')
+                            ->reactive()
+                            ->autofocus()
+                            ->preserveFilenames()
+                            ->columnSpan(2)
+                            ->label('Banner Image')
+                            ->directory('/img')
+                            ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
+                                return '/universe_' . $get('universe_slug') . '/' . $file->getClientOriginalName();
+                            })
+                            ->downloadable()
+                            ->required()
+                            ->columnSpan(1)
+                            ->imageEditor(),
+                        FileUpload::make('universe_background_img_string')
+                            ->reactive()
+                            ->autofocus()
+                            ->preserveFilenames()
+                            ->columnSpan(2)
+                            ->label('Background Image')
+                            ->directory('/img')
+                            ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
+                                return '/universe_' . $get('universe_slug') . '/' . $file->getClientOriginalName();
+                            })
+                            ->downloadable()
+                            ->columnspan(1)
+                            ->imageEditor(),
+                        FileUpload::make('universe_logo_img_string')
+                            ->reactive()
+                            ->autofocus()
+                            ->preserveFilenames()
+                            ->columnSpan(2)
+                            ->label('Logo')
+                            ->directory('/img')
+                            ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
+                                return '/universe_' . $get('universe_slug') . '/' . $file->getClientOriginalName();
+                            })
+                            ->downloadable()
+                            ->columnspan(1)
+                            ->imageEditor(),
+                    ])
+                    ->columns(2),
+            ]);
     }
 
     public static function table(Table $table): Table

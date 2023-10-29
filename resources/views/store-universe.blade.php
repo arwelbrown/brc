@@ -1,11 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@php
-    $imgDir = 'img/universe_' . $universe->universe_slug;
-    $wallpaper = $imgDir . '/' . $universe->universe_slug . '_wallpaper.webp';
-    $logo = $imgDir . '/' . $universe->universe_slug . '_logo.webp';
-@endphp
-<section class="py-4 py-xl-5" style="background: linear-gradient(rgba(9,0,34,0.75) 0%, #000000 100%), url({{ url($wallpaper) }}) center / cover no-repeat;">
+<section class="py-4 py-xl-5" style="background: linear-gradient(rgba(9,0,34,0.75) 0%, #000000 100%), url({{ url($universe->universe_background_img_string) }}) center / cover no-repeat;">
     <div class="container" style="margin-bottom: 10px;margin-top: 40px;">
         <nav class="navbar navbar-expand bg-transparent p-0 navbar-dark" style="max-width: 400px;">
             <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -20,8 +15,8 @@
     </div>
     <div class="container text-center">
 
-        @if (file_exists($logo))
-            <img class="img-fluid" data-aos="fade-up" style="text-align: center;margin-top: 50px;margin-bottom: 30px;" src="{{ url($logo) }}" width="30%">
+        @if (file_exists($universe->universe_logo_img_string))
+            <img class="img-fluid" data-aos="fade-up" style="text-align: center;margin-top: 50px;margin-bottom: 30px;" src="{{ url($universe->universe_logo_img_string) }}" width="30%">
         @endif
 
         <h1 class="text-center" data-aos="fade-up" data-aos-delay="200" style="font-family: Anton, sans-serif;color: rgb(255,255,255);font-size: 50PX;">

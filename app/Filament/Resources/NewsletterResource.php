@@ -7,6 +7,7 @@ use App\Models\Newsletter;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -28,24 +29,24 @@ class NewsletterResource extends Resource
     {
         return $form
             ->schema([
-                Card::make()->schema([
-                    DateTimePicker::make('newsletter_timestamp')
-                        ->label('Newsletter Timestamp')
-                        ->seconds(false),
-                    FileUpload::make('file_path')
-                        ->reactive()
-                        ->autofocus()
-                        ->preserveFilenames()
-                        ->acceptedFileTypes(['image/webp'])
-                        ->label('Upload PDF')
-                        ->image()
-                        ->directory('/img')
-                        ->getUploadedFileNameForStorage(function (callable $get, TemporaryUploadedFile $file): string {
-                            $filename = 'newsletter_'.$file->getClientOriginalName();
+                Section::make()
+                    ->schema([
+                        DateTimePicker::make('newsletter_timestamp')
+                            ->label('Newsletter Timestamp')
+                            ->seconds(false),
+                        FileUpload::make('file_path')
+                            ->reactive()
+                            ->autofocus()
+                            ->preserveFilenames()
+                            ->label('Upload PDF')
+                            ->directory('/img')
+                            ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
+                                $filename = 'newsletter_' . $file->getClientOriginalName();
 
-                            return '/newsletters/'.$filename;
-                        }),
-                ]),
+                                return '/newsletters/' . $filename;
+                            }),
+                    ])
+                    ->columns(2),
             ]);
     }
 

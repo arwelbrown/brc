@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('physical_available');
             $table->string('store_slug');
             $table->integer('active')->default(0);
+            $table->integer('featured_product')->default(0);
             $table->timestamps();
         });
     }

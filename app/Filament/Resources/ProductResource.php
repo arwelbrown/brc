@@ -154,6 +154,10 @@ class ProductResource extends Resource
                                 ->autofocus()
                                 ->columnSpan(1)
                                 ->default(false),
+                            Toggle::make('featured_product')
+                                ->autofocus()
+                                ->columnSpan(1)
+                                ->default(false),
                             Toggle::make('active')
                                 ->onIcon('heroicon-o-bolt')
                                 ->autofocus()
@@ -183,6 +187,8 @@ class ProductResource extends Resource
                     ->label('Physical Price ($)')
                     ->placeholder('n/a'),
                 IconColumn::make('active')
+                    ->boolean(),
+                IconColumn::make('featured_product')
                     ->boolean(),
                 IconColumn::make('in_development')
                     ->boolean()
