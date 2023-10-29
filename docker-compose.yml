@@ -4,7 +4,8 @@ services:
   web:
     container_name: brc_web
     build:
-      dockerfile: ./conf/web/Dockerfile
+      context: ./docker/web
+      dockerfile: Dockerfile
     volumes:
       - ./:/var/www/html
     ports:
@@ -14,7 +15,8 @@ services:
   mysql:
     container_name: brc_db
     build:
-      dockerfile: ./conf/db/Dockerfile
+      context: ./docker/db
+      dockerfile: Dockerfile
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: brc_core
@@ -26,7 +28,8 @@ services:
   phpmyadmin:
     container_name: brc_phpmyadmin
     build:
-      dockerfile: ./conf/phpmyadmin/Dockerfile
+      context: ./docker/phpmyadmin
+      dockerfile: Dockerfile
     ports:
       - 8001:80
     environment:
