@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <section>
-    <div data-bss-parallax-bg="true" style="height: 300px;background: linear-gradient(rgba(0,0,0,0.17) 6%, #000000 100%), url({{ url('img/br_admin/join_the_fight.webp') }}) center / cover;"></div>
+    <div class="relative" data-bss-parallax-bg="true" style="height: 300px;background: linear-gradient(rgba(0,0,0,0.17) 6%, #000000 100%), url({{ url('img/br_admin/join_the_fight.webp') }}) center / cover;"></div>
 </section>
 <section class="contact-clean" style="background: rgb(0,0,0);padding-top: 30px;">
     <h1 class="text-center" style="font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgb(255,255,255);font-size: 40px;">SUBMISSIONS</h1>
@@ -30,13 +30,60 @@
         <p class="text-start" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;font-size: 14px;"><span style="background-color: transparent;">Broken Reality Comics </span><strong><span style="background-color: transparent;">owns no intellectual properties</span></strong><span style="background-color: transparent;">, you can be assured accepted or not that your property will remain yours.</span></p>
         <p class="text-start" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;font-size: 14px;margin-bottom: 30px;"><strong><span style="background-color: transparent;">Most Importantly, have fun creating!</span></strong></p>
     </div>
-    <form class="text-center border rounded-0" style="background: rgb(0,0,0);">
-        <div class="container text-center" style="font-family: 'Open Sans', sans-serif;font-weight: bold;"><label class="form-label text-center" style="font-size: 25px;color: rgb(255,255,255);">Contact Information</label></div><input class="form-control" type="text" placeholder="Full Name" style="margin-bottom: 20px;" required="" minlength="1"><input class="form-control" type="email" placeholder="Email" style="margin-bottom: 20px;" required="" minlength="1">
-        <div class="container text-center" style="font-family: 'Open Sans', sans-serif;font-weight: bold;"><label class="form-label text-center" style="font-size: 25px;color: rgb(255,255,255);">File Specifications</label></div>
-        <div class="container text-center" style="margin-bottom: 10px;"><small class="form-text" style="color: rgb(255,255,255);">Please ensure that the documents submitted fit the BRC guidelines. Uploaded files must be in a PDF, DOC, PNG, or JPEG format.&nbsp;</small></div><input class="form-control" type="file" style="margin-bottom: 20px;" name="Cover Letter" required="" multiple="">
+    <a href="#" id="submissionForm"></a>
+    <form 
+        class="text-center border rounded-0"
+        style="background: rgb(0,0,0);"
+        enctype="multipart/form-data"
+        action="{{ route('submit.submission') }}" 
+        method="post"
+    >
+        @csrf
+        <div class="container text-center" style="font-family: 'Open Sans', sans-serif;font-weight: bold;">
+            <label class="form-label text-center" style="font-size: 25px;color: rgb(255,255,255);">Contact Information</label>
+        </div>
+
+        <input class="form-control" type="text" placeholder="Full Name" id="fullName" name="fullName" style="margin-bottom: 20px;" required minlength="1">
+        <input class="form-control" type="email" placeholder="Email" id="email" name="email" style="margin-bottom: 20px;" required="" minlength="1">
+
+        <div class="container text-center" style="font-family: 'Open Sans', sans-serif;font-weight: bold;">
+            <label class="form-label text-center" style="font-size: 25px;color: rgb(255,255,255);">File Specifications</label>
+        </div>
+
+        <div class="container text-center" style="margin-bottom: 10px;">
+            <small class="form-text" style="color: rgb(255,255,255);">
+                Please ensure that the documents submitted fit the BRC guidelines. Uploaded files must be in a PDF, DOC, PNG, or JPEG format.&nbsp;
+            </small>
+        </div>
+
+        <input 
+            class="form-control"
+            type="file"
+            style="margin-bottom: 20px;"
+            id="fileName"
+            name="fileName"
+            required
+            multiple=""
+        >
         <div class="container">
-            <div class="form-check text-start" style="margin-bottom: 20px;"><input class="form-check-input" type="radio" id="formCheck-2"><label class="form-check-label" for="formCheck-2" style="color: rgb(255,255,255);">I understand that all the information above is correct and I am the owner of the intellectual properties being submitted.</label></div>
-        </div><input class="btn btn-primary" type="submit" name="Submit" style="background: #ffffff;color: rgb(0,0,0);" required="">
+            <div class="form-check text-start" style="margin-bottom: 20px;">
+                <input class="form-check-input" type="radio" id="formCheck-2" required>
+                <label class="form-check-label" for="formCheck-2" style="color: rgb(255,255,255);">
+                    I understand that all the information above is correct and I am the owner of the intellectual properties being submitted.
+                </label>
+            </div>
+        </div>
+        <input class="btn btn-primary" type="submit" style="background: #ffffff;color: rgb(0,0,0); margin-bottom: 10px;">
+        @if (session('success'))
+            <div class="alert alert-success text-black mt-10" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-error text-black mt-10" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
     </form>
 </section>
 @endsection

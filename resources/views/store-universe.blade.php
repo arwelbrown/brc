@@ -18,7 +18,12 @@
             </div>
         </nav>
     </div>
-    <div class="container text-center"><img class="img-fluid" data-aos="fade-up" style="text-align: center;margin-top: 50px;margin-bottom: 30px;" src="{{ url($logo) }}" width="30%">
+    <div class="container text-center">
+
+        @if (file_exists($logo))
+            <img class="img-fluid" data-aos="fade-up" style="text-align: center;margin-top: 50px;margin-bottom: 30px;" src="{{ url($logo) }}" width="30%">
+        @endif
+
         <h1 class="text-center" data-aos="fade-up" data-aos-delay="200" style="font-family: Anton, sans-serif;color: rgb(255,255,255);font-size: 50PX;">
             WELCOME TO THE {{ str_replace(' ',  '-', strtoupper($universe->universe_name)) }} STORE
         </h1>

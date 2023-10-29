@@ -26,13 +26,11 @@ class PermissionResource extends Resource
     {
         return $form
             ->schema([
-                Card::make()->schema([
-                    TextInput::make('name')
-                        ->minLength(2)
-                        ->maxLength(255)
-                        ->required()
-                        ->unique(ignoreRecord: true),
-                ]),
+                TextInput::make('name')
+                    ->minLength(2)
+                    ->maxLength(255)
+                    ->required()
+                    ->unique(ignoreRecord: true),
             ]);
     }
 

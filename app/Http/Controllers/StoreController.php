@@ -15,7 +15,7 @@ class StoreController extends Controller
 {
     public function index(): View|Application|Factory|FoundationApplication
     {
-        $products = Product::all()->where('active', 1)->paginate(24);
+        $products = Product::orderByDesc('id')->where('active', 1)->paginate(24);
 
         $featuredProducts = [];
 
@@ -24,7 +24,11 @@ class StoreController extends Controller
         $featuredProducts[] = Product::find(42);
         $featuredProducts[] = Product::find(43);
 
-        return view('store', ['products' => $products, 'featuredProducts' => $featuredProducts]);
+        // get universes
+
+        $universes = Universe::all();
+
+        return view('store', ['products' => $products, 'featuredProducts' => $featuredProducts, 'universes' => $universes]);
     }
 
     public function seriesStore(string $universeSlug, string $slug): View
@@ -116,10 +120,5 @@ class StoreController extends Controller
         $result = $ej->getProductByProductId($productId, $page);
 
         return view('ejunkie.ejunkie-single-product', ['result' => $result]);
-    }
-
-    public function submissionsPage(): View
-    {
-        return view('submissions');
     }
 }

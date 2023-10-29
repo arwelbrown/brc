@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,8 +32,8 @@ Route::get('/brc-newsletter', function () {
     return view('brc-newsletter');
 });
 
-Route::get('/ejunkie-test', [ProductStoreControllerController::class, 'getAllFromEjunkie']);
+Route::get('/ejunkie-test', [StoreController::class, 'getAllFromEjunkie']);
 
 Route::get('/ejunkie-test/{productId}', [StoreController::class, 'getProductByProductId']);
 
-Route::get('/submissions', [StoreController::class, 'submissionsPage']);
+Route::get('/submissions', [SubmissionController::class, 'index']);

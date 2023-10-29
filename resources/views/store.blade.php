@@ -7,23 +7,23 @@
         <div class="container-fluid" data-aos="fade-up">
             <section>
                 <div class="container-fluid" style="margin-top: 20px;">
-                    <div class="row justify-content-center" style="margin-bottom: 20px;">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
+                    <div class="row justify-content-start" style="margin-bottom: 20px;">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
                             <a class="d-inline-block" href="/store/universe/bruniverse">
                                 <img class="img-fluid" src="{{ asset('/img/br_admin/universe_banners/bruniverse_banner.webp') }}">
                             </a>
                         </div>
-                        <div class="col-6 col-md-6 col-lg-3 col-xl-3" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
                             <a class="d-inline-block" href="/store/universe/saintverse">
-                                <img class="img-fluid" src="{{ url('img/br_admin/universe_banners/saintverse_banner.webp') }}">
+                                <img class="img-fluid" src="{{ url('img/br_admin/universe_banners/after_realm_banner.webp') }}">
                             </a>                       
                         </div>
-                        <div class="col-6 col-md-6 col-lg-3 col-xl-3" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
                             <a class="d-inline-block" href="/store/universe/tokuverse">
                                 <img class="img-fluid" src="{{ url('img/br_admin/universe_banners/tokuverse_banner.webp') }}">
                             </a>
                         </div>
-                        <div class="col-6 col-md-6 col-lg-3 col-xl-3" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
                             <a class="d-inline-block" href="/store/universe/ecruverse">
                                 <img class="img-fluid" src="{{ url('img/br_admin/universe_banners/ecruverse_banner.webp') }}">
                             </a>
