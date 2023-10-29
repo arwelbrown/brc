@@ -18,7 +18,7 @@ class Product extends Model
     protected $casts = [
         'tags' => 'array',
         'in_development' => 'integer',
-        'physical_available' => 'integer'
+        'physical_available' => 'integer',
     ];
 
     public function series(): BelongsTo
@@ -35,6 +35,7 @@ class Product extends Model
         'id',
         'product_name',
         'series',
+        'tags',
         'store_slug',
         'ejunkie_link_digital',
         'ejunkie_link_physical',
@@ -45,6 +46,7 @@ class Product extends Model
         'in_development',
         'physical_available',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'active',
     ];
 }
