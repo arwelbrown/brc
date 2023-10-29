@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('universe_name');
             $table->string('universe_slug');
-            $table->string('universe_summary');
-            $table->string('universe_description');
+            $table->string('universe_summary')->nullable();
+            $table->string('universe_description')->nullable();
             $table->string('universe_banner_img_string');
-            $table->string('universe_background_img_string');
-            $table->string('universe_logo_img_string');
+            $table->string('universe_background_img_string')->nullable();
+            $table->string('universe_logo_img_string')->nullable();
             $table->timestamps();
         });
     }

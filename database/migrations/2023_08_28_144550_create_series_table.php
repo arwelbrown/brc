@@ -23,7 +23,7 @@ return new class extends Migration
             $table->longText('series_description');
             $table->string('series_slug');
             $table->string('series_banner');
-            $table->string('spin_offs');
+            $table->string('spin_offs')->nullable();
             $table->foreignId('universe_id')->constrained('universes')->cascadeOnDelete()->default(0);
             $table->timestamps();
         });
