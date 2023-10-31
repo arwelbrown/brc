@@ -9,11 +9,13 @@
                 <div class="container-fluid" style="margin-top: 20px;">
                     <div class="row justify-content-start" style="margin-bottom: 20px;">
                         @foreach ($universes as $universe)
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
-                                <a class="d-inline-block" href="/store/universe/{{ $universe->universe_slug }}">
-                                    <img class="img-fluid" src="{{ asset($universe->universe_banner_img_string) }}">
-                                </a>
-                            </div>
+                            @if (!empty($universe->series()->get()->toArray()))
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;">
+                                    <a class="d-inline-block" href="/store/universe/{{ $universe->universe_slug }}">
+                                        <img class="img-fluid" src="{{ asset($universe->universe_banner_img_string) }}">
+                                    </a>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>
