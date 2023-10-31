@@ -15,17 +15,17 @@ class SlugFormatter
             );
     }
 
-    public static function removeWhiteSpace(string $slug): string
+    protected static function removeWhiteSpace(string $slug): string
     {
         return str_replace(' ', '', $slug);
     }
 
-    public static function removeFullStops(string $slug): string
+    protected static function removeFullStops(string $slug): string
     {
         return str_replace('.', '', $slug);
     }
 
-    public static function removeCommas(string $slug): string
+    protected static function removeCommas(string $slug): string
     {
         return str_replace(',', '', $slug);
     }

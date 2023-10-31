@@ -20,6 +20,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Set;
 
 class ProductResource extends Resource
 {
@@ -43,15 +44,17 @@ class ProductResource extends Resource
                             ->columnSpan(2),
                         Select::make('series_id')
                             ->relationship('series', 'series_name')
-                            ->reactive()
+                            ->live()
                             ->afterStateUpdated(
-                                fn ($state, callable $set) => $set('store_slug', SlugFormatter::formatSlug(SeriesController::getSeries($state)->series_name)))
+                                fn (Set $set, ?string $state) => !empty($state) ? $set('store_slug', SlugFormatter::formatSlug(SeriesController::getSeries($state)->series_name)) : $set('store_slug', ''))
                             ->required()
                             ->autofocus()
+                            ->debounce()
                             ->createOptionForm([
                                 TextInput::make('series.series_name')
-                                    ->reactive()
-                                    ->afterStateUpdated(fn (callable $set, $state) => ! empty($state) ? $set('series.series_slug', SlugFormatter::formatSlug($state)) : $set('series.series_slug', ''))
+                                    ->live()
+                                    ->debounce(1200)
+                                    ->afterStateUpdated(fn (Set $set, ?string $state) => !empty($state) ? $set('series.series_slug', SlugFormatter::formatSlug($state)) : $set('series.series_slug', ''))
                                     ->autofocus()
                                     ->required()
                                     ->maxLength(255),
@@ -83,13 +86,13 @@ class ProductResource extends Resource
                                 FileUpload::make('series.series_banner'),
                             ]),
                         TextInput::make('store_slug')
-                            ->prefix('store-')
-                            ->disabled(),
+                            ->disabled()
+                            ->hidden(),
                         TagsInput::make('tags')
                             ->autofocus()
                             ->placeholder('Series 1, Series 2...')
                             ->separator()
-                            ->columnSpan(2),
+                            ->columnSpan(1),
                         TextInput::make('ejunkie_link_digital')
                             ->required()
                             ->autofocus()

@@ -12,6 +12,8 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
@@ -35,15 +37,17 @@ class UniverseResource extends Resource
                         TextInput::make('universe_name')
                             ->autofocus()
                             ->required()
-                            ->reactive()
+                            ->live()
                             ->columnSpan(1)
-                            ->afterStateUpdated(fn (callable $set, $state) => ! empty($state) ? $set('universe_slug', SlugFormatter::formatSlug($state)) : $set('universe_slug', '')),
+                            ->afterStateUpdated(
+                                fn (Set $set, ?string $state) => !empty($state) ? $set('universe_slug', SlugFormatter::formatSlug($state)) : $set('universe_slug', '')
+                            )
+                            ->debounce(1200),
                         TextInput::make('universe_slug')
                             ->disabled()
                             ->autofocus()
                             ->required()
-                            ->columnSpan(1)
-                            ->reactive(),
+                            ->columnSpan(1),
                         Textarea::make('universe_summary')
                             ->columnSpanFull(),
                         Textarea::make('universe_description')
@@ -53,7 +57,6 @@ class UniverseResource extends Resource
                 Section::make('Universe Images')
                     ->schema([
                         FileUpload::make('universe_banner_img_string')
-                            ->reactive()
                             ->autofocus()
                             ->preserveFilenames()
                             ->columnSpan(2)
@@ -67,7 +70,6 @@ class UniverseResource extends Resource
                             ->columnSpan(1)
                             ->imageEditor(),
                         FileUpload::make('universe_background_img_string')
-                            ->reactive()
                             ->autofocus()
                             ->preserveFilenames()
                             ->columnSpan(2)
@@ -80,7 +82,6 @@ class UniverseResource extends Resource
                             ->columnspan(1)
                             ->imageEditor(),
                         FileUpload::make('universe_logo_img_string')
-                            ->reactive()
                             ->autofocus()
                             ->preserveFilenames()
                             ->columnSpan(2)

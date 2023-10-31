@@ -159,7 +159,7 @@
                 style="font-family:'Open Sans', sans-serif';color: rgb(255,255,255);"
             >
                 @if (!empty($creators))
-                    <h1 style="text-align: left;color: rgb(255,255,255);font-size: 25px;font-family: 'Open Sans', sans-serif;font-weight: bold;">Creator(s):</h1>
+                    <h1 style="text-align: left;color: rgb(255,255,255);font-size: 25px;font-family: 'Open Sans', sans-serif;font-weight: bold;">Creators:</h1>
                     <p class="mb-4" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;">
                         @foreach ($creators as $index => $creator)
                             @if ($index + 1 != count($creators))

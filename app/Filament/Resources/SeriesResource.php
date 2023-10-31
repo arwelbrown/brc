@@ -17,6 +17,7 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Set;
 
 class SeriesResource extends Resource
 {
@@ -33,8 +34,9 @@ class SeriesResource extends Resource
                 Section::make('Series Info')
                     ->schema([
                         TextInput::make('series_name')
-                            ->reactive()
-                            ->afterStateUpdated(fn (callable $set, $state) => ! empty($state) ? $set('series_slug', SlugFormatter::formatSlug($state)) : $set('series_slug', ''))
+                            ->live()
+                            ->debounce(1200)
+                            ->afterStateUpdated(fn (Set $set, ?string $state) => !empty($state) ? $set('series_slug', SlugFormatter::formatSlug($state)) : $set('series_slug', ''))
                             ->autofocus()
                             ->required()
                             ->maxLength(255),

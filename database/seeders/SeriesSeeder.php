@@ -20,12 +20,28 @@ class SeriesSeeder extends Seeder
 {
     public function run(): void
     {
+
+        /*
+        `series_name`,
+        `series_description`,
+        `series_slug`,
+        `series_banner`,
+        `spin_offs`,
+        `universe_id`,
+        creators`,
+        `writers`
+        `artists`,
+        `editors`,
+        `colorists`,
+        `letterers`,
+
+        */
         DB::table('series')->insert([
             [
                 'series_name'           => 'Alexia Midnight',
-                'series_description'    => 'Alexia Midnight, a newborn vampire must understand what it means to be a vampire with the best teacher of them all Dracula. Meanwhile being chased by The Vigor, a religious cult bound to hunt the night.',
                 'series_slug'           => 'alexiamidnight',
                 'series_banner'         => 'img/series_alexiamidnight/Alexia_Midnight_Banner.webp',
+                'series_description'    => 'Alexia Midnight, a newborn vampire must understand what it means to be a vampire with the best teacher of them all Dracula. Meanwhile being chased by The Vigor, a religious cult bound to hunt the night.',
                 'spin_offs'             => '',
                 'universe_id'           => 1,
             ],
@@ -166,7 +182,7 @@ class SeriesSeeder extends Seeder
                 'universe_id' => 4,
             ],
             [
-                'series_name' => 'E.V.H.A',
+                'series_name' => 'E.H.V.A',
                 'series_description' => '',
                 'series_slug' => 'ehva',
                 'series_banner' => 'img/series_ehva/EHVA_Banner.webp',

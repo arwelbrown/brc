@@ -14,16 +14,4 @@ class CreateUser extends CreateRecord
     {
         return $this->getResource()::getUrl('index');
     }
-
-    // protected function handleRecordCreation(array $data): Model
-    // {
-    //     /** @var App\Models\User $user */
-    //     $user = parent::handleRecordCreation($data);
-
-    //     $role = $user->role;
-
-    //     $user->assignRole($role);
-
-    //     return $user;
-    // }
 }
