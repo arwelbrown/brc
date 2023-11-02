@@ -48,13 +48,11 @@ class ProductsRelationManager extends RelationManager
                             fn (Set $set, ?string $state) => !empty($state) ? $set('store_slug', SlugFormatter::formatSlug(SeriesController::getSeries($state)->series_name)) : $set('store_slug', ''))
                         ->required()
                         ->autofocus()
-                        ->debounce()
                         ->createOptionForm([
                             Section::make()
                                 ->schema([
                                     TextInput::make('series.series_name')
-                                        ->live()
-                                        ->debounce(1200)
+                                        ->live(onBlur: true)
                                         ->afterStateUpdated(fn (Set $set, ?string $state) => !empty($state) ? $set('series.series_slug', SlugFormatter::formatSlug($state)) : $set('series.series_slug', ''))
                                         ->autofocus()
                                         ->required()

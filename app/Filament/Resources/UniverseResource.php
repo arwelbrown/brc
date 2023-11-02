@@ -37,12 +37,11 @@ class UniverseResource extends Resource
                         TextInput::make('universe_name')
                             ->autofocus()
                             ->required()
-                            ->live()
+                            ->live(onBlur: true)
                             ->columnSpan(1)
                             ->afterStateUpdated(
                                 fn (Set $set, ?string $state) => !empty($state) ? $set('universe_slug', SlugFormatter::formatSlug($state)) : $set('universe_slug', '')
-                            )
-                            ->debounce(1200),
+                            ),
                         TextInput::make('universe_slug')
                             ->disabled()
                             ->autofocus()

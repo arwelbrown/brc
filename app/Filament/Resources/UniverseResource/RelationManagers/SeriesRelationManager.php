@@ -34,8 +34,7 @@ class SeriesRelationManager extends RelationManager
                 Section::make('Series Info')
                     ->schema([
                         TextInput::make('series_name')
-                            ->live()
-                            ->debounce(1200)
+                            ->live(onBlur: true)
                             ->afterStateUpdated(fn (Set $set, ?string $state) => !empty($state) ? $set('series_slug', SlugFormatter::formatSlug($state)) : $set('series_slug', ''))
                             ->autofocus()
                             ->required()

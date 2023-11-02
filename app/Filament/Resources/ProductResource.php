@@ -50,13 +50,11 @@ class ProductResource extends Resource
                                 fn (Set $set, ?string $state) => !empty($state) ? $set('store_slug', SlugFormatter::formatSlug(SeriesController::getSeries($state)->series_name)) : $set('store_slug', ''))
                             ->required()
                             ->autofocus()
-                            ->debounce()
                             ->createOptionForm([
                                 Section::make()
                                     ->schema([
                                         TextInput::make('series.series_name')
-                                            ->live()
-                                            ->debounce(1200)
+                                            ->live(onBlur: true)
                                             ->afterStateUpdated(fn (Set $set, ?string $state) => !empty($state) ? $set('series.series_slug', SlugFormatter::formatSlug($state)) : $set('series.series_slug', ''))
                                             ->autofocus()
                                             ->required()
@@ -108,9 +106,9 @@ class ProductResource extends Resource
                             ->columnSpan(2)
                             ->url(),
                         TextInput::make('ejunkie_link_physical')
-                            ->reactive()
+                            ->live()
                             ->afterStateUpdated(
-                                fn ($state, callable $set) => ! empty($state) ? $set('physical_available', true) : $set('physical_available', false)
+                                fn (?string $state, Set $set) => !empty($state) ? $set('physical_available', true) : $set('physical_available', false)
                             )
                             ->nullable()
                             ->autofocus()
@@ -118,7 +116,7 @@ class ProductResource extends Resource
                             ->label('Ejunkie Physical Link')
                             ->url()
                             ->columnSpan(2)
-                            ->required(fn ($state, callable $get) => ! empty($get('physical_price')) ? true : false),
+                            ->required(fn (Get $get) => !empty($get('physical_price')) ? true : false),
                         Textarea::make('summary')
                             ->autofocus()
                             ->columnSpan(2)
