@@ -41,9 +41,11 @@ class SubmissionResource extends Resource
                             ->autofocus(),
                         DateTimePicker::make('created_at')
                             ->autofocus()
-                            ->label('Uploaded At'),
+                            ->label('Uploaded At')
+                            ->disabled(),
                         FileUpload::make('file_name')
                             ->autofocus()
+                            ->disk('submissions')
                             ->columnSpanFull()
                             ->label('Uploaded File'),
                         Toggle::make('approved'),
