@@ -17,7 +17,9 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class SeriesResource extends Resource
 {
@@ -72,7 +74,13 @@ class SeriesResource extends Resource
                         FileUpload::make('series_banner')
                         ->columnSpan(2)
                         ->required()
+                        ->default('')
                         ->autofocus()
+                        ->directory('/img')
+                        ->getUploadedFileNameForStorageUsing(function (Get $get, TemporaryUploadedFile $file): string {
+
+                            return 'series_' . $get('series_slug') . '/' . $file->getClientOriginalName();
+                        })
                         ->downloadable()
                         ->previewable()
                         ->imageEditor(),

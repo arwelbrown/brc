@@ -6,14 +6,11 @@ use App\Models\Product;
 use App\Models\Series;
 use App\Models\Universe;
 use DataProviders\eJunkie\EjProductDataProvider;
-use Illuminate\Contracts\Foundation\Application as FoundationApplication;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
 
 class StoreController extends Controller
 {
-    public function index(): View|Application|Factory|FoundationApplication
+    public function index(): View
     {
         $products = Product::orderByDesc('id')->where('active', 1)->paginate(24);
 
@@ -27,9 +24,10 @@ class StoreController extends Controller
 
     public function seriesStore(string $universeSlug, string $slug): View
     {
-        $universe = Universe::where('universe_slug', '=', $universeSlug)->get()->all();
-        $products = Product::all()->where('store_slug', $slug)->paginate(24);
-        $series = Series::where('series_slug', $slug)->first();
+        $universe = Universe::where('universe_slug', '=', $universeSlug)->first();
+        $series = $universe->series()->where('series_slug', '=', $slug)->first();
+
+        $products = $series->products()->paginate(24);
 
         $charactersInSeries = $series->characters()->get()->all();
 
@@ -64,18 +62,26 @@ class StoreController extends Controller
             $characters[] = $characterToInsert;
         }
 
-        $artTeam = [
-            'artists' => $series->artists,
-            'colorists' => $series->colorists,
-            'letterers' => $series->letterers,
-        ];
+        $artTeam = [];
+
+        if (!empty($series->artists)) {
+            $artTeam['artists'] = $series->artists;
+        }
+
+        if (!empty($series->colorists)) {
+            $artTeam['colorists'] = $series->colorists;
+        }
+
+        if (!empty($series->letterers)) {
+            $artTeam['letterers'] = $series->letterers;
+        }
 
         return view(
             'store-series',
             [
                 'products' => $products,
                 'series' => $series,
-                'universe' => $universe[0],
+                'universe' => $universe,
                 'creators' => $series->creators,
                 'editors' => $series->editors,
                 'writers' => $series->writers,
@@ -100,17 +106,15 @@ class StoreController extends Controller
         return view('store-universe', ['universe' => $universe, 'seriesInUniverse' => $seriesInUniverse, 'products' => $products]);
     }
 
-    public function getAllFromEjunkie()
+    public function getAllFromEjunkie(EjProductDataProvider $ej = new EjProductDataProvider)
     {
-        $ej = new EjProductDataProvider();
         $result = $ej->getAllFromEjunkie();
 
         return view('ejunkie.ejunkie', ['result' => $result]);
     }
 
-    public function getProductByProductId(int $productId, int $page = null)
+    public function getProductByProductId(int $productId, int $page = null, EjProductDataProvider $ej = new EjProductDataProvider)
     {
-        $ej = new EjProductDataProvider();
         $result = $ej->getProductByProductId($productId, $page);
 
         return view('ejunkie.ejunkie-single-product', ['result' => $result]);

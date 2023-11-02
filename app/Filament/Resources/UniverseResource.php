@@ -63,7 +63,7 @@ class UniverseResource extends Resource
                             ->label('Banner Image')
                             ->directory('/img')
                             ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
-                                return '/universe_' . $get('universe_slug') . '/' . $file->getClientOriginalName();
+                                return 'universe_' . $get('universe_slug') . '/' . $file->getClientOriginalName();
                             })
                             ->downloadable()
                             ->required()
@@ -76,7 +76,7 @@ class UniverseResource extends Resource
                             ->label('Background Image')
                             ->directory('/img')
                             ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
-                                return '/universe_' . $get('universe_slug') . '/' . $file->getClientOriginalName();
+                                return 'universe_' . $get('universe_slug') . '/' . $file->getClientOriginalName();
                             })
                             ->downloadable()
                             ->columnspan(1)
@@ -88,7 +88,7 @@ class UniverseResource extends Resource
                             ->label('Logo')
                             ->directory('/img')
                             ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
-                                return '/universe_' . $get('universe_slug') . '/' . $file->getClientOriginalName();
+                                return 'universe_' . $get('universe_slug') . '/' . $file->getClientOriginalName();
                             })
                             ->downloadable()
                             ->columnspan(1)

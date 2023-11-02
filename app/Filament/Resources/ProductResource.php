@@ -20,6 +20,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 
 class ProductResource extends Resource
@@ -51,39 +52,45 @@ class ProductResource extends Resource
                             ->autofocus()
                             ->debounce()
                             ->createOptionForm([
-                                TextInput::make('series.series_name')
-                                    ->live()
-                                    ->debounce(1200)
-                                    ->afterStateUpdated(fn (Set $set, ?string $state) => !empty($state) ? $set('series.series_slug', SlugFormatter::formatSlug($state)) : $set('series.series_slug', ''))
-                                    ->autofocus()
-                                    ->required()
-                                    ->maxLength(255),
-                                TextInput::make('series.series_slug')
-                                    ->autofocus()
-                                    ->required()
-                                    ->disabled(),
-                                TagsInput::make('series.creators')
-                                    ->autofocus(),
-                                TagsInput::make('series.writers')
-                                    ->autofocus(),
-                                TagsInput::make('series.artists')
-                                    ->autofocus(),
-                                TagsInput::make('series.editors')
-                                    ->autofocus(),
-                                TagsInput::make('series.colorists')
-                                    ->autofocus(),
-                                TagsInput::make('series.letterers')
-                                    ->autofocus(),
-                                Select::make('universe_id')
-                                    ->relationship('universe', 'universe_name')
-                                    ->autofocus()
-                                    ->required(),
-                                Textarea::make('series.series_description')
-                                    ->autofocus()
-                                    ->columnSpanFull()
-                                    ->required()
-                                    ->maxLength(2000),
-                                FileUpload::make('series.series_banner'),
+                                Section::make()
+                                    ->schema([
+                                        TextInput::make('series.series_name')
+                                            ->live()
+                                            ->debounce(1200)
+                                            ->afterStateUpdated(fn (Set $set, ?string $state) => !empty($state) ? $set('series.series_slug', SlugFormatter::formatSlug($state)) : $set('series.series_slug', ''))
+                                            ->autofocus()
+                                            ->required()
+                                            ->maxLength(255),
+                                        TextInput::make('series.series_slug')
+                                            ->autofocus()
+                                            ->required()
+                                            ->disabled(),
+                                        TagsInput::make('series.creators')
+                                            ->autofocus(),
+                                        TagsInput::make('series.writers')
+                                            ->autofocus(),
+                                        TagsInput::make('series.artists')
+                                            ->autofocus(),
+                                        TagsInput::make('series.editors')
+                                            ->autofocus(),
+                                        TagsInput::make('series.colorists')
+                                            ->autofocus(),
+                                        TagsInput::make('series.letterers')
+                                            ->autofocus(),
+                                        Select::make('universe_id')
+                                            ->relationship('universe', 'universe_name')
+                                            ->autofocus()
+                                            ->required(),
+                                        Textarea::make('series.series_description')
+                                            ->autofocus()
+                                            ->columnSpanFull()
+                                            ->required()
+                                            ->maxLength(2000),
+                                        FileUpload::make('series.series_banner')
+                                            ->columnSpan(2),
+                                    ])
+                                    ->columns(2)
+                                
                             ]),
                         TextInput::make('store_slug')
                             ->disabled()
@@ -129,13 +136,13 @@ class ProductResource extends Resource
                             ->autofocus()
                             ->nullable()
                             ->columnSpan(1)
-                            ->required(fn ($state, callable $get) => ! empty($get('ejunkie_link_physical')) ? true : false),
+                            ->required(fn (Get $get) => ! empty($get('ejunkie_link_physical')) ? true : false),
                         FileUpload::make('img_string')
                             ->autofocus()
                             ->columnSpan(2)
                             ->label('Cover Image')
                             ->directory('/img')
-                            ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
+                            ->getUploadedFileNameForStorageUsing(function (Get $get, TemporaryUploadedFile $file): string {
                                 $seriesId = $get('series_id');
                                 $series = SeriesController::getSeries($seriesId)->series_name;
 

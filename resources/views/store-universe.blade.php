@@ -41,11 +41,13 @@
     <div class="container" style="margin-top: 20px;">
         <div class="row justify-content-center" style="margin-bottom: 20px;">
             @foreach ($seriesInUniverse as $series)
-                <div class="col-6 col-md-4 col-lg-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px">
-                    <a class="d-inline-block" href="/store/universe/{{ $universe->universe_slug }}/{{ $series->series_slug }}">
-                        <img class="img-fluid" src="{{ url($series->series_banner) }}">
-                    </a>
-                </div>
+                @if (!empty($series->products()->get()->toArray()))
+                    <div class="col-6 col-md-4 col-lg-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px">
+                        <a class="d-inline-block" href="/store/universe/{{ $universe->universe_slug }}/{{ $series->series_slug }}">
+                            <img class="img-fluid" src="{{ url($series->series_banner) }}">
+                        </a>
+                    </div>
+                @endif
             @endforeach
         </div>
     </div>
