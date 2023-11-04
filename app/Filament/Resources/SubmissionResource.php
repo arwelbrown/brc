@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\IconColumn;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class SubmissionResource extends Resource
 {
@@ -46,6 +47,9 @@ class SubmissionResource extends Resource
                         FileUpload::make('file_name')
                             ->autofocus()
                             ->disk('submissions')
+                            ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
+                                return 'submissions/' . $file->getClientOriginalName();
+                            })
                             ->columnSpanFull()
                             ->label('Uploaded File'),
                         Toggle::make('approved'),

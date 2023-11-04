@@ -25,7 +25,7 @@ class SubmissionController extends Controller
             Submission::insert([
                 'name' => $request['fullName'],
                 'email' => filter_var($request['email'], FILTER_VALIDATE_EMAIL),
-                'file_name' => '/submissions/' . $file->getClientOriginalName(),
+                'file_name' => 'submissions/' . $file->getClientOriginalName(),
                 'created_at' => Carbon::now(),
             ]);
 
