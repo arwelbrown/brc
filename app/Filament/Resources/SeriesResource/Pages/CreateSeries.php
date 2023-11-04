@@ -4,6 +4,7 @@ namespace App\Filament\Resources\SeriesResource\Pages;
 
 use App\Filament\Resources\SeriesResource;
 use Filament\Resources\Pages\CreateRecord;
+use App\Formatters\SlugFormatter;
 
 class CreateSeries extends CreateRecord
 {
@@ -12,5 +13,11 @@ class CreateSeries extends CreateRecord
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
+    }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['series_slug'] = SlugFormatter::formatSlug($data['series_name']);
+        return $data;
     }
 }
