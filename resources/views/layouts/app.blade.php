@@ -87,7 +87,7 @@
                             <div class="dropdown-menu text-end" style="font-size: 13px;background: rgb(0,0,0);">
                                 <a class="dropdown-item text-white" href="/about-us" style="font-family: 'Open Sans', sans-serif;">About Us</a>
                                 <a class="dropdown-item text-white" href="/brc-newsletter" style="font-family: 'Open Sans', sans-serif;">BRC Newsletter</a>
-                                <a class="dropdown-item text-white" href="/submissions" style="font-family: 'Open Sane', sans-serif">Submissions</a>
+                                <a class="dropdown-item text-white" href="/submit-your-book" style="font-family: 'Open Sane', sans-serif">Submissions</a>
                             </div>
                         </li>
                         <li class="nav-item text-end">

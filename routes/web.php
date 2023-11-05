@@ -36,4 +36,4 @@ Route::get('/ejunkie-test', [StoreController::class, 'getAllFromEjunkie']);
 
 Route::get('/ejunkie-test/{productId}', [StoreController::class, 'getProductByProductId']);
 
-Route::get('/submissions', [SubmissionController::class, 'index']);
+Route::get('/submit-your-book', [SubmissionController::class, 'index']);
