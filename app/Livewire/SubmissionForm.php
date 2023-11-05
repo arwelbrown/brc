@@ -27,12 +27,22 @@ class SubmissionForm extends Component
         
         $file = $this->submission->storeAs('', $filePath, 'public');
         
+        if (!$file) {
+            session()->flash('error');
+            return;
+        }
+
         Submission::insert([
             'name' => $this->fullName,
             'email' => $email,
             'file_name' => $file,
             'created_at' => Carbon::now(),
         ]);
+
+        $this->reset();
+        session()->flash('success', 'Thank you, your book has been submitted!');
+
+        return;
     }
 
     public function render()
