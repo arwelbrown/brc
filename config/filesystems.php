@@ -51,15 +51,6 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-        
-        'submissions' => [
-            'driver' => 'local',
-            'root' => storage_path('app/submissions'),
-            'url' => env('APP_URL' . '/storage/submissions'),
-            'visibility' => 'private',
-            'throw' => false,
-        ],
-
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -86,5 +77,6 @@ return [
 
     'links' => [
         public_path('img') => storage_path('app/public/img'),
+        public_path('submissions') => storage_path('app/public/submissions'),
     ],
 ];

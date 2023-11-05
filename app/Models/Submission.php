@@ -12,5 +12,6 @@ class Submission extends Model
     protected $fillable = [
         'name',
         'email',
+        'file_name',
     ];
 }
