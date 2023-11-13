@@ -57,7 +57,7 @@
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
         <!-- Scripts -->
     @else
-        <link rel="stylesheet" href="{{ url('build/assets/app-847e1446.css') }}">
+        <link rel="stylesheet" href="{{ url('build/assets/app-6b9c2ee7.css') }}">
         <!-- Scripts -->
         <script src="{{ url('build/assets/app-4ed993c7.js') }}"></script>
     @endif

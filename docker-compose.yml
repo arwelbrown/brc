@@ -17,12 +17,11 @@ services:
     build:
       context: ./docker/db
       dockerfile: Dockerfile
+    ports:
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: brc_core
-
-    ports:
-      - 3306:3306
 
   #PHPMYADMIN SERVER
   phpmyadmin:
