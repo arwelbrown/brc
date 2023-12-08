@@ -1,4 +1,4 @@
 # cat Dockerfile
-FROM mysql:latest
+FROM mariadb:latest
 
 RUN chown -R mysql:root /var/lib/mysql/
