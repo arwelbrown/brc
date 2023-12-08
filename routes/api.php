@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SubmissionController;
+use App\Http\Controllers\EjunkieController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/submission', [SubmissionController::class, 'submit'])->name('submit.submission')->middleware(['web']);
+
+Route::get('/ejunkie/all', [EjunkieController::class, 'getAllFromEjunkie']);
+
+Route::get('/ejunkie/{productId}', [EjunkieController::class, 'getProductByProductId']);
+
+//Route::resource('/ejunkie/hook', [EjunkieController::class, 'purchaseWebhook']);

@@ -7,6 +7,8 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -69,5 +71,10 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     public function canManageSettings(): bool
     {
         return $this->hasRole('admin');
+    }
+
+    public function departments(): BelongsTo
+    {
+        return $this->belongsTo(Department::class);
     }
 }

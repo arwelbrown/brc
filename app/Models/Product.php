@@ -33,6 +33,11 @@ class Product extends Model
         return $this->hasMany(Character::class);
     }
 
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
     protected $fillable = [
         'id',
         'product_name',

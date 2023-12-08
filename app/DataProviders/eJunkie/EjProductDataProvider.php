@@ -1,63 +1,45 @@
 <?php
 
-namespace DataProviders\eJunkie;
+namespace App\DataProviders\eJunkie;
 
 use CurlHandle;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
 use Error;
 
 class EjProductDataProvider
 {
-    public function getEjunkieConn(?int $productId = null, ?int $page = null)
+    private Client $client;
+    private array $options;
+
+    public function __construct()
     {
-        $ch = curl_init();
-
-        $route = 'https://api.e-junkie.com/api/382587/';
-
-        if (!empty($productId)) {
-            $route = 'https://api.e-junkie.com/api/382587/' . $productId;
-        }
-
-        if (!empty($page)) {
-            $route .= '/?page=' . $page;
-        }
-
-        curl_setopt($ch, CURLOPT_URL, $route);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, ['key' => $_ENV['EJUNKIE_API_KEY']]);
-
-        return $ch;
+        $this->client = new Client();
+        $this->options = [
+        'multipart' => [
+                [
+                    'name' => 'key',
+                    'contents' => env('EJUNKIE_API_KEY')
+                ]
+            ]
+        ];
     }
 
-    public function exec(CurlHandle $ch)
+    public function getProductByProductId(int $productId)
     {
-        $result = curl_exec($ch);
-            if (curl_errno($ch)) {
-                error_log('Error:' . curl_error($ch));
-            }
-        curl_close($ch);
+        $route = env('EJUNKIE_URL') . '/' . $productId;
 
-        return $result;
-    }
+        $request = new Request('POST', $route);
+        $response = $this->client->sendAsync($request, $this->options)->wait();
 
-    public function getProductByProductId(int $productId, ?int $page = null)
-    {
-        $ch = $this->getEjunkieConn($productId, $page);
-        return $this->exec($ch);
-    }
-
-    public function getPhysicalProductStock()
-
-    {
-        //
+        return json_decode($response->getBody()->getContents(), true);
     }
 
     public function getAllFromEjunkie()
     {
-        $ch = $this->getEjunkieConn();
+        $request = new Request('POST', env('EJUNKIE_URL'));
+        $response = $this->client->sendAsync($request, $this->options)->wait();
 
-        return $this->exec($ch);
+        return json_decode($response->getBody()->getContents(), true);
     }
-
 }
-

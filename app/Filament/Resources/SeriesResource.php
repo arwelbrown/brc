@@ -41,7 +41,7 @@ class SeriesResource extends Resource
                         ->maxLength(255)
                         ->live(onBlur: true)
                         ->afterStateUpdated(
-                                fn (Set $set, ?string $state) => !empty($state) ? $set('series_slug', SlugFormatter::formatSlug($state)) : $set('series_slug', '')
+                                fn(Set $set, ?string $state) => !empty($state) ? $set('series_slug', SlugFormatter::formatSlug($state)) : $set('series_slug', '')
                         ),
                         TextInput::make('series_slug')
                             ->autofocus()
@@ -78,8 +78,7 @@ class SeriesResource extends Resource
                         ->default('')
                         ->autofocus()
                         ->directory('/img')
-                        ->getUploadedFileNameForStorageUsing(function (Get $get, TemporaryUploadedFile $file): string {
-
+                        ->getUploadedFileNameForStorageUsing(function(Get $get, TemporaryUploadedFile $file): string {
                             return 'series_' . $get('series_slug') . '/' . $file->getClientOriginalName();
                         })
                         ->downloadable()

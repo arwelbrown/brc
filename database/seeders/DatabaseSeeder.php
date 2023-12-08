@@ -7,20 +7,25 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
-     */
+            * Seed the application's database.
+            */
     public function run(): void
     {
         $this->call([
             UniverseSeeder::class,
             SeriesSeeder::class,
             ProductSeeder::class,
-            TeamSeeder::class,
             CharacterSeeder::class,
+        ]);
+
+        DB::table('departments')->insert([
+            'id' => 1,
+            'name' => 'Dev',
         ]);
 
         User::create([
@@ -28,6 +33,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'arwel@brc.com',
             'password' => password_hash('Jazzmaster03!', PASSWORD_ARGON2I),
             'email_verified_at' => Carbon::now(),
+            'department_id' => 1,
         ]);
 
         $role = Role::create(['name' => 'admin']);

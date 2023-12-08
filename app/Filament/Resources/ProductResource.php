@@ -134,7 +134,7 @@ class ProductResource extends Resource
                             ->autofocus()
                             ->nullable()
                             ->columnSpan(1)
-                            ->required(fn (Get $get) => ! empty($get('ejunkie_link_physical')) ? true : false),
+                            ->required(fn (Get $get) => !empty($get('ejunkie_link_physical')) ? true : false),
                         FileUpload::make('img_string')
                             ->autofocus()
                             ->columnSpan(2)

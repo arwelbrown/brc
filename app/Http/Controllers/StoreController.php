@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Series;
 use App\Models\Universe;
-use DataProviders\eJunkie\EjProductDataProvider;
+use App\DataProviders\eJunkie\EjProductDataProvider;
 use Illuminate\Contracts\View\View;
 
 class StoreController extends Controller
@@ -106,17 +106,21 @@ class StoreController extends Controller
         return view('store-universe', ['universe' => $universe, 'seriesInUniverse' => $seriesInUniverse, 'products' => $products]);
     }
 
-    public function getAllFromEjunkie(EjProductDataProvider $ej = new EjProductDataProvider)
+    public function getAllFromEjunkie(): array
     {
+        $ej = new EjProductDataProvider();
         $result = $ej->getAllFromEjunkie();
 
-        return view('ejunkie.ejunkie', ['result' => $result]);
+        $products = $result['products'];
+        
+        return $products;
     }
 
-    public function getProductByProductId(int $productId, int $page = null, EjProductDataProvider $ej = new EjProductDataProvider)
+    public function getProductByProductId(int $productId): array
     {
-        $result = $ej->getProductByProductId($productId, $page);
+        $ej = new EjProductDataProvider();
+        $result = $ej->getProductByProductId($productId);
 
-        return view('ejunkie.ejunkie-single-product', ['result' => $result]);
+        return $result;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
@@ -32,8 +33,8 @@ Route::get('/brc-newsletter', function () {
     return view('brc-newsletter');
 });
 
-Route::get('/ejunkie-test', [StoreController::class, 'getAllFromEjunkie']);
-
-Route::get('/ejunkie-test/{productId}', [StoreController::class, 'getProductByProductId']);
-
 Route::get('/submit-your-book', [SubmissionController::class, 'index']);
+
+Route::get('/checkout-test', [StripeController::class, 'index'])->name('payment_index');
+Route::get('/payment-success', [StripeController::class, 'success'])->name('payment_success');
+Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');

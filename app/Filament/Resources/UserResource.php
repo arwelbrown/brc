@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -16,6 +17,10 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Hash;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Toggle;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Filament\Forms\Get;
 
 class UserResource extends Resource
 {
@@ -48,6 +53,21 @@ class UserResource extends Resource
                             ->multiple()
                             ->relationship('roles', 'name')
                             ->preload(),
+                        TextInput::make('position')
+                            ->autofocus(),
+                        Textarea::make('bio')
+                            ->autofocus()
+                            ->columnSpanFull(),
+                        Toggle::make('active'),
+                        Select::make('department_id')
+                            ->relationship('departments', 'name'),
+                        FileUpload::make('img_string')
+                            ->label('Profile Picture')
+                            ->columnSpanFull()
+                            ->directory('/img')
+                            ->getUploadedFileNameForStorageUsing(function(TemporaryUploadedFile $file): string {
+                                return '/br_admin/brc_team/' . $file->getClientOriginalName();
+                            })
                     ])
                     ->columns(2)
             ]);
