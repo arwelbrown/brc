@@ -23,7 +23,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: brc_core
 
-  #PHPMYADMIN SERVER
+  # PHPMYADMIN SERVER
   phpmyadmin:
     container_name: brc_phpmyadmin
     build:

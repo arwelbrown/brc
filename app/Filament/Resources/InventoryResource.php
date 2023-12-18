@@ -26,6 +26,7 @@ class InventoryResource extends Resource
     // TODO: webhook to listen back for stripe payments and save order <- might not even have to do this!!!!!
 
     protected static ?string $model = Product::class;
+    protected static ?string $navigationLabel = 'Inventory';
     protected static ?string $navigationIcon = 'heroicon-s-plus';
     protected static ?string $navigationGroup = 'Product Management';
 
@@ -47,11 +48,16 @@ class InventoryResource extends Resource
                                     function(Set $set, Get $get, ?int $state) {
                                         $set('product_title', $get('product_name'));
 
-                                        $quantities = [25, 50, 100];
+                                        $quantities = [
+                                            '' => null,
+                                            0 => 25,
+                                            1 => 50,
+                                            2 => 100
+                                        ];
                                         
                                         $quantity = $quantities[$state];
 
-                                        if (!empty($state)) {
+                                        if ($quantity) {
                                             $set('stock', INITIAL_STOCK + $quantity);
                                             $set('order_total', $quantity * env('PHYSICAL_ORDER_PRICE'));
                                         } else {
@@ -60,29 +66,10 @@ class InventoryResource extends Resource
                                         }
                                     }
                                 )
-                                ->placeholder(0),
-
-                            // TextInput::make('purchase_books')
-                            //     ->label('Number of books')
-                            //     ->numeric()
-                            //     ->required()
-                            //     ->autofocus()
-                            //     ->live(onBlur: true)
-                            //     ->afterStateUpdated(
-                            //         function(Set $set, Get $get, ?int $state) {
-                            //             $set('product_title', $get('product_name'));
-
-                            //             if (!empty($state)) {
-                            //                 $set('stock', INITIAL_STOCK + $state);
-                            //                 $set('order_total', $state * env('PHYSICAL_ORDER_PRICE'));
-                            //             } else {
-                            //                 $set('stock', INITIAL_STOCK);
-                            //                 $set('order_total', 0);
-                            //             }
-                            //         }
-                            //     ),
+                                ->placeholder('Please Select...'),
                             TextInput::make('stock')
                                 ->numeric()
+                                ->live()
                                 ->hidden(),
                             Hidden::make('product_title')
                                 ->live()                   
@@ -115,8 +102,12 @@ class InventoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('product_name'),
-                TextColumn::make('series.series_name'),
+                TextColumn::make('product_name')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('series.series_name')
+                    ->searchable()
+                    ->sortable(),
                 IconColumn::make('active')
                     ->boolean(),
                 TextColumn::make('stock')

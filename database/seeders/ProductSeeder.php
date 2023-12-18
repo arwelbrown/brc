@@ -25,6 +25,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'chaostheory',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Chaos Theory #2',
@@ -41,6 +42,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'chaostheory',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 10,
             ],
             [
                 'product_name' => 'Alexia Midnight #0',
@@ -57,6 +59,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'alexiamidnight',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Armored Eagle #1',
@@ -73,6 +76,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'armoredeagle',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Armored Eagle #2',
@@ -89,6 +93,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'armoredeagle',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Armored Eagle #3',
@@ -105,6 +110,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'armoredeagle',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'E. O. A #1',
@@ -121,6 +127,7 @@ class ProductSeeder extends Seeder
                 'store-slug' => 'elementsofagony',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'The Final Wielder',
@@ -137,6 +144,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'thefinalwielder',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Moonage #1',
@@ -153,6 +161,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'moonage',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Moonage #2',
@@ -169,6 +178,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'moonage',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Moonage #3',
@@ -185,6 +195,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'moonage',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'The Sergeant #1',
@@ -201,6 +212,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'thesergeant',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'The Sergeant #2',
@@ -217,6 +229,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'thesergeant',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Blaze And Vigor #1',
@@ -233,6 +246,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'blazeandvigor',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Blaze And Vigor #2',
@@ -249,6 +263,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'blazeandvigor',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Blaze And Vigor #3',
@@ -265,6 +280,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'blazeandvigor',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'E.H.V.A #1',
@@ -281,6 +297,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'ehva',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'E.H.V.A #2',
@@ -297,6 +314,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'ehva',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'E.H.V.A #3',
@@ -313,6 +331,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'ehva',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'E.H.V.A #4',
@@ -329,6 +348,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'ehva',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Operation: Nitro',
@@ -345,6 +365,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'operationnitro',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'The Alpha #1',
@@ -361,6 +382,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'thealpha',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'The Alpha #2',
@@ -377,6 +399,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'thealpha',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'The Alpha #3',
@@ -393,6 +416,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'thealpha',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'The Alpha #1 (R)',
@@ -409,6 +433,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'thealpha',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'The Alpha #4',
@@ -425,6 +450,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'thealpha',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'T.S.D.S #1',
@@ -441,6 +467,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'thesuperdragonflysentinels',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Tiny Tokes #1',
@@ -457,6 +484,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'chronicrangers',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Tiny Tokes #2',
@@ -473,6 +501,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'chronicrangers',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Saint #1',
@@ -489,6 +518,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'saint',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Saint #2',
@@ -505,6 +535,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'saint',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Saint #3',
@@ -521,6 +552,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'saint',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Saint #4',
@@ -537,6 +569,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'saint',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Saint #5',
@@ -553,6 +586,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'saint',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Saint (Vol. 1)',
@@ -569,6 +603,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'saint',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Shadow #1',
@@ -585,6 +620,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'shadow',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Legends #1',
@@ -601,6 +637,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'legends',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Legends #2',
@@ -617,6 +654,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'legends',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Godpunk #0',
@@ -633,6 +671,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'godpunk',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Broken Realities #1',
@@ -649,6 +688,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'brokenrealities',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Escape The Pit',
@@ -665,6 +705,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'escapethepit',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Shadow #2',
@@ -681,6 +722,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'shadow',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'T.S.D.S #2',
@@ -697,6 +739,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'thesuperdragonflysentinels',
                 'active' => 1,
                 'featured_product' => 1,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Emerald Coyote',
@@ -713,6 +756,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'theemeraldcoyote',
                 'active' => 1,
                 'featured_product' => 0,
+                'stock' => 0,
             ],
             [
                 'product_name' => 'Devilish #1',
@@ -729,6 +773,7 @@ class ProductSeeder extends Seeder
                 'store_slug' => 'devilish',
                 'active' => 1,
                 'featured_product' => 1,
+                'stock' => 0,
             ]
         ]);
     }

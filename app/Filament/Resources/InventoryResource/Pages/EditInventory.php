@@ -17,7 +17,7 @@ class EditInventory extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            //
         ];
     }
 
@@ -25,9 +25,19 @@ class EditInventory extends EditRecord
     {
         $stripeData = [];
 
-        // Need to get product name
+        switch ((int) $data['purchase_books']) {
+            case 0:
+                $stripeData['quantity'] = 25;
+                break;
+            case 1:
+                $stripeData['quantity'] = 50;
+                break;
+            case 2:
+                $stripeData['quantity'] = 100;
+                break;
+        }
 
-        $stripeData['quantity'] = $data['purchase_books'];
+        // Need to get product name
         $stripeData['product_name'] = $data['product_title'];
         
         // remove fields we don't want to submit to our DB
