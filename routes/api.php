@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\EjunkieController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,4 @@ Route::get('/ejunkie/all', [EjunkieController::class, 'getAllFromEjunkie']);
 
 Route::get('/ejunkie/{productId}', [EjunkieController::class, 'getProductByProductId']);
 
-//Route::resource('/ejunkie/hook', [EjunkieController::class, 'purchaseWebhook']);
+Route::get('/stripe/webhook', [StripeController::class, 'hitWebhook']);

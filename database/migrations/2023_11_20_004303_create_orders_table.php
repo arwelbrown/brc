@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->integer('quantity')->nullable()->default(0);
             $table->float('order_total')->default(0.00);
-            $table->integer('order_status')->default(0);
+            $table->string('order_status')->default('');
             $table->timestamps();
         });
     }

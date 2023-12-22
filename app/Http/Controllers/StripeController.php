@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Stripe\Checkout\Session as StripeSession;
 use Illuminate\Support\Facades\Session as Session;
 use Stripe\Stripe;
+use App\Http\Controllers\ProductController;
 
 class StripeController extends Controller
 {
@@ -34,7 +36,7 @@ class StripeController extends Controller
                 ],
             ],
             'mode' => 'payment',
-            'success_url' => route('payment_success'),
+            'success_url' => route('payment_success', ['data' => $data]),
             'cancel_url' => route('payment_index'),
         ]);
 
@@ -42,7 +44,16 @@ class StripeController extends Controller
     }
 
     public function success()
+    {   
+        $data = request()->query('data');
+
+        ProductController::addStock($data);
+        
+        return redirect()->to($data['start_url']);
+    }
+
+    public function hitWebhook()
     {
-        return view('payments');
+        require '../../Hooks/stripe.php';
     }
 }

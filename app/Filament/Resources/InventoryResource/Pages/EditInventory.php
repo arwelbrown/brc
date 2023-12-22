@@ -39,6 +39,9 @@ class EditInventory extends EditRecord
 
         // Need to get product name
         $stripeData['product_name'] = $data['product_title'];
+
+        // pinch the original url
+        $stripeData['start_url'] = url()->previous();
         
         // remove fields we don't want to submit to our DB
         unset($data['purchase_books']);

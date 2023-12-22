@@ -15,7 +15,7 @@ class ProductCountWidget extends BaseWidget
     {
         return [
             Stat::make('Products', Product::count())
-                ->description('Total number of books sold by BRC')
+                ->description('Total number of books on the BRC Store')
         ];
     }
 }
