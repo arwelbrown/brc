@@ -56,10 +56,8 @@ class UserResource extends Resource
                         TextInput::make('position')
                             ->autofocus(),
                         Textarea::make('bio')
-                            ->autofocus()
-                            ->columnSpanFull(),
-                        Toggle::make('active'),
-                        Select::make('department_id')
+                            ->autofocus(),
+                        Select::make('departments_id')
                             ->relationship('departments', 'name'),
                         FileUpload::make('img_string')
                             ->label('Profile Picture')
@@ -67,7 +65,8 @@ class UserResource extends Resource
                             ->directory('/img')
                             ->getUploadedFileNameForStorageUsing(function(TemporaryUploadedFile $file): string {
                                 return '/br_admin/brc_team/' . $file->getClientOriginalName();
-                            })
+                            }),
+                        Toggle::make('active')
                     ])
                     ->columns(2)
             ]);

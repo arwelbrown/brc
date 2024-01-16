@@ -15,7 +15,7 @@ Stripe::setApiKey(config('stripe.sk'));
 // If you are testing with the CLI, find the secret by running 'stripe listen'
 // If you are using an endpoint defined with the API or dashboard, look in your webhook settings
 // at https://dashboard.stripe.com/webhooks
-$endpoint_secret = 'whsec_...';
+$endpoint_secret = 'whsec_513f325da68b0d6ae5657b096a688ce06a5b8c4d2692655471bca8b2368ced03';
 
 $payload = file_get_contents('php://input');
 $event = null;
@@ -26,7 +26,7 @@ try {
     // Invalid payload
     echo '⚠️  Webhook error while parsing basic request.';
     http_response_code(400);
-exit();
+    exit();
 }
 if ($endpoint_secret) {
     // Only verify the event if there is an endpoint secret defined

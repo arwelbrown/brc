@@ -23,10 +23,9 @@ use Filament\Forms\Components\Hidden;
 
 class InventoryResource extends Resource
 {
-    // TODO: webhook to listen back for stripe payments and save order <- might not even have to do this!!!!!
-
     protected static ?string $model = Product::class;
     protected static ?string $navigationLabel = 'Inventory';
+    protected static ?string $modelLabel = 'Inventory';
     protected static ?string $navigationIcon = 'heroicon-s-plus';
     protected static ?string $navigationGroup = 'Product Management';
 

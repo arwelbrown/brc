@@ -26,11 +26,8 @@ use Filament\Forms\Set;
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
-
     protected static ?string $navigationIcon = 'heroicon-s-book-open';
-
     protected static ?string $navigationGroup = 'Product Management';
-
     public static function form(Form $form): Form
     {
         return $form
@@ -171,6 +168,8 @@ class ProductResource extends Resource
                                 ->autofocus()
                                 ->columnSpan(1)
                                 ->default(false),
+                            TextInput::make('stock')
+                                ->numeric(),
                         ])
                         ->columns(3)
             ])
@@ -227,5 +226,14 @@ class ProductResource extends Resource
             'create' => Pages\CreateProduct::route('/create'),
             'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        if (auth()->user()->hasRole('admin')) {
+            return true;
+        }
+
+        return false;
     }
 }

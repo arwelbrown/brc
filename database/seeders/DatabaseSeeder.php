@@ -33,7 +33,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'arwel@brc.com',
             'password' => password_hash('Jazzmaster03!', PASSWORD_ARGON2I),
             'email_verified_at' => Carbon::now(),
-            'department_id' => 1,
+            'departments_id' => 1,
+            'img_string' => 'img/br_admin/brc_team/arwel.webp'
         ]);
 
         $role = Role::create(['name' => 'admin']);

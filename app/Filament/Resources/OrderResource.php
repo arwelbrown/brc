@@ -67,6 +67,10 @@ class OrderResource extends Resource
                                         'dispatched' => 'Dispatched',
                                         'delivered' => 'Delivered',
                                     ])
+                                    ->disabled(function() {
+                                        $role = auth()->user()->getRelation('roles')[0]->toArray();
+                                        return $role['name'] != 'admin';
+                                    })
                             ])
             ]);
     }
@@ -75,7 +79,8 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('order_id'),
+                TextColumn::make('order_id')
+                    ->searchable(),
                 TextColumn::make('user_id'),
                 TextColumn::make('quantity'),
                 TextColumn::make('order_total')
@@ -92,7 +97,9 @@ class OrderResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->label('View Order')
+                    ->icon('heroicon-s-eye'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

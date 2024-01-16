@@ -54,6 +54,6 @@ class StripeController extends Controller
 
     public function hitWebhook()
     {
-        require '../../Hooks/stripe.php';
+        require_once '../../Hooks/stripe.php';
     }
 }

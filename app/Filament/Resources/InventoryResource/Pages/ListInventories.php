@@ -4,6 +4,9 @@ namespace App\Filament\Resources\InventoryResource\Pages;
 
 use App\Filament\Resources\InventoryResource;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Database\Eloquent\Builder;
+use App\Models\Product;
+use App\Models\Series;
 
 class ListInventories extends ListRecords
 {
@@ -16,5 +19,32 @@ class ListInventories extends ListRecords
         return [
             //
         ];
+    }
+
+    protected function getTableQuery(): Builder
+    {
+        $query = Product::query();
+        
+        $permissions = auth()->user()->getRelation('roles')[0]->permissions;
+
+        $seriesIds = [];
+
+        foreach ($permissions as $index => $permission) {
+            $editPerm = $permission->getAttributes()['name'];
+
+            if (!in_array($editPerm, ['Edit All', 'Edit Permissions', 'Edit Roles', 'Edit Users'])) {
+                $seriesName = explode('Edit ', $editPerm)[1];
+                $seriesIds[] = Series::where('series_name', '=', $seriesName)->get()[0]->id;
+            }
+        }
+
+        if (!empty($seriesIds)) {
+            $query = Product::query()->whereIn('series_id', $seriesIds);
+
+        } else {
+            $query = Product::query();
+        }
+
+        return $query;
     }
 }
