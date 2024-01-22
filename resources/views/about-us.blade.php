@@ -5,20 +5,24 @@
         <h1 style="text-align: center;color: rgb(255,255,255);font-size:50px;letter-spacing: 3px;font-family: Anton, sans-serif;">
             <strong>MEET THE TEAM!</strong>
         </h1>
-        @foreach($departments as $department => $members)
-            <div class="row justify-content-center people">
-                <h2 class="name text-white mb-0" style="font-family: 'Open Sans', sans-serif;"><strong>{{ strtoupper($department) }} TEAM</strong></h2>
-                @foreach($members as $member)
-                    <div class="col-6 col-md-6 col-lg-3 item" style="padding-top:10px;">
-                        <img class="rounded-circle img-fluid" src="{{ $member->img_string }}" alt="{{ explode(' ', $member->name)[0] }}">
-                        <h3 class="name" style="color: rgb(255,255,255);">{{ explode(' ', $member->name)[0] }}</h3>
-                        <p class="title" style="margin-bottom: 0;">{{ $member->role }}</p>
-                        <p class="description" style="font-family: 'Open Sans', sans-serif;">
-                            <span style="background-color: transparent;">{{ $member->bio }}</span>
-                        </p>
-                    </div>
-                @endforeach
-            </div>
+        @foreach([$founders, $team, $partners, $creators] as $section)
+        <div class="row justify-content-center people">
+            <h2 class="name text-white mb-0" style="font-family: 'Open Sans', sans-serif;">
+                <strong>
+                    {{ $section[0]['brc_team_role'] != 'Team' ? $section[0]['brc_team_role'] . 's' : $section[0]['brc_team_role'] }}
+                </strong>
+            </h2>
+            @foreach($section as $user)
+                <div class="col-6 col-md-6 col-lg-3 item" style="padding-top:10px;">
+                    <img class="rounded-circle img-fluid" src="{{ $user['img_string'] }}" alt="{{ explode(' ', $user['name'])[0] }}">
+                    <h3 class="name" style="color: rgb(255,255,255);">{{ explode(' ', $user['name'])[0] }}</h3>
+                    <p class="title" style="margin-bottom: 0;">{{ $user['position'] }}</p>
+                    <p class="description" style="font-family: 'Open Sans', sans-serif;">
+                        <span style="background-color: transparent;">{{ $user['bio'] }}</span>
+                    </p>
+                </div>
+            @endforeach
+        </div>
         @endforeach
     </div>
 </section>

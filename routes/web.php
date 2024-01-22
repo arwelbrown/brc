@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\SubmissionController;
-use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +21,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::resource('/about-us', DepartmentController::class);
+Route::resource('/about-us', TeamController::class);
 
 Route::get('/store/universe/{universe_slug}/{slug}', [StoreController::class, 'seriesStore']);
 

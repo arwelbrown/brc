@@ -24,16 +24,6 @@
         </h1>
         <p class="text-center" data-aos="fade-up" data-aos-delay="400" style="font-family: 'Open Sans', sans-serif;color: rgb(157,157,157);"><span style="color: rgb(238, 238, 238); background-color: transparent;">{{ $universe->universe_summary ?? ''}}</span></p>
     </div>
-    {{ $universe->id }}
-    @if ($universe->id == 1)
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-4 align-self-center" data-aos="fade-up" data-aos-delay="200"><img class="img-fluid" src="{{ url('img/universe_bruniverse/realms/Tales_of_the_After_Realm.webp') }}"></div>
-                <div class="col-md-4 align-self-center" data-aos="fade-down" data-aos-delay="200"><img class="img-fluid" src="{{ url('img/universe_bruniverse/realms/Realm_Of_Creation.webp') }}"></div>
-                <div class="col-md-4 align-self-center" data-aos="fade-up" data-aos-delay="200"><img class="img-fluid" src="{{ url('img/universe_bruniverse/realms/Tales_of_the_Chaos_Realm.webp') }}"></div>
-            </div>
-        </div>
-    @endif
     <div class="container">
         <h1 class="text-center" data-aos="fade-up" style="font-family: Anton, sans-serif;color: rgb(255,255,255);font-size: 40PX;margin-top: 50PX;">SHOP BY SERIES</h1>
         <p class="text-center" data-aos="fade-up" data-aos-delay="400" style="font-family: 'Open Sans', sans-serif;color: rgb(157,157,157);"><span style="color: rgb(238, 238, 238);">{{ $universe->universe_description }}</span></p>

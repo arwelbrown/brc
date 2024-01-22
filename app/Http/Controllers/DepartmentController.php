@@ -16,17 +16,6 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        $departments = [];
-
-        foreach ($this->getDepartmentNames() as $departmentName) {
-            if ($departmentName != 'None') {
-                $department = Department::where('name', '=', $departmentName)->first();
-                $users = User::where('departments_id', '=', $department->id)->get()->all();
-    
-                $departments[$department->name] = $users;
-            }
-        }
-
-        return view('about-us', ['departments' => $departments]);
+        //
     }
 }

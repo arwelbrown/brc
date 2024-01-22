@@ -94,4 +94,13 @@ class SubmissionResource extends Resource
             'edit' => Pages\EditSubmission::route('/{record}/edit'),
         ];
     }    
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        if (auth()->user()->hasRole('admin')) {
+            return true;
+        }
+
+        return false;
+    }
 }
