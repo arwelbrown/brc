@@ -15,7 +15,6 @@ return new class extends Migration
             $table->string('bio')->nullable();
             $table->string('position')->nullable();
             $table->string('img_string')->nullable();
-            $table->foreignId('departments_id')->constrained('departments')->cascadeOnDelete()->default(0);
             $table->integer('active')->default(0);
         });
     }

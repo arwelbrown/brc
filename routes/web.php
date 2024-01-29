@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function() {
     return view('index');
 });
 
@@ -29,12 +29,11 @@ Route::get('/store/universe/{slug}', [StoreController::class, 'universeStore']);
 
 Route::resource('/store', StoreController::class);
 
-Route::get('/brc-newsletter', function () {
+Route::get('/brc-newsletter', function() {
     return view('brc-newsletter');
 });
 
 Route::get('/submit-your-book', [SubmissionController::class, 'index']);
 
-Route::get('/checkout-test', [StripeController::class, 'index'])->name('payment_index');
 Route::get('/payment-success', [StripeController::class, 'success'])->name('payment_success');
-Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
+Route::get('/payment-failure', [StripeController::class, 'failure'])->name('payment_failure');

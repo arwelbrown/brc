@@ -6,6 +6,8 @@ namespace App\Models;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
+use App\Models\Upload;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -42,13 +44,17 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     {
         return $this->hasMany(Order::class);
     }
+
+    public function uploads(): HasOne
+    {
+        return $this->hasOne(Upload::class);
+    }
     
     protected $fillable = [
         'name',
         'email',
         'password',
         'email_verified_at',
-        'department_id',
     ];
     
     protected $hidden = [
@@ -63,10 +69,5 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     public function canManageSettings(): bool
     {
         return $this->hasRole('admin');
-    }
-
-    public function departments(): BelongsTo
-    {
-        return $this->belongsTo(Department::class);
     }
 }

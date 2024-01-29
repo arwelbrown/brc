@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
+use Carbon\Carbon;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
@@ -21,6 +22,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Filament\Forms\Get;
+use App\Enums\CompanyPositionEnum;
 
 class UserResource extends Resource
 {
@@ -43,6 +45,7 @@ class UserResource extends Resource
                             ->autofocus()
                             ->required(),
                         DateTimePicker::make('email_verified_at')
+                            ->default(Carbon::now())
                             ->seconds(false),
                         TextInput::make('password')
                             ->password()
@@ -53,12 +56,19 @@ class UserResource extends Resource
                             ->multiple()
                             ->relationship('roles', 'name')
                             ->preload(),
+                        Select::make('brc_team_role')
+                            ->label('BRC Role')
+                            ->options([
+                                'Founder' => CompanyPositionEnum::FOUNDER->value,
+                                'Team' => CompanyPositionEnum::BRC_TEAM->value,
+                                'Creator' => CompanyPositionEnum::CREATOR->value,
+                            ])
+                            ->autofocus(),
                         TextInput::make('position')
                             ->autofocus(),
                         Textarea::make('bio')
-                            ->autofocus(),
-                        Select::make('departments_id')
-                            ->relationship('departments', 'name'),
+                            ->autofocus()
+                            ->columnSpanFull(),
                         FileUpload::make('img_string')
                             ->label('Profile Picture')
                             ->columnSpanFull()

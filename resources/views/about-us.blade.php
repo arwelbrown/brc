@@ -7,10 +7,12 @@
         </h1>
         @foreach([$founders, $team, $partners, $creators] as $section)
         <div class="row justify-content-center people">
-            <h2 class="name text-white mb-0" style="font-family: 'Open Sans', sans-serif;">
-                <strong>
-                    {{ $section[0]['brc_team_role'] != 'Team' ? $section[0]['brc_team_role'] . 's' : $section[0]['brc_team_role'] }}
-                </strong>
+            <h2 class="name text-white mb-0 p-3" style="font-family: 'Open Sans', sans-serif;">
+                @if (!empty($section))
+                    <strong>
+                        {{ $section[0]['brc_team_role'] != 'Team' ? strtoupper($section[0]['brc_team_role'] . 's') : strtoupper('BRC ' . $section[0]['brc_team_role']) }}
+                    </strong>
+                @endif
             </h2>
             @foreach($section as $user)
                 <div class="col-6 col-md-6 col-lg-3 item" style="padding-top:10px;">

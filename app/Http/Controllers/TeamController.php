@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\DataProviders\eJunkie\EjProductDataProvider;
+use App\Enums\CompanyPositionEnum;
 use Illuminate\Contracts\View\View;
 
 class TeamController extends Controller
@@ -28,7 +29,7 @@ class TeamController extends Controller
                 case 'Partner':
                     $partners[] = $user;
                     break;
-                case 'Team Member':
+                case 'Team':
                     $team[] = $user;
             }
         }

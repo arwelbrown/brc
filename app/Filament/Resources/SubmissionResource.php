@@ -22,7 +22,6 @@ class SubmissionResource extends Resource
     protected static ?string $model = Submission::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-inbox';
-
     protected static ?string $navigationGroup = 'Product Management';
 
     public static function form(Form $form): Form

@@ -23,17 +23,12 @@ class DatabaseSeeder extends Seeder
             CharacterSeeder::class,
         ]);
 
-        DB::table('departments')->insert([
-            'id' => 1,
-            'name' => 'Dev',
-        ]);
-
         User::create([
             'name' => 'Arwel Brown',
             'email' => 'arwel@brc.com',
             'password' => password_hash('Jazzmaster03!', PASSWORD_ARGON2I),
             'email_verified_at' => Carbon::now(),
-            'departments_id' => 1,
+            'position' => 'Founder',
             'img_string' => 'img/br_admin/brc_team/arwel.webp'
         ]);
 

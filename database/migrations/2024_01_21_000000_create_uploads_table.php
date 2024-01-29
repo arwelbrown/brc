@@ -14,13 +14,13 @@ return new class extends Migration
     {
         Schema::create('uploads', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users', 'id')->required();
+            $table->foreignId('user_id')->constrained('users', 'id');
             $table->string('book_title');
             $table->string('book_summary');
             $table->string('book_script');
-            $table->boolean('status');
-            $table->string('rejection_reason');
-            $table->string('book_pdf');
+            $table->string('status')->nullable();
+            $table->string('rejection_reason')->nullable();
+            $table->string('book_pdf')->nullable();
             $table->timestamps();
         });
     }
