@@ -143,6 +143,7 @@ class ProductResource extends Resource
 
                                 return 'series_' . strtolower(str_replace(' ', '', $series)) . '/covers/' . $file->getClientOriginalName();
                             })
+                            ->optimize('webp')
                             ->imageEditor()
                             ->downloadable()
                             ->previewable()
@@ -230,10 +231,6 @@ class ProductResource extends Resource
 
     public static function shouldRegisterNavigation(): bool
     {
-        if (auth()->user()->hasRole('admin')) {
-            return true;
-        }
-
-        return false;
+        return auth()->user()->hasRole('admin');
     }
 }

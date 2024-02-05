@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Newsletter extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'coming_soon'   => 'boolean',
+        'active'        => 'boolean',
+    ];
 }

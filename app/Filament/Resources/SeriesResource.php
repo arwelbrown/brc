@@ -78,6 +78,7 @@ class SeriesResource extends Resource
                         ->default('')
                         ->autofocus()
                         ->directory('/img')
+                        ->optimize('webp')
                         ->getUploadedFileNameForStorageUsing(function(Get $get, TemporaryUploadedFile $file): string {
                             return 'series_' . $get('series_slug') . '/' . $file->getClientOriginalName();
                         })

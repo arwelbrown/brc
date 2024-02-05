@@ -34,10 +34,14 @@ class StoreController extends Controller
         $characters = [];
 
         foreach ($charactersInSeries as $character) {
-            $characterToInsert = $character->where('series_id', '=', $series->id)->get()->all();
+            $characterToInsert = $character
+                ->where('series_id', '=', $series->id)
+                ->get()
+                ->all()
+            ;
 
             // link other series
-            if (! empty($characterToInsert[0]->appearances)) {
+            if (!empty($characterToInsert[0]->appearances)) {
                 $showsUpIn = $characterToInsert[0]->appearances;
                 $characterToInsert[0]->appearances = [];
 
@@ -103,7 +107,14 @@ class StoreController extends Controller
             $products = array_merge($productsInSeries, $products);
         }
 
-        return view('store-universe', ['universe' => $universe, 'seriesInUniverse' => $seriesInUniverse, 'products' => $products]);
+        return view(
+            'store-universe',
+            [
+                'universe' => $universe,
+                'seriesInUniverse' => $seriesInUniverse,
+                'products' => $products
+            ]
+        );
     }
 
     public function getAllFromEjunkie(): array

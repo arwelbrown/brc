@@ -37,52 +37,31 @@
     </div>
     <div class="container">
         <div class="row text-center" style="margin-bottom: 50px;">
-            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3 item" style="padding-bottom: 10px;">
-                <div class="card border rounded-0" style="background: rgb(0,0,0);">
-                    <div class="card-body" style="padding-top: 16px;">
-                        <img class="img-fluid" src="{{ url('img/br_admin/newsletter_may_23.webp') }}">
-                        <h1 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 16px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">May 2023</h1>
-                        <a class="btn"
-                            role="button"
-                            style="background: rgb(255,255,255);color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-weight: bold;"
-                            href="{{ url('img/br_admin/newsletter_may_23.webp') }}">
-                            Download PDF
-                        </a>
+            @foreach ($newsletters as $newsletter)
+                @if (!$newsletter->coming_soon)
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3 item" style="padding-bottom: 10px;">
+                        <div class="card border rounded-0" style="background: rgb(0,0,0);">
+                            <div class="card-body" style="padding-top: 16px;">
+                                <img class="img-fluid" src="{{ url($newsletter->img_string) }}">
+                                <h1 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 16px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">
+                                    {{ date('F Y', strtotime($newsletter->newsletter_timestamp)) }}
+                                </h1>
+                                <a class="btn"
+                                    role="button"
+                                    style="background: rgb(255,255,255);color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-weight: bold;"
+                                    href="{{ url($newsletter->file_path) }}">
+                                    DownLoad PDF
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3 item" style="padding-bottom: 10px;">
-                <div class="card border rounded-0" style="background: rgb(0,0,0);">
-                    <div class="card-body" style="padding-top: 16px;">
-                        <img class="img-fluid" src="{{ url('img/br_admin/newsletter_june_23.webp') }}">
-                        <h1 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 16px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">May 2023</h1>
-                        <a class="btn"
-                            role="button"
-                            style="background: rgb(255,255,255);color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-weight: bold;"
-                            href="{{ url('img/br_admin/newsletter_june_23.webp') }}">
-                            Download PDF
-                        </a>
+                @else
+                    <div class="col-md-3 align-self-center">
+                        <h1 style="margin-top: 20px;font-family: Anton, sans-serif;font-size: 30px;color: rgb(255,255,255);">AUGUST 2023</h1>
+                        <p style="margin-bottom: 20px;color: rgb(207,207,207);font-family: 'Open Sans', sans-serif;">Coming Soon!</p>
                     </div>
-                </div>
-            </div>
-            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3 item" style="padding-bottom: 10px;">
-                <div class="card border rounded-0" style="background: rgb(0,0,0);">
-                    <div class="card-body" style="padding-top: 16px;">
-                        <img class="img-fluid" src="{{ url('img/br_admin/newsletter_july_23.webp') }}">
-                        <h1 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 16px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">May 2023</h1>
-                        <a class="btn"
-                            role="button"
-                            style="background: rgb(255,255,255);color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-weight: bold;"
-                            href="{{ url('img/br_admin/newsletter_july_23.webp') }}">
-                            Download PDF
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 align-self-center">
-                <h1 style="margin-top: 20px;font-family: Anton, sans-serif;font-size: 30px;color: rgb(255,255,255);">AUGUST 2023</h1>
-                <p style="margin-bottom: 20px;color: rgb(207,207,207);font-family: 'Open Sans', sans-serif;">Coming Soon!</p>
-            </div>
+                @endif
+            @endforeach
         </div>
     </div>
 @endsection

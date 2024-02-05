@@ -80,6 +80,7 @@ class CharacterResource extends Resource
                                 ->columnspan(2)
                                 ->openable()
                                 ->downloadable()
+                                ->optimize('webp')
                                 ->getUploadedFileNameForStorageUsing(function (callable $get, TemporaryUploadedFile $file): string {
                                     $seriesId = $get('series_id');
                                     $series = SeriesController::getSeries($seriesId)->series_name;

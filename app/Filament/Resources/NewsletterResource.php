@@ -8,8 +8,10 @@ use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\MaxWidth;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
@@ -33,18 +35,34 @@ class NewsletterResource extends Resource
                     ->schema([
                         DateTimePicker::make('newsletter_timestamp')
                             ->label('Newsletter Timestamp')
-                            ->seconds(false),
+                            ->seconds(false)
+                            ->columnSpan(1),
+                    ])
+                    ->maxWidth(MaxWidth::Small),
+                Section::make()
+                    ->schema([
+                        FileUpload::make('img_string')
+                            ->reactive()
+                            ->autofocus()
+                            ->preserveFilenames()
+                            ->label('Cover Image')
+                            ->directory('newsletters/covers')
+                            ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
+                                return $file->getClientOriginalName();                               
+                            }),
                         FileUpload::make('file_path')
                             ->reactive()
                             ->autofocus()
                             ->preserveFilenames()
                             ->label('Upload PDF')
-                            ->directory('/img')
+                            ->directory('newsletters')
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
-                                $filename = 'newsletter_' . $file->getClientOriginalName();
-
-                                return '/newsletters/' . $filename;
+                                return $file->getClientOriginalName();                               
                             }),
+                        Toggle::make('active')
+                            ->autofocus(),
+                        Toggle::make('coming_soon')
+                            ->autofocus(),
                     ])
                     ->columns(2),
             ]);

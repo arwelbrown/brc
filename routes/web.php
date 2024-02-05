@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\StripeController;
@@ -29,9 +30,7 @@ Route::get('/store/universe/{slug}', [StoreController::class, 'universeStore']);
 
 Route::resource('/store', StoreController::class);
 
-Route::get('/brc-newsletter', function() {
-    return view('brc-newsletter');
-});
+Route::get('/brc-newsletter', [NewsletterController::class, 'index'])->name('newsletter');
 
 Route::get('/submit-your-book', [SubmissionController::class, 'index']);
 

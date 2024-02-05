@@ -2,7 +2,7 @@
 @section('content')
     <section class="py-4 py-xl-5 text-center" style="background: linear-gradient(rgba(9,0,34,0.75) 0%, #000000 100%), url({{ url('img/br_admin/brc_wallpaper.webp') }}) center / cover no-repeat;">
         <h1 data-aos="fade-up" style="margin-top: 80px;font-family: Anton, sans-serif;color: rgb(255,255,255);font-size: 50PX;margin-bottom: 30px;">
-            DIVE INTO THE MULTIVERSE!
+            EXPLORE THE GREAT BEYOND!
         </h1>
         <div class="container-fluid" data-aos="fade-up">
             <section>
@@ -37,8 +37,9 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-sm-4 col-md-6 col-lg-5 col-xxl-4 align-self-center">
-                    <h1 style="font-family: Anton, sans-serif;color: rgb(255,255,255);font-size: 40PX;letter-spacing: 2px;text-align: left;">THE BRC SHOWCASE!</h1>
-                    <p style="font-family: 'Open Sans', sans-serif;background: rgba(255,255,255,0);font-size: 14px;text-align: left;"><span style="color: rgb(255, 255, 255);">Get yourself copies of Broken Reality Comics </span><strong><span style="color: rgb(255, 255, 255);">NEW</span></strong><span style="color: rgb(255, 255, 255);"> Releases with SHADOW #2 and The Super Dragonfly Sentinels #2!&nbsp;</span></p>
+                    <h2 style="font-family: Anton, sans-serif;color: rgb(255,255,255);font-size: 40PX;letter-spacing: 2px;text-align: left;">
+                        THE BRC SHOWCASE!
+                    </h2>
                     <p style="font-family: 'Open Sans', sans-serif;background: rgba(255,255,255,0);font-size: 14px;text-align: left;"><span style="color: rgb(255, 255, 255);">Make sure to follow us on instagram @brokenrealitycomics to keep track Phase 1 and the latest comic book releases!</span></p>
                 </div>
                 @foreach ($featuredProducts as $product)
@@ -46,7 +47,7 @@
                         <div class="card border rounded-0" style="background: rgb(0,0,0);">
                             <div class="card-body" style="padding-top: 16px;">
                                 <img class="img-fluid" src="{{ asset($product->img_string) }}">
-                                <h1 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">{{ $product->product_name }}</h1>
+                                <h2 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">{{ $product->product_name }}</h2>
                                 @if (!empty($product->in_development) && $product->in_development === 1)
                                         <p class="text-white" style="font-size: 15px;"><strong>Coming Soon!</strong></p>
                                 @else
@@ -88,7 +89,7 @@
             </div>
         </div>
         <div class="container" style="max-width: 900px;">
-            <h1 style="font-family: Anton, sans-serif;color: rgb(255,255,255);font-size: 50PX;letter-spacing: 2px;margin-top: 50PX;">DISCOVER ALL COMICS!</h1>
+            <h2 style="font-family: Anton, sans-serif;color: rgb(255,255,255);font-size: 50PX;letter-spacing: 2px;margin-top: 50PX;">DISCOVER ALL COMICS!</h2>
             <p style="font-family: 'Open Sans', sans-serif;background: rgba(255,255,255,0);font-size: 14px;"><span style="color: rgb(255, 255, 255);">Get digital copies of our latest comic books and check out our shop by creator section for character information and blurbs written by each creator.&nbsp;Check out the all the stories provided by the individual creators that are members of Broken Reality Comics!&nbsp;Our catalog includes: Fantasy, Sci-Fi, Horror, Superheroes, Tokusatsu, Vigilantes, Reality Hopping, and more...</span></p>
         </div>
         <div class="container">
@@ -100,7 +101,7 @@
                                 <div class="card border rounded-0" style="background: rgb(0,0,0);">
                                     <div class="card-body" style="padding-top: 16px;">
                                         <img class="img-fluid" src="{{ asset($product->img_string) }}">
-                                        <h1 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">{{ $product->product_name }}</h1>
+                                        <h2 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">{{ $product->product_name }}</h2>
                                         @if (!empty($product->in_development) && $product->in_development === 1)
                                                 <p class="text-white" style="font-size: 15px;"><strong>Coming Soon!</strong></p>
                                         @else

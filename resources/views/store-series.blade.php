@@ -104,36 +104,94 @@
                                         </h1>
 
                                         @if (!empty($character->real_name))
-                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Name</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->real_name }}</span></p>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;">
+                                                <strong>
+                                                    <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                        Name
+                                                    </span>
+                                                </strong>
+                                                <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                    : {{ $character->real_name }}
+                                                </span>
+                                            </p>
                                         @endif
 
                                         @if (!empty($character->aliases))
-                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Alias</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ implode(', ', $character->aliases) }}</span></p>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;">
+                                                <strong>
+                                                    <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                        Alias
+                                                    </span>
+                                                </strong>
+                                                <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                    : {{ rtrim(implode(', ', $character->aliases), ',') }}
+                                                </span>
+                                            </p>
                                         @endif
 
                                         @if (!empty($character->race))
-                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Race</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ $character->race }}</span></p>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;">
+                                                <strong>
+                                                    <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                        Race
+                                                    </span>
+                                                </strong>
+                                                <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                    : {{ $character->race }}
+                                                </span>
+                                            </p>
                                         @endif
 
                                         @if (!empty($character->abilities)) 
-                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Abilities</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ implode(', ', $character->abilities) }}</span></p>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;">
+                                                <strong>
+                                                    <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                        Abilities
+                                                    </span>
+                                                </strong>
+                                                <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                    : {{ rtrim(implode(', ', $character->abilities), ',') }}
+                                                </span>
+                                            </p>
                                         @endif
 
                                         @if (!empty($character->weaknesses))
-                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Weaknesses</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ implode(', ', $character->weaknesses) }}</span></p>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;">
+                                                <strong>
+                                                    <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                        Weaknesses
+                                                    </span>
+                                                </strong>
+                                                <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                    : {{ rtrim(implode(', ', $character->weaknesses), ',') }}
+                                                </span>
+                                            </p>
                                         @endif
 
                                         @if (!empty($character->affiliations))
-                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;"><strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Affiliation</span></strong><span style="color: rgb(255, 255, 255); background-color: transparent;">: {{ implode(', ', $character->affiliations) }}</span></p>
+                                            <p class="text-start" style="font-family: 'Open Sans', sans-serif;">
+                                                <strong>
+                                                    <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                        Affiliation
+                                                    </span>
+                                                </strong>
+                                                <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                    : {{ rtrim(implode(', ', $character->affiliations), ',') }}
+                                                </span>
+                                            </p>
                                         @endif
 
                                         @if (!empty($character->appearances))
                                             <p class="text-start" style="font-family: 'Open Sans', sans-serif;">
-                                                <strong><span style="color: rgb(255, 255, 255); background-color: transparent;">Appearances:</span></strong>:
+                                                <strong>
+                                                    <span style="color: rgb(255, 255, 255); background-color: transparent;">
+                                                        Appearances:
+                                                    </span>
+                                                </strong>:
                                                 <span style="color: rgb(255, 255, 255); background-color: transparent;">
                                                     @foreach ($character->appearances as $index => $appearance)
                                                         <a class="text-white" href='/store/universe/{{ $appearance['universe_slug'] }}/{{ $appearance['series_slug'] }}'>
-                                                            {{ $appearance['series_name'] }}{{ $index == count($character['appearances']) ? '' : ', ' }}
+                                                            {{ $appearance['series_name'] }}{{ $index == count($character['appearances']) - 1 ? '' : ', ' }}
                                                         </a>
                                                     @endforeach
                                                 </span>
