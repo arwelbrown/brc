@@ -28,6 +28,7 @@ class ProductResource extends Resource
     protected static ?string $model = Product::class;
     protected static ?string $navigationIcon = 'heroicon-s-book-open';
     protected static ?string $navigationGroup = 'Product Management';
+    
     public static function form(Form $form): Form
     {
         return $form
@@ -143,7 +144,6 @@ class ProductResource extends Resource
 
                                 return 'series_' . strtolower(str_replace(' ', '', $series)) . '/covers/' . $file->getClientOriginalName();
                             })
-                            ->optimize('webp')
                             ->imageEditor()
                             ->downloadable()
                             ->previewable()

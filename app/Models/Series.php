@@ -34,4 +34,9 @@ class Series extends Model
     {
         return $this->belongsTo(Universe::class);
     }
+
+    public function creator(): BelongsTo
+    {
+        return $this->belongsTo(Creator::class);
+    }
 }
