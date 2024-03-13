@@ -5,7 +5,7 @@
         <h1 style="text-align: center;color: rgb(255,255,255);font-size:50px;letter-spacing: 3px;font-family: Anton, sans-serif;">
             <strong>MEET THE TEAM!</strong>
         </h1>
-        @foreach([$founders, $team, $partners, $creators] as $section)
+        @foreach([$founders, $team, $partners] as $section)
         <div class="row justify-content-center people">
             <h2 class="name text-white mb-0 p-3" style="font-family: 'Open Sans', sans-serif;">
                 @if (!empty($section))
@@ -26,6 +26,25 @@
             @endforeach
         </div>
         @endforeach
+        @if (!empty($creators))
+        <div class="row justify-content-center people">
+            <h2 class="name text-white mb-0 p-3" style="font-family: 'Open Sans', sans-serif;">
+                <strong>
+                    Creators
+                </strong>
+            </h2>
+            @foreach($creators as $creator)
+                <div class="col-6 col-md-6 col-lg-3 item" style="padding-top:10px;">
+                    <img class="rounded-circle img-fluid" src="{{ $creator['img_string'] }}" alt="{{ $creator['name'] }}">
+                    <h3 class="name" style="color: rgb(255,255,255);">{{ $creator['name'] }}</h3>
+                    <p class="title">{{ implode(' | ', $creator['creator_type']) }}</p>
+                    <p class="description" style="font-family: 'Open Sans', sans-serif;">
+                        <span style="background-color: transparent;">{{ $creator['bio'] }}</span>
+                    </p>
+                </div>
+            @endforeach
+        </div>
+        @endif
     </div>
 </section>
 @endsection
