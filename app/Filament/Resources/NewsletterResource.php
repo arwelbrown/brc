@@ -15,6 +15,7 @@ use Filament\Support\Enums\MaxWidth;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
@@ -73,8 +74,10 @@ class NewsletterResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('newsletter_timestamp')
+                    ->label('Newsletter For')
                     ->searchable()
                     ->sortable(),
+                IconColumn::make('active')
             ])
             ->filters([
                 //
