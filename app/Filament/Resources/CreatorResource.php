@@ -17,6 +17,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Get;
 use Filament\Tables\Columns\TextColumn;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use BRC\Config\CreatorTypes;
 
 class CreatorResource extends Resource
 {
@@ -37,10 +38,7 @@ class CreatorResource extends Resource
                             ->columnSpan(1),
                         Select::make('creator_type')
                             ->multiple()
-                            ->searchable()
-                            ->getSearchResultsUsing(fn (string $search): array => CreatorType::where('type', 'like', "%{$search}%")->limit(50)->pluck('type', 'id')->toArray())
-                            ->getOptionLabelsUsing(fn (array $values): array => CreatorType::whereIn('id', $values)->pluck('type', 'id')->toArray())
-                            ->preload(),
+                            ->options(CreatorTypes::get()),
                         Textarea::make('bio')
                             ->autofocus()
                             ->columnSpanFull(),
