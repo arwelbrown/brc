@@ -61,18 +61,6 @@
                 </div>
             </div>
         </div>
-        <hr>
-        <h1 data-aos="fade-down" style="font-family: Anton, sans-serif;font-weight: bold;text-align: center;font-size: 36px;margin-top: 50px;letter-spacing: 2PX;"><span style="color: rgb(255, 255, 255);">CHECK OUT THE #BRUNIVERSE FLAGSHIP SERIES!</span></h1>
-        <div class="container-fluid" style="margin-top: 20px;max-width: 900px;">
-            <div class="row justify-content-center align-items-center" style="margin-bottom: 50px;">
-                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;margin-top: 20px;"><a class="d-inline-block" href="/store/universe/bruniverse/brokenrealities"><img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/br_admin/Broken_Reality_ICON.webp')}}"></a></div>
-                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;margin-top: 20px;"><a class="d-inline-block" href="/store/universe/bruniverse/elementsofagony"><img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/series_elementsofagony/Kajal_Icon.webp') }}"></a></div>
-                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;margin-top: 20px;"><a class="d-inline-block" href="/store/universe/bruniverse/legends"><img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/series_legends/Legends_ICON.webp') }}"></a></div>
-                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;margin-top: 20px;"><a class="d-inline-block" href="/store/universe/bruniverse/shadow"><img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/series_shadow/Shadow_Icon.webp') }}"></a></div>
-                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;"><a class="d-inline-block" href="/store/universe/bruniverse/chronicrangers"><img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/series_chronicrangers/TheStoner_Icon.webp') }}"></a></div>
-                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4" data-bss-hover-animate="pulse" style="margin-bottom: 20px;"><a class="d-inline-block" href="/store/universe/bruniverse/thealpha"><img class="img-fluid" data-bss-hover-animate="pulse" src="{{ url('img/series_thealpha/The_Alpha_ICON.webp') }}"></a></div>
-            </div>
-        </div>
     </section>
     <hr>
     <section></section>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\DataProviders\eJunkie\EjProductDataProvider;
 use App\Enums\CompanyPositionEnum;
+use App\Models\Creator;
 use Illuminate\Contracts\View\View;
 
 class TeamController extends Controller
@@ -23,9 +24,6 @@ class TeamController extends Controller
                 case 'Founder':
                     $founders[] = $user;
                     break;
-                case 'Creator':
-                    $creators[] = $user;
-                    break;
                 case 'Partner':
                     $partners[] = $user;
                     break;
@@ -33,6 +31,8 @@ class TeamController extends Controller
                     $team[] = $user;
             }
         }
+
+        $creators = Creator::all()->toArray();
 
         return view(
             'about-us',

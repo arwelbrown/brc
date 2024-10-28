@@ -9,7 +9,7 @@ class NewsletterController extends Controller
 {
     public function index(): View
     {
-        $newsletters = Newsletter::all()->paginate(24);
+        $newsletters = Newsletter::orderByDesc('id')->paginate(24);
 
         return view('brc-newsletter', ['newsletters' => $newsletters]);
     }
