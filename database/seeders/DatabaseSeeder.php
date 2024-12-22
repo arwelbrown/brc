@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\DB;
 class DatabaseSeeder extends Seeder
 {
     /**
-            * Seed the application's database.
-            */
+     * Seed the application's database.
+     */
     public function run(): void
     {
         $this->call([
@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Arwel Brown',
             'email' => 'arwel@brc.com',
-            'password' => password_hash('Jazzmaster03!', PASSWORD_ARGON2I),
+            'password' => password_hash($_ENV['DB_PASSWORD'], PASSWORD_ARGON2I),
             'email_verified_at' => Carbon::now(),
             'position' => 'Founder',
             'img_string' => 'img/br_admin/brc_team/arwel.webp'

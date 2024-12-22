@@ -1,3 +1,7 @@
+networks:
+  brc_network:
+    driver: bridge
+
 services:
   web:
     container_name: brc_web
@@ -31,3 +35,22 @@ services:
       - 8001:80
     environment:
       - PMA_ARBITRARY=1
+
+  # MAILPIT
+  mailpit:
+    container_name: brc_mailpit
+    build: ./docker/mailpit
+    depends_on:
+      - web
+    hostname: "mailpit"
+    restart: "always"
+    volumes:
+      - ./data/emails:/data
+    ports:
+      - 8025:8025
+      - 1025:1025
+    environment:
+      MP_MAX_MESSAGES: 5000
+      MP_DATABASE: /data/mailpit.db
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
