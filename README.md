@@ -21,10 +21,8 @@ nvim ~/.bash_functions
 Write the following function in your .bash_functions file
 
 ```sh                                      
-function dockin() {
-        if [ -z "$1" -o -z "$2" ]; then
-                docker exec -it brc-web /bin/bash
-        fi
+dockin() {
+  docker exec -it $1 bash
 }
 ```
 And hit ctrl+x and y. Then add this to your .bashrc, or other equivalent;
