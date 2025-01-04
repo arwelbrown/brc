@@ -6,12 +6,25 @@ services:
   web:
     container_name: brc_web
     build:
-      context: ./docker/web
+      context: ./docker/frankenphp
       dockerfile: Dockerfile
-    volumes:
-      - ./:/var/www/html
+    restart: always
     ports:
-      - 8000:80
+      - "80:80" # HTTP
+      - "443:443" # HTTPS
+      - "443:443/udp" # HTTPS/3
+    volumes:
+      - ./:/app
+    
+  # web:
+  #  container_name: brc_web
+  #  build:
+  #    context: ./docker/frankenphp
+  #    dockerfile: Dockerfile
+  #  volumes:
+  #    - ./:/var/www/html
+  #  ports:
+  #    - 8000:80
 
   # DB
   mysql:
