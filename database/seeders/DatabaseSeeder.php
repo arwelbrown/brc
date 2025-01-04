@@ -7,7 +7,6 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {

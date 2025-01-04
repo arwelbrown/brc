@@ -10,7 +10,6 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
-use FilipFonal\FilamentLogManager\FilamentLogManager;
 use Hasnayeen\Themes\Http\Middleware\SetTheme;
 use Hasnayeen\Themes\ThemesPlugin;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -37,9 +36,6 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Purple,
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
-            ])
-            ->plugins([
-                FilamentLogManager::make(),
             ])
             ->font('Poppins')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
