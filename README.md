@@ -70,7 +70,7 @@ As part of the sail setup, you will create a MySQL database, running on port 330
 #### Populating the database
 In the project root directory, run the following commands;
 ```sh
-dockin
+dockin brc_web
 
 php artisan migrate
 php artisan db:seed
