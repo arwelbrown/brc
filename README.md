@@ -19,7 +19,7 @@ We now need to create a shell function for entering the docker container we will
 
 ```sh
 touch ~/.bash_functions
-nano ~/.bash_functions
+nvim ~/.bash_functions
 ```
 
 Write the following function in your .bash_functions file
@@ -41,8 +41,8 @@ You'll now be able to enter the container from anywhere within your system by ru
 Next, cd into the directory where the project is cloned, and run the following;
 
 ```sh
-docker-compose build
-docker-compose up -d
+docker compose build
+docker compose up -d
 ```
 
 Next, once the container has built, run:
@@ -51,11 +51,6 @@ Next, once the container has built, run:
 docker ps
 ```
 To verify that it's working.
-
-You'll now be able to start up your docker container in your directory by calling
-```
-docker-compose up -d
-```
 
 ## Database
 As part of the sail setup, you will create a MySQL database, running on port 3306 of your local machine. You should be able to download any SQL client, and connect using the information in the .env file.
