@@ -25,7 +25,7 @@ dockin() {
   docker exec -it $1 bash
 }
 ```
-And hit ctrl+x and y. Then add this to your .bashrc, or other equivalent;
+Then add this to your .bashrc, or other equivalent;
 ```sh
 source ~/.bash_functions
 ```
