@@ -1,6 +1,6 @@
 {
   "resources/css/filament.css": {
-    "file": "assets/filament-876a840a.css",
+    "file": "assets/filament-dd2625f9.css",
     "isEntry": true,
     "src": "resources/css/filament.css"
   },
@@ -10,7 +10,7 @@
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-6b9c2ee7.css",
+    "file": "assets/app-28a1156c.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   }
