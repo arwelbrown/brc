@@ -16,16 +16,6 @@ services:
     volumes:
       - ./:/app
     
-  # web:
-  #  container_name: brc_web
-  #  build:
-  #    context: ./docker/frankenphp
-  #    dockerfile: Dockerfile
-  #  volumes:
-  #    - ./:/var/www/html
-  #  ports:
-  #    - 8000:80
-
   # DB
   mysql:
     container_name: brc_db
