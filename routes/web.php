@@ -18,16 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {
+Route::get('/', function () {
     return view('index');
 });
 
 Route::resource('/about-us', TeamController::class);
 
-Route::get('/store/universe/{universe_slug}/{slug}', [StoreController::class, 'seriesStore']);
-
-Route::get('/store/universe/{slug}', [StoreController::class, 'universeStore']);
-
+Route::get('/store/series/{slug}', [StoreController::class, 'series'])->name('series');
+Route::get('/store/{slug}', [StoreController::class, 'brcOrCommunity'])->name('brcOrCommunity');
 Route::resource('/store', StoreController::class);
 
 Route::get('/brc-newsletter', [NewsletterController::class, 'index'])->name('newsletter');

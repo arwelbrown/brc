@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Series;
-use App\Models\Universe;
 use App\DataProviders\eJunkie\EjProductDataProvider;
 use Illuminate\Contracts\View\View;
 
@@ -13,19 +12,14 @@ class StoreController extends Controller
     public function index(): View
     {
         $products = Product::orderByDesc('id')->where('active', 1)->paginate(24);
+        $featuredProducts = Product::orderByDesc('id')->where('active', 1)->where('featured_product', 1)->get();
 
-        $featuredProducts = Product::orderByDesc('id')->where('active', '=', 1)->where('featured_product', '=', 1)->get();
-
-        // get universes
-        $universes = Universe::all();
-
-        return view('store', ['products' => $products, 'featuredProducts' => $featuredProducts, 'universes' => $universes]);
+        return view('store', ['products' => $products, 'featuredProducts' => $featuredProducts]);
     }
 
-    public function seriesStore(string $universeSlug, string $slug): View
+    public function series(string $slug): View
     {
-        $universe = Universe::where('universe_slug', '=', $universeSlug)->first();
-        $series = $universe->series()->where('series_slug', '=', $slug)->first();
+        $series = Series::where('series_slug', $slug)->get()->first();
 
         $products = $series->products()->paginate(24);
 
@@ -37,8 +31,7 @@ class StoreController extends Controller
             $characterToInsert = $character
                 ->where('series_id', '=', $series->id)
                 ->get()
-                ->all()
-            ;
+                ->all();
 
             // link other series
             if (!empty($characterToInsert[0]->appearances)) {
@@ -49,12 +42,10 @@ class StoreController extends Controller
 
                 foreach ($showsUpIn as $seriesId) {
                     $seriesToInsert = Series::where('id', '=', (int) $seriesId)->get()->all();
-                    $universeToInsert = $seriesToInsert[0]->universe()->get()->all();
 
                     $appearance = [
                         'series_name' => $seriesToInsert[0]->series_name,
                         'series_slug' => $seriesToInsert[0]->series_slug,
-                        'universe_slug' => $universeToInsert[0]->universe_slug,
                     ];
 
                     $appearances[] = $appearance;
@@ -71,7 +62,6 @@ class StoreController extends Controller
         if (!empty($series->artists)) {
             $artTeam['artists'] = $series->artists;
         }
-
         if (!empty($series->colorists)) {
             $artTeam['colorists'] = $series->colorists;
         }
@@ -83,36 +73,49 @@ class StoreController extends Controller
         return view(
             'store-series',
             [
-                'products' => $products,
-                'series' => $series,
-                'universe' => $universe,
-                'creators' => $series->creators,
-                'editors' => $series->editors,
-                'writers' => $series->writers,
-                'artTeam' => $artTeam,
-                'characters' => isset($characters[0]) ? $characters[0] : [],
+                'store'         => $series->brc_series == 1 ? 'BRC' : 'Community',
+                'products'      => $products,
+                'series'        => $series,
+                'creators'      => $series->creators,
+                'editors'       => $series->editors,
+                'writers'       => $series->writers,
+                'artTeam'       => $artTeam,
+                'characters'    => isset($characters[0]) ? $characters[0] : [],
             ]
         );
     }
 
-    public function universeStore(string $slug)
+    public function brcOrCommunity(string $slug): View
     {
-        $universe = Universe::where('universe_slug', $slug)->first();
-        $seriesInUniverse = $universe->series()->get()->all();
+        $brcBooks = 1;
 
-        $products = [];
-
-        foreach ($seriesInUniverse as $series) {
-            $productsInSeries = $series->products()->get()->all();
-            $products = array_merge($productsInSeries, $products);
+        switch ($slug) {
+            case 'brc':
+                $bgImg = 'img/universe_bruniverse/bruniverse2.webp';
+                $storeLogo = 'img/universe_brokenrealitycomics/BRC LOGO TAG.webp';
+                $description = '
+                    After the death of Tenebris in “Broken Realities #1”, the known Universe was forced to endure a cataclysmic release of energy. 
+                    The force of the event was strong enough to divide the Universe into three territories.
+                ';
+                break;
+            case 'community':
+                $brcBooks = 0;
+                $bgImg = 'img/universe_infinitedimensions/beyond.webp';
+                break;
+            default:
+                throw new \Exception('Invalid URL!');
         }
 
+        $products = Product::where('brc_book', $brcBooks)->paginate(24);
         return view(
-            'store-universe',
+            'store-brc-or-community',
             [
-                'universe' => $universe,
-                'seriesInUniverse' => $seriesInUniverse,
-                'products' => $products
+                'title'             => $slug,
+                'products'          => $products,
+                'bgImg'             => $bgImg,
+                'storeDescription'  => $description ?? null,
+                'storeLogo'         => $storeLogo ?? null,
+                'seriesInStore'     => Series::where('brc_series', $brcBooks)->get(),
             ]
         );
     }
@@ -123,7 +126,7 @@ class StoreController extends Controller
         $result = $ej->getAllFromEjunkie();
 
         $products = $result['products'];
-        
+
         return $products;
     }
 

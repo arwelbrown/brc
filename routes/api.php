@@ -17,13 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function(Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::post('/submission', [SubmissionController::class, 'submit'])->name('submit.submission')->middleware(['web']);
 
 Route::get('/ejunkie/all', [EjunkieController::class, 'getAllFromEjunkie']);
+
+Route::get('/ejunkie/hook', [EjunkieController::class, 'get']);
 
 Route::get('/ejunkie/{productId}', [EjunkieController::class, 'getProductByProductId']);
 

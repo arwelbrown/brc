@@ -12,14 +12,14 @@
                     <div class="row justify-content-center" style="margin-bottom: 20px;">
                         <div class="col-2 col-sm-2 col-md-2 col-lg-4 col-xl-4" data-bss-hover-animate="pulse"
                             style="margin-bottom: 20px;">
-                            <a class="d-inline-block" href="/store/universe/bruniverse">
+                            <a class="d-inline-block" href="/store/brc">
                                 <img class="img-fluid"
                                     src="{{ asset('img/universe_bruniverse/Brc%20books%20banner.png') }}">
                             </a>
                         </div>
                         <div class="col-2 col-sm-2 col-md-2 col-lg-4 col-xl-4" data-bss-hover-animate="pulse"
                             style="margin-bottom: 20px;">
-                            <a class="d-inline-block" href="/store/universe/infinitedimensions">
+                            <a class="d-inline-block" href="/store/community">
                                 <img class="img-fluid"
                                     src="{{ asset('img/universe_infinitedimensions/Brc%20community%20books%20banner.png') }}">
                             </a>

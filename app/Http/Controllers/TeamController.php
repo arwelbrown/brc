@@ -15,12 +15,11 @@ class TeamController extends Controller
         $users = User::all()->where('brc_team_role',  '!=', null)->toArray();
 
         $founders = [];
-        $creators= [];
         $partners = [];
         $team = [];
 
         foreach ($users as $user) {
-            switch($user['brc_team_role']) {
+            switch ($user['brc_team_role']) {
                 case 'Founder':
                     $founders[] = $user;
                     break;
@@ -32,7 +31,6 @@ class TeamController extends Controller
             }
         }
 
-        $creators = Creator::all()->toArray();
 
         return view(
             'about-us',
@@ -40,9 +38,9 @@ class TeamController extends Controller
                 'users' => $users,
                 'team' => $team,
                 'founders' => $founders,
-                'creators' => $creators,
                 'partners' => $partners,
             ]
         );
     }
 }
+

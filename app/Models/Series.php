@@ -17,7 +17,7 @@ class Series extends Model
         'artists' => 'array',
         'colorists' => 'array',
         'letterers' => 'array',
-        'editors' => 'array', 
+        'editors' => 'array',
     ];
 
     public function products(): HasMany
@@ -28,11 +28,6 @@ class Series extends Model
     public function characters(): HasMany
     {
         return $this->hasMany(Character::class);
-    }
-
-    public function universe(): BelongsTo
-    {
-        return $this->belongsTo(Universe::class);
     }
 
     public function creator(): BelongsTo
