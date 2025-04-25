@@ -87,10 +87,9 @@ class StoreController extends Controller
 
     public function brcOrCommunity(string $slug): View
     {
-        $brcBooks = 1;
-
         switch ($slug) {
             case 'brc':
+                $brcBooks = 1;
                 $bgImg = 'img/universe_bruniverse/bruniverse2.webp';
                 $storeLogo = 'img/universe_brokenrealitycomics/BRC LOGO TAG.webp';
                 $description = '
@@ -106,7 +105,15 @@ class StoreController extends Controller
                 throw new \Exception('Invalid URL!');
         }
 
-        $products = Product::where('brc_book', $brcBooks)->paginate(24);
+
+        $seriesCollection = Series::where('brc_series', $brcBooks)->get();
+
+        foreach ($seriesCollection as $series) {
+            foreach ($series->products()->get()->all() as $product) {
+                $products[] = $product;
+            }
+        }
+
         return view(
             'store-brc-or-community',
             [
@@ -115,7 +122,7 @@ class StoreController extends Controller
                 'bgImg'             => $bgImg,
                 'storeDescription'  => $description ?? null,
                 'storeLogo'         => $storeLogo ?? null,
-                'seriesInStore'     => Series::where('brc_series', $brcBooks)->get(),
+                'seriesInStore'     => $seriesCollection,
             ]
         );
     }
