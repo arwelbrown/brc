@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Book;
 use App\Models\Series;
 use App\DataProviders\eJunkie\EjProductDataProvider;
 use Illuminate\Contracts\View\View;
@@ -11,17 +11,17 @@ class StoreController extends Controller
 {
     public function index(): View
     {
-        $products = Product::orderByDesc('id')->where('active', 1)->paginate(24);
-        $featuredProducts = Product::orderByDesc('id')->where('active', 1)->where('featured_product', 1)->get();
+        $books = Book::orderByDesc('id')->where('active', 1)->paginate(24);
+        $featuredBooks = Book::orderByDesc('id')->where('active', 1)->where('featured_product', 1)->get();
 
-        return view('store', ['products' => $products, 'featuredProducts' => $featuredProducts]);
+        return view('store', ['books' => $books, 'featuredBooks' => $featuredBooks]);
     }
 
     public function series(string $slug): View
     {
         $series = Series::where('series_slug', $slug)->get()->first();
 
-        $products = $series->products()->paginate(24);
+        $books = $series->books()->paginate(24);
 
         $charactersInSeries = $series->characters()->get()->all();
 
@@ -74,7 +74,7 @@ class StoreController extends Controller
             'store-series',
             [
                 'store'         => $series->brc_series == 1 ? 'BRC' : 'Community',
-                'products'      => $products,
+                'products'      => $books,
                 'series'        => $series,
                 'creators'      => $series->creators,
                 'editors'       => $series->editors,
@@ -108,9 +108,10 @@ class StoreController extends Controller
 
         $seriesCollection = Series::where('brc_series', $brcBooks)->get();
 
+        $books = [];
         foreach ($seriesCollection as $series) {
-            foreach ($series->products()->get()->all() as $product) {
-                $products[] = $product;
+            foreach ($series->books()->get()->all() as $book) {
+                $books[] = $book;
             }
         }
 
@@ -118,7 +119,7 @@ class StoreController extends Controller
             'store-brc-or-community',
             [
                 'title'             => $slug,
-                'products'          => $products,
+                'books'             => $books,
                 'bgImg'             => $bgImg,
                 'storeDescription'  => $description ?? null,
                 'storeLogo'         => $storeLogo ?? null,

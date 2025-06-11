@@ -34,7 +34,7 @@
             <div class="row g-1 justify-content-center align-items-center">
                 <div class="col-lg-9 align-self-center" style="margin-top: 10px;">
                     <div class="pagination-block">
-                        {{ $products->links('layouts.store-pagination') }}
+                        {{ $books->links('layouts.store-pagination') }}
                     </div>
                 </div>
             </div>
@@ -54,35 +54,32 @@
                             keep track Phase 1 and the latest comic book releases!</span>
                     </p>
                 </div>
-                @foreach ($featuredProducts as $product)
+                @foreach ($featuredbooks as $book)
                     <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-2 item" style="padding-bottom: 10px;">
                         <div class="card border rounded-0" style="background: rgb(0,0,0);">
                             <div class="card-body" style="padding-top: 16px;">
-                                <img class="img-fluid" src="{{ asset($product->img_string) }}">
+                                <img class="img-fluid" src="{{ asset($book->img_string) }}">
                                 <h2 class="name"
                                     style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">
-                                    {{ $product->product_name }}</h2>
-                                @if (!empty($product->in_development) && $product->in_development === 1)
+                                    {{ $book->product_name }}</h2>
+                                @if (!empty($book->in_development) && $product->in_development === 1)
                                     <p class="text-white" style="font-size: 15px;"><strong>Coming Soon!</strong></p>
                                 @else
                                     <p class="text-white" style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
-                                        Digital: ${{ $product->digital_price }}
+                                        Digital: ${{ $book->digital_price }}
                                     </p>
                                     <button class="btn btn-light">
-                                        <a href='{{ $product->ejunkie_link_digital }}' onclick='return EJEJC_lc(this);'
+                                        <a href='{{ $book->ejunkie_link_digital }}' onclick='return EJEJC_lc(this);'
                                             target='ej_ejc' class='ec_ejc_thkbx'
                                             style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:10px;text-decoration:none;">
                                             ADD TO CART
                                         </a>
                                     </button>
                                 @endif
-                                @if (
-                                    !empty($product->physical_price) &&
-                                        !empty($product->ejunkie_link_physical) &&
-                                        (int) $product->physical_available === 1)
-                                    <p style="font-size: 15px;">Physical: ${{ $product->physical_price }}</p>
+                                @if (!empty($book->physical_price) && !empty($book->ejunkie_link_physical) && (int) $book->physical_available === 1)
+                                    <p style="font-size: 15px;">Physical: ${{ $book->physical_price }}</p>
                                     <button class="btn btn-light">
-                                        <a href='{{ $product->ejunkie_link_physical }}' onclick='return EJEJC_lc(this);'
+                                        <a href='{{ $book->ejunkie_link_physical }}' onclick='return EJEJC_lc(this);'
                                             target='ej_ejc' class='ec_ejc_thkbx'
                                             style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:10px;text-decoration:none;">
                                             ADD TO CART
@@ -110,37 +107,34 @@
             <div class="row justify-content-center">
                 <div class="col-auto col-md-10 col-lg-9 col-xl-9 col-xxl-11">
                     <div class="row projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;">
-                        @foreach ($products as $product)
+                        @foreach ($books as $book)
                             <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 item"
                                 style="padding-bottom: 10px;">
                                 <div class="card border rounded-0" style="background: rgb(0,0,0);">
                                     <div class="card-body" style="padding-top: 16px;">
-                                        <img class="img-fluid" src="{{ asset($product->img_string) }}">
+                                        <img class="img-fluid" src="{{ asset($book->img_string) }}">
                                         <h2 class="name"
                                             style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">
-                                            {{ $product->product_name }}</h2>
-                                        @if (!empty($product->in_development) && $product->in_development === 1)
+                                            {{ $book->name }}</h2>
+                                        @if (!empty($book->in_development) && $book->in_development === 1)
                                             <p class="text-white" style="font-size: 15px;"><strong>Coming Soon!</strong></p>
                                         @else
                                             <p class="text-white"
                                                 style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
-                                                Digital: ${{ $product->digital_price }}
+                                                Digital: ${{ $book->digital_price }}
                                             </p>
                                             <button class="btn btn-light">
-                                                <a href='{{ $product->ejunkie_link_digital }}'
+                                                <a href='{{ $book->ejunkie_link_digital }}'
                                                     onclick='return EJEJC_lc(this);' target='ej_ejc' class='ec_ejc_thkbx'
                                                     style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:12px;text-decoration:none;">
                                                     ADD TO CART
                                                 </a>
                                             </button>
                                         @endif
-                                        @if (
-                                            !empty($product->physical_price) &&
-                                                !empty($product->ejunkie_link_physical) &&
-                                                (int) $product->physical_available === 1)
-                                            <p style="font-size: 15px;">Physical: ${{ $product->physical_price }}</p>
+                                        @if (!empty($book->physical_price) && !empty($book->ejunkie_link_physical) && (int) $book->physical_available === 1)
+                                            <p style="font-size: 15px;">Physical: ${{ $book->physical_price }}</p>
                                             <button class="btn btn-light">
-                                                <a href='{{ $product->ejunkie_link_physical }}'
+                                                <a href='{{ $book->ejunkie_link_physical }}'
                                                     onclick='return EJEJC_lc(this);' target='ej_ejc' class='ec_ejc_thkbx'
                                                     style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:12px;text-decoration:none;">
                                                     ADD TO CART
@@ -161,7 +155,7 @@
             <div class="row g-1 justify-content-center align-items-center">
                 <div class="col-lg-9 align-self-center" style="margin-top: 10px;">
                     <div class="pagination-block">
-                        {{ $products->links('layouts.store-pagination') }}
+                        {{ $books->links('layouts.store-pagination') }}
                     </div>
                 </div>
             </div>

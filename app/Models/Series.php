@@ -20,9 +20,9 @@ class Series extends Model
         'editors' => 'array',
     ];
 
-    public function products(): HasMany
+    public function books(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Book::class);
     }
 
     public function characters(): HasMany
