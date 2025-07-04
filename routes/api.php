@@ -3,6 +3,7 @@
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\EjunkieController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\BookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,16 +18,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
 });
 
-Route::post('/submission', [SubmissionController::class, 'submit'])->name('submit.submission')->middleware(['web']);
+Route::get("/books", BookController::class);
 
-Route::get('/ejunkie/all', [EjunkieController::class, 'getAllFromEjunkie']);
+Route::post("/submission", [SubmissionController::class, "submit"])
+    ->name("submit.submission")
+    ->middleware(["web"]);
 
-Route::get('/ejunkie/hook', [EjunkieController::class, 'get']);
+Route::get("/ejunkie/all", [EjunkieController::class, "getAllFromEjunkie"]);
 
-Route::get('/ejunkie/{productId}', [EjunkieController::class, 'getProductByProductId']);
+Route::get("/ejunkie/hook", [EjunkieController::class, "get"]);
 
-Route::get('/stripe/webhook', [StripeController::class, 'hitWebhook']);
+Route::get("/ejunkie/{productId}", [
+    EjunkieController::class,
+    "getProductByProductId",
+]);
+
+Route::get("/stripe/webhook", [StripeController::class, "hitWebhook"]);
