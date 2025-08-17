@@ -9,8 +9,8 @@ use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Section;
 use Filament\Actions\EditAction;
-use App\Filament\Resources\InventoryResource\Pages\ListInventories;
-use App\Filament\Resources\InventoryResource\Pages\EditInventory;
+use App\Filament\Resources\Inventories\Pages\ListInventories;
+use App\Filament\Resources\Inventories\Pages\EditInventory;
 use App\Filament\Resources\InventoryResource\Pages;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
@@ -19,7 +19,6 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use App\Models\Product;
 use App\Forms\Components\PaymentButton;
-use App\Filament\Resources\InventoryResource\Widgets\StockWidget;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Hidden;
 
@@ -140,8 +139,6 @@ class InventoryResource extends Resource
 
     public static function getWidgets(): array
     {   
-        return [
-            StockWidget::class,
-        ];
+        return [];
     }
 }

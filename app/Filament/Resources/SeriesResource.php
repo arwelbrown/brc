@@ -7,11 +7,11 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Actions\EditAction;
-use App\Filament\Resources\SeriesResource\Pages\ListSeries;
-use App\Filament\Resources\SeriesResource\Pages\CreateSeries;
-use App\Filament\Resources\SeriesResource\Pages\EditSeries;
-use App\Filament\Resources\SeriesResource\Pages;
-use App\Filament\Resources\SeriesResource\RelationManagers\ProductsRelationManager;
+use App\Filament\Resources\Series\Pages\ListSeries;
+use App\Filament\Resources\Series\Pages\CreateSeries;
+use App\Filament\Resources\Series\Pages\EditSeries;
+use App\Filament\Resources\Series\Pages;
+use App\Filament\Resources\Series\RelationManagers\BooksRelationManager;
 use App\Formatters\SlugFormatter;
 use App\Models\Series;
 use Filament\Forms\Components\FileUpload;
@@ -115,7 +115,7 @@ class SeriesResource extends Resource
     public static function getRelations(): array
     {
         return [
-            ProductsRelationManager::class,
+            BooksRelationManager::class,
         ];
     }
 
