@@ -2,7 +2,7 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Product;
+use App\Models\Book;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
@@ -14,7 +14,7 @@ class ProductCountWidget extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Products', Product::count())
+            Stat::make('Books', Book::count())
                 ->description('Total number of books on the BRC Store')
         ];
     }

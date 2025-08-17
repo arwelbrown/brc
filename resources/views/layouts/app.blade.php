@@ -29,7 +29,6 @@
     <link rel="icon" type="image/png" sizes="1700x1525" href="{{ url('img/br_admin/hexa_final_1.webp') }}">
     <link rel="icon" type="image/png" sizes="1700x1525" href="{{ url('img/br_admin/hexa_final_1.webp') }}">
 
-    {{-- <link rel="stylesheet" href="{{ url('css/bootstrap.min.css')}}"> --}}
     <link rel="manifest" href="{{ url('build/manifest.json') }}">
 
     <!-- Fonts -->
@@ -59,7 +58,8 @@
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
         <!-- Scripts -->
     @else
-        <link rel="stylesheet" href="{{ url('build/assets/app-28a1156c.css') }}">
+        <link rel="stylesheet" href="{{ url('build/assets/filament-e3b0c442.css') }}"
+        <link rel="stylesheet" href="{{ url('build/assets/app-e422d0ee.css') }}">
         <!-- Scripts -->
         <script src="{{ url('build/assets/app-4ed993c7.js') }}"></script>
     @endif
