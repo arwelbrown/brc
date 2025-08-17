@@ -22,7 +22,7 @@ Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
 });
 
-Route::get("/books", BookController::class);
+/* Route::get("/books", BookController::class); */
 
 Route::post("/submission", [SubmissionController::class, "submit"])
     ->name("submit.submission")

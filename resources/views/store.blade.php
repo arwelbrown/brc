@@ -54,7 +54,7 @@
                             keep track Phase 1 and the latest comic book releases!</span>
                     </p>
                 </div>
-                @foreach ($featuredbooks as $book)
+                @foreach ($featuredBooks as $book)
                     <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-2 item" style="padding-bottom: 10px;">
                         <div class="card border rounded-0" style="background: rgb(0,0,0);">
                             <div class="card-body" style="padding-top: 16px;">

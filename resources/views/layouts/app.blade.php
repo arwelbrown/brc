@@ -101,8 +101,6 @@
                                 style="font-family: 'Open Sans', sans-serif;">About Us</a>
                             <a class="dropdown-item text-white" href="/brc-newsletter"
                                 style="font-family: 'Open Sans', sans-serif;">BRC Newsletter</a>
-                            <a class="dropdown-item text-white" href="/submit-your-book"
-                                style="font-family: 'Open Sane', sans-serif">Submissions</a>
                         </div>
                     </li>
                     <li class="nav-item text-end">
@@ -153,9 +151,6 @@
                     <li class="text-center" style="font-size: 16px;">
                         <div><a href="https://www.redbubble.com/people/brcstore/shop"
                                 style="font-family: 'Open Sans', sans-serif;">Merch Store</a></div>
-                    </li>
-                    <li class="text-center" style="font-size: 16px;">
-                        <div><a href="/about-us" style="font-family: 'Open Sans', sans-serif;">About Us</a></div>
                     </li>
                 </ul>
             </div>

@@ -12,7 +12,6 @@ class EjunkieController extends Controller
         $result = $ej->getAllFromEjunkie();
 
         $products = $result['products'];
-        
         return $products;
     }
 

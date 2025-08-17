@@ -30,7 +30,5 @@ Route::resource('/store', StoreController::class);
 
 Route::get('/brc-newsletter', [NewsletterController::class, 'index'])->name('newsletter');
 
-Route::get('/submit-your-book', [SubmissionController::class, 'index']);
-
 Route::get('/payment-success', [StripeController::class, 'success'])->name('payment_success');
 Route::get('/payment-failure', [StripeController::class, 'failure'])->name('payment_failure');
