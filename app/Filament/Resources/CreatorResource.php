@@ -2,6 +2,15 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\CreatorResource\Pages\ListCreators;
+use App\Filament\Resources\CreatorResource\Pages\CreateCreator;
+use App\Filament\Resources\CreatorResource\Pages\EditCreator;
 use App\Filament\Resources\CreatorResource\Pages;
 use App\Models\Creator;
 use App\Models\CreatorType;
@@ -9,12 +18,9 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Get;
 use Filament\Tables\Columns\TextColumn;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use BRC\Config\CreatorTypes;
@@ -23,13 +29,13 @@ class CreatorResource extends Resource
 {
     protected static ?string $model = Creator::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-paint-brush';
-    protected static ?string $navigationGroup = 'Site Admin';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-paint-brush';
+    protected static string | \UnitEnum | null $navigationGroup = 'Site Admin';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make('Creator Info')
                     ->schema([
                         TextInput::make('name')
@@ -73,12 +79,12 @@ class CreatorResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -93,9 +99,9 @@ class CreatorResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCreators::route('/'),
-            'create' => Pages\CreateCreator::route('/create'),
-            'edit' => Pages\EditCreator::route('/{record}/edit'),
+            'index' => ListCreators::route('/'),
+            'create' => CreateCreator::route('/create'),
+            'edit' => EditCreator::route('/{record}/edit'),
         ];
     }
     

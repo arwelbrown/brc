@@ -2,22 +2,28 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\UploadResource\Pages\ListUploads;
+use App\Filament\Resources\UploadResource\Pages\CreateUpload;
+use App\Filament\Resources\UploadResource\Pages\EditUpload;
 use App\Filament\Resources\UploadResource\Pages;
 use App\Filament\Resources\UploadResource\RelationManagers;
 use App\Models\Upload;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\TextInput;
 use App\Enums\Uploads\UploadStatusEnum;
-use Filament\Forms\Get;
 use Filament\Tables\Columns\TextColumn;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,14 +33,14 @@ class UploadResource extends Resource
 {
     protected static ?string $model = Upload::class;
 
-    protected static ?string $navigationGroup = 'Product Management';
+    protected static string | \UnitEnum | null $navigationGroup = 'Product Management';
 
-    protected static ?string $navigationIcon = 'heroicon-o-arrow-up-on-square';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-arrow-up-on-square';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make('New Book')
                     ->schema([
                         TextInput::make('book_title')
@@ -124,12 +130,12 @@ class UploadResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -144,9 +150,9 @@ class UploadResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUploads::route('/'),
-            'create' => Pages\CreateUpload::route('/create'),
-            'edit' => Pages\EditUpload::route('/{record}/edit'),
+            'index' => ListUploads::route('/'),
+            'create' => CreateUpload::route('/create'),
+            'edit' => EditUpload::route('/{record}/edit'),
         ];
     }
 }

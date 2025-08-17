@@ -2,6 +2,14 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Actions\EditAction;
+use App\Filament\Resources\SeriesResource\Pages\ListSeries;
+use App\Filament\Resources\SeriesResource\Pages\CreateSeries;
+use App\Filament\Resources\SeriesResource\Pages\EditSeries;
 use App\Filament\Resources\SeriesResource\Pages;
 use App\Filament\Resources\SeriesResource\RelationManagers\ProductsRelationManager;
 use App\Formatters\SlugFormatter;
@@ -11,28 +19,23 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class SeriesResource extends Resource
 {
     protected static ?string $model = Series::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Product Management';
+    protected static string | \UnitEnum | null $navigationGroup = 'Product Management';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make('Series Info')
                     ->schema([
                         TextInput::make('series_name')
@@ -101,10 +104,10 @@ class SeriesResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 //
             ]);
     }
@@ -119,9 +122,9 @@ class SeriesResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSeries::route('/'),
-            'create' => Pages\CreateSeries::route('/create'),
-            'edit' => Pages\EditSeries::route('/{record}/edit'),
+            'index' => ListSeries::route('/'),
+            'create' => CreateSeries::route('/create'),
+            'edit' => EditSeries::route('/{record}/edit'),
         ];
     }
 }

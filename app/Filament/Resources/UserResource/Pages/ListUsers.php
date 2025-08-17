@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
+use Filament\Actions\CreateAction;
 use App\Filament\Resources\UserResource;
 use App\Mail\BookSold;
 use Filament\Actions;
@@ -17,7 +18,7 @@ class ListUsers extends ListRecords
         Mail::to('sales@brc.com')->send(new BookSold());
 
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

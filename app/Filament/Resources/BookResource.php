@@ -2,6 +2,14 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Actions\EditAction;
+use App\Filament\Resources\BookResource\Pages\ListBooks;
+use App\Filament\Resources\BookResource\Pages\CreateBook;
+use App\Filament\Resources\BookResource\Pages\EditBook;
 use App\Filament\Resources\BookResource\Pages;
 use App\Formatters\SlugFormatter;
 use App\Http\Controllers\SeriesController;
@@ -12,27 +20,22 @@ use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
 
 class BookResource extends Resource
 {
     protected static ?string $model = Book::class;
-    protected static ?string $navigationIcon = 'heroicon-s-book-open';
-    protected static ?string $navigationGroup = 'Book Management';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-s-book-open';
+    protected static string | \UnitEnum | null $navigationGroup = 'Book Management';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make('Book Info')
                     ->schema([
                         TextInput::make('product_name')
@@ -206,10 +209,10 @@ class BookResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 //
             ]);
     }
@@ -224,9 +227,9 @@ class BookResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListBooks::route('/'),
-            'create' => Pages\CreateBook::route('/create'),
-            'edit' => Pages\EditBook::route('/{record}/edit'),
+            'index' => ListBooks::route('/'),
+            'create' => CreateBook::route('/create'),
+            'edit' => EditBook::route('/{record}/edit'),
         ];
     }
 

@@ -2,20 +2,23 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\EditAction;
+use App\Filament\Resources\CharacterResource\Pages\ListCharacters;
+use App\Filament\Resources\CharacterResource\Pages\CreateCharacter;
+use App\Filament\Resources\CharacterResource\Pages\EditCharacter;
 use App\Filament\Resources\CharacterResource\Pages;
 use App\Filament\Resources\CharacterResource\RelationManagers\SeriesRelationManager;
 use App\Http\Controllers\SeriesController;
 use App\Models\Character;
 use App\Models\Series;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
@@ -24,14 +27,14 @@ class CharacterResource extends Resource
 {
     protected static ?string $model = Character::class;
 
-    protected static ?string $navigationIcon = 'heroicon-s-user';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-s-user';
 
-    protected static ?string $navigationGroup = 'Wiki';
+    protected static string | \UnitEnum | null $navigationGroup = 'Wiki';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make('Character Info')
                     ->schema([
                         TextInput::make('name')
@@ -104,10 +107,10 @@ class CharacterResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 //
             ]);
     }
@@ -122,9 +125,9 @@ class CharacterResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCharacters::route('/'),
-            'create' => Pages\CreateCharacter::route('/create'),
-            'edit' => Pages\EditCharacter::route('/{record}/edit'),
+            'index' => ListCharacters::route('/'),
+            'create' => CreateCharacter::route('/create'),
+            'edit' => EditCharacter::route('/{record}/edit'),
         ];
     }
 }

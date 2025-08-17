@@ -2,20 +2,22 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Wizard;
+use Filament\Schemas\Components\Wizard\Step;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\EditAction;
+use App\Filament\Resources\InventoryResource\Pages\ListInventories;
+use App\Filament\Resources\InventoryResource\Pages\EditInventory;
 use App\Filament\Resources\InventoryResource\Pages;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
 use App\Models\Product;
-use Filament\Forms\Components\Wizard;
-use Filament\Forms\Components\Wizard\Step;
 use App\Forms\Components\PaymentButton;
 use App\Filament\Resources\InventoryResource\Widgets\StockWidget;
 use Filament\Forms\Components\Select;
@@ -26,15 +28,15 @@ class InventoryResource extends Resource
     protected static ?string $model = Product::class;
     protected static ?string $navigationLabel = 'Inventory';
     protected static ?string $modelLabel = 'Inventory';
-    protected static ?string $navigationIcon = 'heroicon-s-plus';
-    protected static ?string $navigationGroup = 'Product Management';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-s-plus';
+    protected static string | \UnitEnum | null $navigationGroup = 'Product Management';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        define('INITIAL_STOCK', $form->model['stock']);
+        define('INITIAL_STOCK', $schema->model['stock']);
 
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Wizard::make([
                     Step::make('Quanitity')
                         ->schema([
@@ -114,7 +116,7 @@ class InventoryResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make()
                     ->label('Purchase Stock')
                     ->icon('heroicon-s-plus'),
@@ -131,8 +133,8 @@ class InventoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListInventories::route('/'),
-            'edit' => Pages\EditInventory::route('/{record}/edit'),
+            'index' => ListInventories::route('/'),
+            'edit' => EditInventory::route('/{record}/edit'),
         ];
     }
 

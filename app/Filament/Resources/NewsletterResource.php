@@ -2,19 +2,22 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Support\Enums\Width;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\NewsletterResource\Pages\ListNewsletters;
+use App\Filament\Resources\NewsletterResource\Pages\CreateNewsletter;
+use App\Filament\Resources\NewsletterResource\Pages\EditNewsletter;
 use App\Filament\Resources\NewsletterResource\Pages;
 use App\Models\Newsletter;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Support\Enums\MaxWidth;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -24,14 +27,14 @@ class NewsletterResource extends Resource
 {
     protected static ?string $model = Newsletter::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-newspaper';
 
-    protected static ?string $navigationGroup = 'Site Admin';
+    protected static string | \UnitEnum | null $navigationGroup = 'Site Admin';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make()
                     ->schema([
                         DateTimePicker::make('newsletter_timestamp')
@@ -39,7 +42,7 @@ class NewsletterResource extends Resource
                             ->seconds(false)
                             ->columnSpan(1),
                     ])
-                    ->maxWidth(MaxWidth::Small),
+                    ->maxWidth(Width::Small),
                 Section::make()
                     ->schema([
                         FileUpload::make('img_string')
@@ -82,10 +85,10 @@ class NewsletterResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
@@ -102,9 +105,9 @@ class NewsletterResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListNewsletters::route('/'),
-            'create' => Pages\CreateNewsletter::route('/create'),
-            'edit' => Pages\EditNewsletter::route('/{record}/edit'),
+            'index' => ListNewsletters::route('/'),
+            'create' => CreateNewsletter::route('/create'),
+            'edit' => EditNewsletter::route('/{record}/edit'),
         ];
     }
 }

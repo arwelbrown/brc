@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Book;
 use App\Models\Series;
 use App\DataProviders\eJunkie\EjProductDataProvider;
@@ -102,7 +103,7 @@ class StoreController extends Controller
                 $bgImg = 'img/universe_infinitedimensions/beyond.webp';
                 break;
             default:
-                throw new \Exception('Invalid URL!');
+                throw new Exception('Invalid URL!');
         }
 
 

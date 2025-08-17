@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\UploadResource\Pages;
 
+use Filament\Actions\CreateAction;
 use App\Filament\Resources\UploadResource;
 use App\Models\Upload;
 use Filament\Actions;
@@ -15,7 +16,7 @@ class ListUploads extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 
