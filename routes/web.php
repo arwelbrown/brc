@@ -4,7 +4,6 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\StripeController;
-use App\Http\Controllers\SubmissionController;
 use Illuminate\Support\Facades\Route;
 
 /*
