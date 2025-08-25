@@ -32,7 +32,7 @@ class UploadResource extends Resource
 {
     protected static ?string $model = Upload::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Product Management';
+    protected static string | \UnitEnum | null $navigationGroup = 'Book Management';
 
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-arrow-up-on-square';
 
@@ -154,4 +154,10 @@ class UploadResource extends Resource
             'edit' => EditUpload::route('/{record}/edit'),
         ];
     }
+
+  public static function shouldRegisterNavigation(): bool
+  {
+    return auth()->user()->hasRole('super-admin');
+  }
+
 }

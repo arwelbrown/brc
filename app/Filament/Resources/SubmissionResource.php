@@ -99,12 +99,8 @@ class SubmissionResource extends Resource
         ];
     }    
 
-    public static function shouldRegisterNavigation(): bool
-    {
-        if (auth()->user()->hasRole('admin')) {
-            return true;
-        }
-
-        return false;
-    }
+  public static function shouldRegisterNavigation(): bool
+  {
+    return auth()->user()->hasRole('super-admin');
+  }
 }

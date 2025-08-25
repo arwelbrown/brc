@@ -55,11 +55,8 @@ class SeriesRelationManager extends RelationManager
                     ->columnSpanFull()
                     ->required()
                     ->maxLength(2000),
-                Select::make('universe_id')
-                    ->relationship('universe', 'universe_name')
-                    ->autofocus()
-                    ->required(),
-                FileUpload::make('series_banner'),
+                FileUpload::make('series_banner')
+                  ->visibility('public'),
             ]);
     }
 
@@ -68,7 +65,6 @@ class SeriesRelationManager extends RelationManager
         return $table
             ->columns([
                 TextColumn::make('series_name'),
-                TextColumn::make('universe.universe_name')
             ])
             ->filters([
                 //

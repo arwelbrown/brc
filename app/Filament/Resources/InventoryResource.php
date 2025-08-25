@@ -141,4 +141,9 @@ class InventoryResource extends Resource
     {   
         return [];
     }
+
+  public static function shouldRegisterNavigation(): bool
+  {
+    return auth()->user()->hasRole('super-admin');
+  }
 }
