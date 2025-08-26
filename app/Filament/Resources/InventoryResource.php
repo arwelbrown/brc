@@ -54,7 +54,7 @@ class InventoryResource extends Resource
                                             1 => 50,
                                             2 => 100
                                         ];
-                                        
+
                                         $quantity = $quantities[$state];
 
                                         if ($quantity) {
@@ -72,7 +72,7 @@ class InventoryResource extends Resource
                                 ->live()
                                 ->hidden(),
                             Hidden::make('product_title')
-                                ->live()                   
+                                ->live()
                         ]),
                     Step::make('Payment')
                         ->schema([
@@ -83,7 +83,7 @@ class InventoryResource extends Resource
                     ->schema([
                         TextInput::make('product_name')
                             ->disabled(),
-                        TextInput::make('stock')    
+                        TextInput::make('stock')
                             ->disabled()
                             ->numeric()
                             ->label('Stock After Purchase'),
@@ -138,7 +138,7 @@ class InventoryResource extends Resource
     }
 
     public static function getWidgets(): array
-    {   
+    {
         return [];
     }
 

@@ -49,8 +49,6 @@ class RoleResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->sortable(),
                 TextColumn::make('name'),
                 TextColumn::make('created_at')
                     ->dateTime('d-M-Y'),
@@ -83,4 +81,9 @@ class RoleResource extends Resource
             'edit' => EditRole::route('/{record}/edit'),
         ];
     }
+
+ public static function shouldRegisterNavigation(): bool
+  {
+    return auth()->user()->hasRole('super-admin');
+  }
 }

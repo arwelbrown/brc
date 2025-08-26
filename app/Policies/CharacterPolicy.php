@@ -12,7 +12,7 @@ class CharacterPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 
     /**
@@ -20,7 +20,7 @@ class CharacterPolicy
      */
     public function view(User $user, Character $character): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 
     /**
@@ -28,7 +28,7 @@ class CharacterPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 
     /**
@@ -36,7 +36,7 @@ class CharacterPolicy
      */
     public function update(User $user, Character $character): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 
     /**
@@ -44,7 +44,7 @@ class CharacterPolicy
      */
     public function delete(User $user, Character $character): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 
     /**
@@ -52,7 +52,7 @@ class CharacterPolicy
      */
     public function restore(User $user, Character $character): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 
     /**
@@ -60,6 +60,6 @@ class CharacterPolicy
      */
     public function forceDelete(User $user, Character $character): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 }

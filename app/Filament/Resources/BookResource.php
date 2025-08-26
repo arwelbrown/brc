@@ -38,7 +38,8 @@ class BookResource extends Resource
         ->components([
           Section::make('Book Info')
             ->schema([
-              TextInput::make('product_name')
+              TextInput::make('name')
+                ->label('Book name')
                 ->required()
                 ->placeholder('New Book #0')
                 ->maxLength(255)
@@ -68,7 +69,7 @@ class BookResource extends Resource
                       TagsInput::make('series.colorists'),
                       TagsInput::make('series.letterers'),
                       Select::make('universe_id')
-                        ->relationship('universe', 'universe_name')
+                        ->relationship('univhttp://localhost/public/img/series_theemeraldcoyote/covers/EC_1_Cover.webperse', 'universe_name')
                         ->required(),
                       Textarea::make('series.series_description')
                         ->columnSpanFull()
@@ -80,18 +81,18 @@ class BookResource extends Resource
                     ->columns(2)
             ]),
             TextInput::make('store_slug')
-                ->disabled()
-                ->hidden(),
+              ->disabled()
+              ->hidden(),
             TagsInput::make('tags')
-                ->placeholder('Series 1, Series 2...')
-                ->separator()
-                ->columnSpan(1),
+              ->placeholder('Series 1, Series 2...')
+              ->separator()
+              ->columnSpan(1),
             TextInput::make('ejunkie_link_digital')
-                ->required()
-                ->maxLength(255)
-                ->label('EJunkie Digital Link')
-                ->columnSpan(2)
-                ->url(),
+              ->required()
+              ->maxLength(255)
+              ->label('EJunkie Digital Link')
+              ->columnSpan(2)
+              ->url(),
             TextInput::make('ejunkie_link_physical')
               ->live()
               ->afterStateUpdated(
@@ -117,13 +118,14 @@ class BookResource extends Resource
               ->numeric()
               ->nullable()
               ->columnSpan(1)
+              ->default(0)
               ->required(fn(Get $get) => !empty($get('ejunkie_link_physical')) ? true : false),
             FileUpload::make('img_string')
               ->image()
               ->imageEditor()
               ->columnSpan(2)
               ->label('Cover Image')
-              ->directory('/img')
+              ->directory('public/img')
               ->getUploadedFileNameForStorageUsing(function (Get $get, TemporaryUploadedFile $file): string {
                 $seriesId = $get('series_id');
                 $series = SeriesController::getSeries($seriesId)->series_name;
@@ -136,19 +138,20 @@ class BookResource extends Resource
           Section::make('Book Operations')
             ->schema([
               Toggle::make('in_development')
-                ->columnSpan(1)
+                ->inline()
                 ->default(false),
               Toggle::make('physical_available')
-                ->columnSpan(1)
+                ->inline()
                 ->default(false),
               Toggle::make('featured_product')
-                ->columnSpan(1)
+                ->inline()
                 ->default(false),
               Toggle::make('active')
+                ->inline()
                 ->onIcon('heroicon-o-bolt')
-                ->columnSpan(1)
-                  ->default(false),
+                ->default(false),
               TextInput::make('stock')
+                ->default(0)
                 ->numeric(),
             ])
             ->columns(3)
@@ -160,7 +163,8 @@ class BookResource extends Resource
     {
       return $table
         ->columns([
-          TextColumn::make('product_name')
+          TextColumn::make('name')
+            ->label('Book name')
             ->searchable()
             ->sortable(),
           TextColumn::make('series.series_name')
@@ -210,6 +214,6 @@ class BookResource extends Resource
 
   public static function shouldRegisterNavigation(): bool
   {
-    return auth()->user()->hasRole('admin');
+    return auth()->user()->hasRole(['admin', 'super-admin']);
   }
 }

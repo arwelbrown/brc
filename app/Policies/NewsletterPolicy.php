@@ -12,7 +12,7 @@ class NewsletterPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 
     /**
@@ -20,7 +20,7 @@ class NewsletterPolicy
      */
     public function view(User $user, Newsletter $newsletter): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 
     /**
@@ -28,7 +28,7 @@ class NewsletterPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 
     /**
@@ -36,7 +36,7 @@ class NewsletterPolicy
      */
     public function update(User $user, Newsletter $newsletter): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 
     /**
@@ -44,7 +44,7 @@ class NewsletterPolicy
      */
     public function delete(User $user, Newsletter $newsletter): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 
     /**
@@ -52,7 +52,7 @@ class NewsletterPolicy
      */
     public function restore(User $user, Newsletter $newsletter): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 
     /**
@@ -60,6 +60,6 @@ class NewsletterPolicy
      */
     public function forceDelete(User $user, Newsletter $newsletter): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['admin', 'super-admin']);
     }
 }

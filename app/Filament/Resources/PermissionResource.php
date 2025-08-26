@@ -20,63 +20,66 @@ use Filament\Tables\Table;
 
 class PermissionResource extends Resource
 {
-    protected static ?string $model = Permission::class;
+  protected static ?string $model = Permission::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Users';
+  protected static string | \UnitEnum | null $navigationGroup = 'Users';
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-key';
+  protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-key';
 
-    public static function form(Schema $schema): Schema
-    {
-        return $schema
-            ->components([
-                Section::make()
-                    ->schema([
-                        TextInput::make('name')
-                            ->minLength(2)
-                            ->maxLength(255)
-                            ->required()
-                            ->unique(ignoreRecord: true),
-                    ])
-            ]);
-    }
+  public static function form(Schema $schema): Schema
+  {
+    return $schema
+      ->components([
+        Section::make()
+          ->schema([
+            TextInput::make('name')
+              ->minLength(2)
+              ->maxLength(255)
+              ->required()
+              ->unique(ignoreRecord: true),
+          ])
+      ]);
+  }
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                TextColumn::make('id')
-                    ->sortable(),
-                TextColumn::make('name'),
-                TextColumn::make('created_at')
-                    ->dateTime('d-M-Y'),
-            ])
-            ->filters([
-                //
-            ])
-            ->recordActions([
-                EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
-    }
+  public static function table(Table $table): Table
+  {
+    return $table
+      ->columns([
+        TextColumn::make('name'),
+        TextColumn::make('created_at')
+          ->dateTime('d-M-Y'),
+      ])
+      ->filters([
+        //
+      ])
+      ->recordActions([
+        EditAction::make(),
+      ])
+      ->toolbarActions([
+        BulkActionGroup::make([
+          DeleteBulkAction::make(),
+        ]),
+      ]);
+  }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
+  public static function getRelations(): array
+  {
+    return [
+      //
+    ];
+  }
 
-    public static function getPages(): array
-    {
-        return [
-            'index' => ListPermissions::route('/'),
-            'create' => CreatePermission::route('/create'),
-            'edit' => EditPermission::route('/{record}/edit'),
-        ];
-    }
+  public static function getPages(): array
+  {
+    return [
+      'index' => ListPermissions::route('/'),
+      'create' => CreatePermission::route('/create'),
+      'edit' => EditPermission::route('/{record}/edit'),
+    ];
+  }
+
+ public static function shouldRegisterNavigation(): bool
+  {
+    return auth()->user()->hasRole('super-admin');
+  }
 }

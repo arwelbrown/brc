@@ -35,9 +35,9 @@ class BooksRelationManager extends RelationManager
             ->components([
                 Section::make('Books Info')
                 ->schema([
-                    TextInput::make('product_name')
+                    TextInput::make('name')
+		    	->label('Book Name')
                         ->required()
-                        ->autofocus()
                         ->placeholder('New Book #0')
                         ->maxLength(255)
                         ->columnSpan(2),
@@ -47,38 +47,29 @@ class BooksRelationManager extends RelationManager
                         ->afterStateUpdated(
                             fn (Set $set, ?string $state) => !empty($state) ? $set('store_slug', SlugFormatter::formatSlug(SeriesController::getSeries($state)->series_name)) : $set('store_slug', ''))
                         ->required()
-                        ->autofocus()
                         ->createOptionForm([
                             Section::make()
                                 ->schema([
                                     TextInput::make('series.series_name')
                                         ->live(onBlur: true)
-                                        ->afterStateUpdated(fn (Set $set, ?string $state) => !empty($state) ? $set('series.series_slug', SlugFormatter::formatSlug($state)) : $set('series.series_slug', ''))
-                                        ->autofocus()
+					->afterStateUpdated(
+						fn (Set $set, ?string $state) => !empty($state) ? $set('series.series_slug', SlugFormatter::formatSlug($state)) : $set('series.series_slug', '')
+					)
                                         ->required()
                                         ->maxLength(255),
                                     TextInput::make('series.series_slug')
-                                        ->autofocus()
                                         ->required()
                                         ->disabled(),
-                                    TagsInput::make('series.creators')
-                                        ->autofocus(),
-                                    TagsInput::make('series.writers')
-                                        ->autofocus(),
-                                    TagsInput::make('series.artists')
-                                        ->autofocus(),
-                                    TagsInput::make('series.editors')
-                                        ->autofocus(),
-                                    TagsInput::make('series.colorists')
-                                        ->autofocus(),
-                                    TagsInput::make('series.letterers')
-                                        ->autofocus(),
+                                    TagsInput::make('series.creators'),
+                                    TagsInput::make('series.writers'),
+                                    TagsInput::make('series.artists'),
+                                    TagsInput::make('series.editors'),
+                                    TagsInput::make('series.colorists'),
+                                    TagsInput::make('series.letterers'),
                                     Select::make('universe_id')
                                         ->relationship('universe', 'universe_name')
-                                        ->autofocus()
                                         ->required(),
                                     Textarea::make('series.series_description')
-                                        ->autofocus()
                                         ->columnSpanFull()
                                         ->required()
                                         ->maxLength(2000),
@@ -92,13 +83,11 @@ class BooksRelationManager extends RelationManager
                         ->disabled()
                         ->hidden(),
                     TagsInput::make('tags')
-                        ->autofocus()
                         ->placeholder('Series 1, Series 2...')
                         ->separator()
                         ->columnSpan(1),
                     TextInput::make('ejunkie_link_digital')
                         ->required()
-                        ->autofocus()
                         ->maxLength(255)
                         ->label('EJunkie Digital Link')
                         ->columnSpan(2)
@@ -109,32 +98,27 @@ class BooksRelationManager extends RelationManager
                             fn (?string $state, Set $set) => ! empty($state) ? $set('physical_available', true) : $set('physical_available', false)
                         )
                         ->nullable()
-                        ->autofocus()
                         ->maxLength(255)
                         ->label('Ejunkie Physical Link')
                         ->url()
                         ->columnSpan(2)
                         ->required(fn (Get $get) => ! empty($get('physical_price')) ? true : false),
                     Textarea::make('summary')
-                        ->autofocus()
                         ->columnSpan(2)
                         ->required()
                         ->placeholder('Enter summary...')
                         ->maxLength(2000),
                     TextInput::make('digital_price')
                         ->numeric()
-                        ->autofocus()
                         ->required()
                         ->columnSpan(1),
                     TextInput::make('physical_price')
                         ->reactive()
                         ->numeric()
-                        ->autofocus()
                         ->nullable()
                         ->columnSpan(1)
                         ->required(fn (Get $get) => ! empty($get('ejunkie_link_physical')) ? true : false),
                     FileUpload::make('img_string')
-                        ->autofocus()
                         ->columnSpan(2)
                         ->label('Cover Image')
                         ->directory('/img')
@@ -153,20 +137,16 @@ class BooksRelationManager extends RelationManager
                 Section::make('Product Operations')
                     ->schema([
                         Toggle::make('in_development')
-                            ->autofocus()
                             ->columnSpan(1)
                             ->default(false),
                         Toggle::make('physical_available')
-                            ->autofocus()
                             ->columnSpan(1)
                             ->default(false),
                         Toggle::make('featured_product')
-                            ->autofocus()
                             ->columnSpan(1)
                             ->default(false),
                         Toggle::make('active')
                             ->onIcon('heroicon-o-bolt')
-                            ->autofocus()
                             ->columnSpan(1)
                             ->default(false),
                     ])
@@ -181,7 +161,8 @@ class BooksRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                TextColumn::make('product_name'),
+		TextColumn::make('name')
+		    	->label('Book Name'),
                 TextColumn::make('digital_price')
                         ->money('usd', true)
                         ->label('Digital Price ($)'),

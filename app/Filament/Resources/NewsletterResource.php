@@ -50,7 +50,7 @@ class NewsletterResource extends Resource
                             ->autofocus()
                             ->preserveFilenames()
                             ->label('Cover Image')
-                            ->directory('newsletters/covers')
+                            ->directory('public/newsletters/covers')
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                                 return $file->getClientOriginalName();                               
                             }),
@@ -59,7 +59,7 @@ class NewsletterResource extends Resource
                             ->autofocus()
                             ->preserveFilenames()
                             ->label('Upload PDF')
-                            ->directory('newsletters')
+                            ->directory('public/newsletters')
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                                 return $file->getClientOriginalName();                               
                             }),
@@ -110,4 +110,9 @@ class NewsletterResource extends Resource
             'edit' => EditNewsletter::route('/{record}/edit'),
         ];
     }
+
+ public static function shouldRegisterNavigation(): bool
+  {
+    return auth()->user()->hasRole('super-admin');
+  }
 }
