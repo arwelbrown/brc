@@ -96,12 +96,15 @@
             <h2
                 style="font-family: Anton, sans-serif;color: rgb(255,255,255);font-size: 50PX;letter-spacing: 2px;margin-top: 50PX;">
                 DISCOVER ALL COMICS!</h2>
-            <p style="font-family: 'Open Sans', sans-serif;background: rgba(255,255,255,0);font-size: 14px;"><span
-                    style="color: rgb(255, 255, 255);">Get digital copies of our latest comic books and check out our shop
-                    by creator section for character information and blurbs written by each creator.&nbsp;Check out the all
-                    the stories provided by the individual creators that are members of Broken Reality Comics!&nbsp;Our
-                    catalog includes: Fantasy, Sci-Fi, Horror, Superheroes, Tokusatsu, Vigilantes, Reality Hopping, and
-                    more...</span></p>
+            <p style="font-family: 'Open Sans', sans-serif;background: rgba(255,255,255,0);font-size: 14px;">
+              <span style="color: rgb(255, 255, 255);">
+                Get digital copies of our latest comic books and check out our shop
+                by creator section for character information and blurbs written by each creator.&nbsp;Check out the all
+                the stories provided by the individual creators that are members of Broken Reality Comics!&nbsp;Our
+                catalog includes: Fantasy, Sci-Fi, Horror, Superheroes, Tokusatsu, Vigilantes, Reality Hopping, and
+                more...
+              </span>
+            </p>
         </div>
         <div class="container">
             <div class="row justify-content-center">
@@ -112,6 +115,7 @@
                                 style="padding-bottom: 10px;">
                                 <div class="card border rounded-0" style="background: rgb(0,0,0);">
                                     <div class="card-body" style="padding-top: 16px;">
+                                        {{ asset($book->img_string) }}
                                         <img class="img-fluid" src="{{ asset($book->img_string) }}">
                                         <h2 class="name"
                                             style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">
