@@ -19,9 +19,9 @@ public/hot
 .env.prod
 
 ### symlinks ###
-public/submissions
-public/img
-public/newsletters
+public/storage/submissions
+public/storage/img
+public/storage/newsletters
 
 ### emails ###
 data
