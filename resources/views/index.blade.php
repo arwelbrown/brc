@@ -24,7 +24,6 @@
                     <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="6000" data-bs-pause="false" id="carousel-1">
                         <div class="carousel-inner">
                             <div class="carousel-item active"><img class="img-fluid w-100 d-block" src="{{ url('storage/img/br_admin/Home_Page_Banner_1.webp') }}" alt="Slide Image"></div>
-                            <div class="carousel-item"><img class="img-fluid w-100 d-block" src="{{ url('storage/img/br_admin/Home_Page_Banner_2.webp') }}" alt="Slide Image"></div>
                             <div class="carousel-item"><img class="img-fluid w-100 d-block" src="{{ url('storage/img/br_admin/Home_Page_Banner_3.webp') }}" alt="Slide Image"></div>
                         </div>
                         <div>
