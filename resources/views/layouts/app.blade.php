@@ -6,7 +6,7 @@
     <title>Broken Reality Comics</title>
     <link rel="canonical" href="https://broken-reality-comics.com/">
     <meta property="og:url" content="https://broken-reality-comics.com/">
-    <meta name="twitter:image" content="{{ url('img/br_admin/hexa_final_1.webp') }}">
+    <meta name="twitter:image" content="{{ url('storage/img/br_admin/brc_logo.webp') }}">
     <meta name="description" content="Join The New Reality | #bruniverse">
     <meta property="og:type" content="website">
 
@@ -24,12 +24,7 @@
     </script>
     @endverbatim
 
-    <link rel="icon" type="image/png" sizes="1700x1525" href="{{ url('img/br_admin/hexa_final_1.webp') }}">
-    <link rel="icon" type="image/png" sizes="1700x1525" href="{{ url('img/br_admin/hexa_final_1.webp') }}">
-    <link rel="icon" type="image/png" sizes="1700x1525" href="{{ url('img/br_admin/hexa_final_1.webp') }}">
-    <link rel="icon" type="image/png" sizes="1700x1525" href="{{ url('img/br_admin/hexa_final_1.webp') }}">
-    <link rel="icon" type="image/png" sizes="1700x1525" href="{{ url('img/br_admin/hexa_final_1.webp') }}">
-
+    <link rel="icon" type="image/png" sizes="1700x1525" href="{{ url('storage/img/br_admin/brc_logo.webp') }}">
     <link rel="manifest" href="{{ url('build/manifest.json') }}">
 
     <!-- Fonts -->
@@ -179,7 +174,7 @@
         <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2 align-self-center item">
           <div>
             <a href="/">
-              <img class="img-fluid" src="{{ url('img/br_admin/hexa_final_1.webp') }}" width="" alt="BRC Hex logo">
+              <img class="img-fluid" src="{{ url('storage/img/br_admin/brc_logo.webp') }}" width="" alt="BRC Hex logo">
             </a>
           </div>
         </div>

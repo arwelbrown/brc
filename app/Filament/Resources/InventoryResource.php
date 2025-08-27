@@ -11,20 +11,19 @@ use Filament\Schemas\Components\Section;
 use Filament\Actions\EditAction;
 use App\Filament\Resources\Inventories\Pages\ListInventories;
 use App\Filament\Resources\Inventories\Pages\EditInventory;
-use App\Filament\Resources\InventoryResource\Pages;
+use App\Models\Book;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use App\Models\Product;
 use App\Forms\Components\PaymentButton;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Hidden;
 
 class InventoryResource extends Resource
 {
-    protected static ?string $model = Product::class;
+    protected static ?string $model = Book::class;
     protected static ?string $navigationLabel = 'Inventory';
     protected static ?string $modelLabel = 'Inventory';
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-s-plus';
@@ -81,7 +80,7 @@ class InventoryResource extends Resource
                 ]),
                 Section::make('Order Details')
                     ->schema([
-                        TextInput::make('product_name')
+                        TextInput::make('name')
                             ->disabled(),
                         TextInput::make('stock')
                             ->disabled()
@@ -102,7 +101,8 @@ class InventoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('product_name')
+                TextColumn::make('name')
+                    ->label('Book Name')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('series.series_name')

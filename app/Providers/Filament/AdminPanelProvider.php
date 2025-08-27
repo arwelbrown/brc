@@ -44,8 +44,8 @@ class AdminPanelProvider extends PanelProvider
                 Dashboard::class,
             ])
             ->brandName('Broken Reality Comics')
-            ->brandLogo(asset('img/br_admin/hexa_final_1.webp'))
-            ->favicon(asset('img/br_admin/hexa_final_1.webp'))
+            ->brandLogo(asset('storage/img/br_admin/brc_logo.webp'))
+            ->favicon(asset('storage/img/br_admin/brc_logo.webp'))
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 AccountWidget::class,

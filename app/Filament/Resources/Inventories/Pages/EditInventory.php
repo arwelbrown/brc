@@ -57,7 +57,7 @@ class EditInventory extends EditRecord
     protected function getHeaderWidgets(): array
     {
         return [
-            StockWidget::class,
+            //
         ];
     }
 }

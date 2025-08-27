@@ -1,4 +1,0 @@
-- Get rid of submissions, remove from nav and router and admin panel
-- Hide orders, roles, permissions, inventory and submissions
-- Add Store sections, a bit like universe but more generic
-- docker commands for importing and exporting DB. ensure there is volume persistence

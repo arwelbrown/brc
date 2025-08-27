@@ -9,23 +9,23 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Character extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $casts = [
-        'aliases' => 'array',
-        'abilities' => 'array',
-        'weaknesses' => 'array',
-        'affiliations' => 'array',
-        'appearances' => 'array',
-    ];
+  protected $casts = [
+    'aliases' => 'array',
+    'abilities' => 'array',
+    'weaknesses' => 'array',
+    'affiliations' => 'array',
+    'appearances' => 'array',
+  ];
 
-    public function series(): BelongsTo
-    {
-        return $this->belongsTo(Series::class);
-    }
+  public function series(): BelongsTo
+  {
+    return $this->belongsTo(Series::class);
+  }
 
-    public function products(): BelongsToMany
-    {
-        return $this->belongsToMany(Product::class);
-    }
+  public function products(): BelongsToMany
+  {
+    return $this->belongsToMany(Product::class);
+  }
 }

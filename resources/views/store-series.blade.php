@@ -28,8 +28,12 @@
                             </a>
                         </li>
 
-                        @if (!empty($characters) && count($characters) > 0) 
-                            <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;background: rgba(255,255,255,0);"><strong>Character Bio</strong></a></li>
+                        @if (!empty($characters) && count($characters) > 0)
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;background: rgba(255,255,255,0);">
+                                <strong>Character Bio</strong>
+                              </a>
+                            </li>
                         @endif
                     </ul>
                     <div class="tab-content" style="margin-bottom: 50px;">
@@ -38,13 +42,13 @@
                                 <img class="img-fluid" src="{{ url($series->series_banner) }}">
                             </section>
                             <div class="row justify-content-start projects" style="background: rgba(255,255,255,0);margin-bottom: 20px;">
-                                @foreach($products as $product)
+                                @foreach($books as $book)
                                     <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3 item">
                                         <div class="card border rounded-0 mb-3" style="background: rgba(255,255,255,0);">
                                             <div class="card-body text-center" style="padding-top: 16px;">
-                                                <img class="img-fluid" src="{{ url($product->img_string) }}">
-                                                <h1 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">{{ $product->product_name }}</h1>
-                                                @if (!empty($product->in_development) && $product->in_development === 1)
+                                                <img class="img-fluid" src="{{ url($book->img_string) }}">
+                                                <h1 class="name" style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">{{ $book->name }}</h1>
+                                                @if (!empty($book->in_development) && $book->in_development === 1)
                                                     <p class="text-white" style="font-size: 13px;"><strong>Coming Soon!</strong></p>
                                                     <a disabled href=''
                                                         style='display:inline-block;background:black; cursor:default;center/100px no-repeat;border: none;padding: 7px 55px;border-radius: 3px;box-shadow: 1px 2px 2px rgba(0,0,0,0.2);text-decoration: none;'
@@ -52,10 +56,10 @@
                                                     </a>
                                                 @else
                                                     <p class="text-white" style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
-                                                        Digital: ${{ $product->digital_price }}
+                                                        Digital: ${{ $book->digital_price }}
                                                     </p>
                                                     <button class="btn btn-light">
-                                                        <a href='{{ $product->ejunkie_link_digital }}'
+                                                        <a href='{{ $book->ejunkie_link_digital }}'
                                                             onclick='return EJEJC_lc(this);'
                                                             target='ej_ejc'
                                                             class='ec_ejc_thkbx'
@@ -66,13 +70,13 @@
                                                     </button>
                                                 @endif
                                                 @if (
-                                                        !empty($product->physical_price) &&
-                                                        !empty($product->ejunkie_link_physical) &&
-                                                        (int) $product->physical_available === 1
+                                                        !empty($book->physical_price) &&
+                                                        !empty($book->ejunkie_link_physical) &&
+                                                        (int) $book->physical_available === 1
                                                     )
-                                                    <p style="font-size: 15px;">Physical: ${{ $product->physical_price }}</p>
+                                                    <p style="font-size: 15px;">Physical: ${{ $book->physical_price }}</p>
                                                     <button class="btn btn-light">
-                                                        <a href='{{ $product->ejunkie_link_physical }}'
+                                                        <a href='{{ $book->ejunkie_link_physical }}'
                                                             onclick='return EJEJC_lc(this);'
                                                             target='ej_ejc'
                                                             class='ec_ejc_thkbx'
