@@ -30,6 +30,11 @@ class Series extends Model
         return $this->hasMany(Character::class);
     }
 
+    /**
+     * Returns the createor model that the book belongs to
+     *
+     * @return BelongsTo
+     */
     public function creator(): BelongsTo
     {
         return $this->belongsTo(Creator::class);

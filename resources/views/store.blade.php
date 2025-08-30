@@ -69,9 +69,12 @@
                                         Digital: ${{ $book->digital_price }}
                                     </p>
                                     <button class="btn btn-light">
-                                        <a href='{{ $book->ejunkie_link_digital }}' onclick='return EJEJC_lc(this);'
+                                        <a
+                                            href='{{ $book->ejunkie_link_digital }}' 
+                                            onclick='return EJEJC_lc(this);'
                                             target='ej_ejc' class='ec_ejc_thkbx'
-                                            style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:10px;text-decoration:none;">
+                                            style="color:black;font-family:'Open Sans', sans-serif;font-weight:900;font-size:10px;text-decoration:none;"
+                                        >
                                             ADD TO CART
                                         </a>
                                     </button>
