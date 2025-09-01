@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\Canons\RelationManagers\SeriesRelationManager;
 use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Actions\EditAction;
 use App\Filament\Resources\Canons\Pages\ListCanons;
 use App\Filament\Resources\Canons\Pages\CreateCanon;
@@ -21,7 +23,7 @@ class CanonResource extends Resource
 {
     protected static ?string $model = Canon::class;
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-globe-alt';
 
     protected static string | \UnitEnum | null $navigationGroup = 'Book Management';
 
@@ -34,7 +36,11 @@ class CanonResource extends Resource
                         TextInput::make('name')
                             ->label('Canon Name')
                             ->required()
-                            ->maxLength(255),
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn (Set $set, ?string $state) => !empty($state) ? $set('slug', strtolower(str_replace(' ', '-', $state))) : $set('series_slug', ''))
+                            ->maxLength(100),
+                        TextInput::make('slug')
+                            ->disabled(),
                         FileUpload::make('series_banner')
                             ->columnSpan(2)
                             ->required()
@@ -79,7 +85,7 @@ class CanonResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            SeriesRelationManager::class,
         ];
     }
 

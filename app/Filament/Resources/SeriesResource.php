@@ -17,6 +17,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -48,6 +49,8 @@ class SeriesResource extends Resource
                         TextInput::make('series_slug')
                             ->required()
                             ->disabled(),
+                        Select::make('canon_id')
+                            ->relationship('canon', 'name'),
                         TagsInput::make('creators'),
                         TagsInput::make('writers'),
                         TagsInput::make('artists'),

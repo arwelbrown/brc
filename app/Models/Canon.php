@@ -17,7 +17,7 @@ class Canon extends Model
      *
      * @return HasMany
      */
-    public function sereis(): HasMany
+    public function series(): HasMany
     {
         return $this->hasMany(Series::class);
     }
