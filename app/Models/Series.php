@@ -20,11 +20,21 @@ class Series extends Model
         'editors' => 'array',
     ];
 
+    /**
+     * Returns books in the series
+     *
+     * @return HasMany
+     */
     public function books(): HasMany
     {
         return $this->hasMany(Book::class);
     }
 
+    /**
+     * Returns any characters appearing in the series
+     *
+     * @return HasMany
+     */
     public function characters(): HasMany
     {
         return $this->hasMany(Character::class);
