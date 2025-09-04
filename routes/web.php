@@ -17,13 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get(
+    '/',
+    function () {
+        return view('index');
+    }
+);
 
 Route::resource('/about-us', TeamController::class);
 
 Route::get('/store/series/{slug}', [StoreController::class, 'series'])->name('series');
+Route::get('/store/canon/{slug}', [StoreController::class, 'canon'])->name('canon');
 Route::get('/store/{slug}', [StoreController::class, 'brcOrCommunity'])->name('brcOrCommunity');
 Route::resource('/store', StoreController::class);
 

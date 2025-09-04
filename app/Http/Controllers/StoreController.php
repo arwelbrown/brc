@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\Canon;
 use App\Models\Book;
 use App\Models\Series;
 use App\DataProviders\eJunkie\EjProductDataProvider;
@@ -32,7 +33,52 @@ class StoreController extends Controller
             $featuredBook->img_string = ImageHelper::getPublicAssetPath($featuredBook->img_string);
         }
 
-        return view('store', ['books' => $books, 'featuredBooks' => $featuredBooks]);
+        $fetchCanons = Canon::all();
+        $canons = [];
+        foreach ($fetchCanons as $canon) {
+            $canon->img_string = ImageHelper::getPublicAssetPath($canon->img_string);
+            $canons[] = $canon;
+        }
+
+        return view(
+            'store',
+            [
+                'canons' => $canons,
+                'books' => $books,
+                'featuredBooks' => $featuredBooks
+            ]
+        );
+    }
+
+    public function canon(string $slug): View
+    {
+        $canon = Canon::where('slug', '=', $slug)->get()->first();
+        $seriesInCanon = $canon->series()->get();
+
+        $canon->img_string = ImageHelper::getPublicAssetPath($canon->img_string);
+
+        $formattedSeries = [];
+        foreach ($seriesInCanon as $series) {
+            $series->series_banner = ImageHelper::getPublicAssetPath($series->series_banner);
+            $formattedSeries[] = $series;
+        }
+
+        $books = [];
+        foreach ($seriesInCanon as $series) {
+            foreach ($series->books()->get() as $book) {
+                $book->img_string = ImageHelper::getPublicAssetPath($book->img_string);
+                $books[] = $book;
+            }
+        }
+
+        return view(
+            'store-canon',
+            [
+                'canon' => $canon,
+                'seriesInCanon' => $formattedSeries,
+                'books' => $books,
+            ]
+        );
     }
 
     /**
@@ -103,7 +149,7 @@ class StoreController extends Controller
         return view(
             'store-series',
             [
-              'store'         => $series->brc_series == 1 ? 'BRC' : 'Community',
+              'canon'         => $series->canon()->get()->first(),
               'books'         => $books,
               'series'        => $series,
               'creators'      => $series->creators,

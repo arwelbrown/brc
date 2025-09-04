@@ -9,21 +9,17 @@
         <div class="container-fluid" data-aos="fade-up">
             <section>
                   <div class="row justify-content-center" style="margin-bottom: 20px;">
-                      <div class="col-sm-2 col-md-2 col-lg-4 col-xl-4" data-bss-hover-animate="pulse"
-                            style="margin-bottom: 20px;"
-                      >
-                          <a class="d-inline-block" href="/store/brc">
-                          <img class="img-fluid"
-                              src="{{ asset('storage/img/universe_bruniverse/Brc%20books%20banner.png') }}">
-                          </a>
-                      </div>
-                      <div class="col-sm-2 col-md-2 col-lg-4 col-xl-4" data-bss-hover-animate="pulse"
-                          style="margin-bottom: 20px;">
-                          <a class="d-inline-block" href="/store/community">
-                              <img class="img-fluid"
-                                  src="{{ asset('storage/img/universe_infinitedimensions/Brc%20community%20books%20banner.png') }}">
-                          </a>
-                      </div>
+                      @foreach($canons as $canon)
+                        <div class="col-sm-3 col-md-3 col-lg-4 col-xl-4" data-bss-hover-animate="pulse"
+                            style="margin-bottom: 20px;">
+                            <a class="d-inline-block" href="/store/canon/{{ $canon->slug }}">
+                                <img 
+                                    class="img-fluid"
+                                    src="{{ asset($canon->img_string) }}"
+                                >
+                            </a>
+                        </div>
+                      @endforeach
                 </div>
             </section>
         </div>
@@ -59,8 +55,10 @@
                             <div class="card-body" style="padding-top: 16px;">
                                 <img class="img-fluid" src="{{ asset($book->img_string) }}">
                                 <h2 class="name"
-                                    style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);">
-                                    {{ $book->name }}</h2>
+                                    style="font-family: 'Open Sans', sans-serif;font-size: 13px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);"
+                                >
+                                    {{ $book->name }}
+                                </h2>
                                 @if (!empty($book->in_development) && $product->in_development === 1)
                                     <p class="text-white" style="font-size: 15px;"><strong>Coming Soon!</strong></p>
                                 @else

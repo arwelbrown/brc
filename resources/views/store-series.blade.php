@@ -10,8 +10,8 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav flex-grow-1 justify-content-between me-auto">
                         <li class="nav-item"><a class="nav-link" href="/store" style="font-family: 'Open Sans', sans-serif;color: #ffffff;font-size: 14px;"><span style="text-decoration: underline;">« Main Store&nbsp;</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="/store/{{ strtolower($store) }}" style="font-family: 'Open Sans', sans-serif;color: #ffffff;font-size: 14px;"><span style="text-decoration: underline;">« {{ $store }} Store</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="/store/{{ $store }}/{{ $series->series_slug }}" style="font-family: 'Open Sans', sans-serif;font-size: 14px;">{{ $series->series_name }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/store/canon/{{ $canon->slug }}" style="font-family: 'Open Sans', sans-serif;color: #ffffff;font-size: 14px;"><span style="text-decoration: underline;">« {{ $canon->name }} Store</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/store/series/{{ $series->series_slug }}" style="font-family: 'Open Sans', sans-serif;font-size: 14px;">{{ $series->series_name }}</a></li>
                     </ul>
                 </div>
             </div>
