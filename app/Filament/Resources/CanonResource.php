@@ -41,7 +41,7 @@ class CanonResource extends Resource
                             ->maxLength(100),
                         TextInput::make('slug')
                             ->disabled(),
-                        FileUpload::make('series_banner')
+                        FileUpload::make('img_string')
                             ->columnSpan(2)
                             ->required()
                             ->default('')
