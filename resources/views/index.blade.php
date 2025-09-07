@@ -17,6 +17,23 @@
     </div>
 </section>
 <section class="border-0 newsletter-subscribe py-4 py-xl-5" style="background: linear-gradient(#000000 0%, rgb(18,21,24) 53%), rgb(0,0,0);">
+    <div class="row mb-2">
+        <div class="col-8 col-sm-10 col-md-9 col-lg-8 col-xl-7 text-center mx-auto" style="color: rgb(49, 52, 55);">
+            <h2 class="display-6 fw-bold" data-aos="fade-up" style="color: rgb(255,255,255);font-family: Anton, sans-serif;letter-spacing: 2px;">SUBSCRIBE TO THE BRC NEWSLETTER</h2>
+            <p class="text-white" data-aos="fade-down" style="font-family: 'Open Sans', sans-serif;">
+                Subscribe to our official monthly newsletter to get exclusive announcement, perks, discounts and more!
+            </p>
+        </div>
+    </div>
+    <form class="d-flex justify-content-center flex-wrap" data-aos="fade" data-bss-recipient="374f101e2d84c85fe299372a6799c332" data-bss-subject="Thank You for Subscribing!">
+        <div class="mb-3">
+            <label for="email" hidden></label>
+            <input class="form-control" id="email" type="email" name="email" placeholder="Your Email">
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary ms-2" type="submit" style="background: var(--bs-blue);">Subscribe</button>
+        </div>
+    </form>
     <section>
         <div class="container-fluid">
             <div class="row justify-content-center" style="margin-top: 50px;">
