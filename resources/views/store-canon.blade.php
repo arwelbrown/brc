@@ -2,7 +2,7 @@
 @section('content')
 <!-- <section class="py-4 py-xl-5" style="background: linear-gradient(rgba(9,0,34,0.75) 0%, #000000 100%), url({{ url('storage/img/br_admin/canon-store-bg.webp') }}) center / cover no-repeat;"> -->
 
-<section class="py-4 py-xl-5" style="background: linear-gradient(rgba(9,0,34,0.75) 0%, #000000 100%), url({{ url($canon->img_string) }}) center / cover no-repeat;">
+<section class="py-4 py-xl-5" style="background: linear-gradient(rgba(9,0,34,0.75) 0%, #000000 100%), url({{ url($canon->bg_img_string) }}) center / cover no-repeat;">
     <div class="container" style="margin-bottom: 10px;margin-top: 40px;">
         <nav class="navbar navbar-expand bg-transparent p-0 navbar-dark" style="max-width: 400px;">
             <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>

@@ -51,7 +51,13 @@ class CanonResource extends Resource
                                     return 'canons' . '/' . $file->getClientOriginalName();
                                 }
                             )
-                            ->downloadable()
+                            ->downloadable(),
+                        FileUpload::make('bg_img_string')
+                            ->getUploadedFileNameForStorageUsing(
+                                function (Get $get, TemporaryUploadedFile $file): string {
+                                    return canons . '/' . $file->getClientOriginalName();
+                                }
+                            )
                     ]
                 )
             ]

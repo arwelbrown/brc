@@ -56,6 +56,7 @@ class StoreController extends Controller
         $seriesInCanon = $canon->series()->get();
 
         $canon->img_string = ImageHelper::getPublicAssetPath($canon->img_string);
+        $canon->bg_img_string = ImageHelper::getPublicAssetPath($canon->bg_img_string);
 
         $formattedSeries = [];
         foreach ($seriesInCanon as $series) {
