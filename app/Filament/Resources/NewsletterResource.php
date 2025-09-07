@@ -52,7 +52,7 @@ class NewsletterResource extends Resource
                             ->label('Cover Image')
                             ->directory('public/newsletters/covers')
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
-                                return $file->getClientOriginalName();                               
+                                return $file->getClientOriginalName();
                             }),
                         FileUpload::make('file_path')
                             ->reactive()
@@ -61,7 +61,7 @@ class NewsletterResource extends Resource
                             ->label('Upload PDF')
                             ->directory('public/newsletters')
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
-                                return $file->getClientOriginalName();                               
+                                return $file->getClientOriginalName();
                             }),
                         Toggle::make('active')
                             ->autofocus(),
@@ -111,8 +111,8 @@ class NewsletterResource extends Resource
         ];
     }
 
- public static function shouldRegisterNavigation(): bool
-  {
-    return auth()->user()->hasRole('super-admin');
-  }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()->hasRole(['super-admin', 'admin']);
+    }
 }

@@ -42,6 +42,7 @@ class CanonResource extends Resource
                         TextInput::make('slug')
                             ->disabled(),
                         FileUpload::make('img_string')
+                            ->label('Image')
                             ->columnSpan(2)
                             ->required()
                             ->default('')
@@ -53,9 +54,11 @@ class CanonResource extends Resource
                             )
                             ->downloadable(),
                         FileUpload::make('bg_img_string')
+                            ->label('Background Image')
+                            ->columnSpan(2)
                             ->getUploadedFileNameForStorageUsing(
                                 function (Get $get, TemporaryUploadedFile $file): string {
-                                    return canons . '/' . $file->getClientOriginalName();
+                                    return 'canons' . '/' . $file->getClientOriginalName();
                                 }
                             )
                     ]

@@ -182,10 +182,6 @@
               </div>
             </li>
             <li class="text-center" style="font-size: 16px;">
-                <div><a href="/brc-admin" style="font-family: 'Open Sans', sans-serif;">Creator Sign In</a>
-                </div>
-            </li>
-            <li class="text-center" style="font-size: 16px;">
                 <div>
                     <a href="https://www.redbubble.com/people/brcstore/shop" style="font-family: 'Open Sans', sans-serif;">
                         Merch Store
