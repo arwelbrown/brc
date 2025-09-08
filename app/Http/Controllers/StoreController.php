@@ -65,6 +65,7 @@ class StoreController extends Controller
         }
 
         $books = [];
+
         foreach ($seriesInCanon as $series) {
             foreach ($series->books()->get() as $book) {
                 $book->img_string = ImageHelper::getPublicAssetPath($book->img_string);

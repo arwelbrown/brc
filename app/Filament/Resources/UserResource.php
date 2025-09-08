@@ -76,7 +76,7 @@ class UserResource extends Resource
                             ->label('Profile Picture')
                             ->columnSpanFull()
                             ->directory('/img')
-                            ->getUploadedFileNameForStorageUsing(function(TemporaryUploadedFile $file): string {
+                            ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                                 return '/br_admin/brc_team/' . $file->getClientOriginalName();
                             }),
                         Toggle::make('active')
@@ -121,8 +121,8 @@ class UserResource extends Resource
         ];
     }
 
- public static function shouldRegisterNavigation(): bool
-  {
-    return auth()->user()->hasRole('super-admin');
-  }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()->hasRole(['super-admin', 'admin']);
+    }
 }

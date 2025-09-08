@@ -26,12 +26,29 @@ Route::get(
 
 Route::resource('/about-us', TeamController::class);
 
-Route::get('/store/series/{slug}', [StoreController::class, 'series'])->name('series');
-Route::get('/store/canon/{slug}', [StoreController::class, 'canon'])->name('canon');
-Route::get('/store/{slug}', [StoreController::class, 'brcOrCommunity'])->name('brcOrCommunity');
+Route::get(
+    '/store/series/{slug}',
+    [StoreController::class, 'series']
+)->name('series');
+
+Route::get(
+    '/store/canon/{slug}',
+    [StoreController::class, 'canon']
+)->name('canon');
+
 Route::resource('/store', StoreController::class);
 
-Route::get('/brc-newsletter', [NewsletterController::class, 'index'])->name('newsletter');
+Route::get(
+    '/brc-newsletter',
+    [NewsletterController::class, 'index']
+)->name('newsletter');
 
-Route::get('/payment-success', [StripeController::class, 'success'])->name('payment_success');
-Route::get('/payment-failure', [StripeController::class, 'failure'])->name('payment_failure');
+Route::get(
+    '/payment-success',
+    [StripeController::class, 'success']
+)->name('payment_success');
+
+Route::get(
+    '/payment-failure',
+    [StripeController::class, 'failure']
+)->name('payment_failure');

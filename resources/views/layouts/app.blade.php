@@ -175,7 +175,7 @@
           class="col-5 col-sm-5 col-md-3 col-lg-3 col-xl-3 col-xxl-2 offset-md-1 offset-lg-1 offset-xl-1 align-self-center item"
           style="font-family: Lato, sans-serif;color: rgb(255,255,255);"
         >
-          <ul class="list-unstyled text-center text-white">
+          <ul class="list-unstyled text-left text-white">
             <li class="text-center" style="font-size: 16px;">
               <div>
                 <a href="/store" style="font-family: 'Open Sans', sans-serif;">Comic Book Store</a>
