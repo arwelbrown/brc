@@ -15,7 +15,7 @@ class ListUsers extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        Mail::to('sales@brc.com')->send(new BookSold());
+        // Mail::to('sales@brc.com')->send(new BookSold());
 
         return [
             CreateAction::make(),
