@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div 
             class="text-center rounded border-0 d-flex flex-column justify-content-center align-items-center p-4 py-5"
-            style="background: linear-gradient(rgba(36,0,52,0.62) 0%, rgb(0,0,0) 88%), url({{ url('storage/img/br_admin/Broken_Reality_Banners.webp') }}) center / cover no-repeat;"
+            style="background: linear-gradient(rgba(36,0,52,0.62) 0%, rgb(0,0,0) 88%), url({{ url('storage/img/br_admin/BRC HOME PAGE BANNER.webp') }}) center / cover no-repeat;"
         >
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-9 col-md-7 col-lg-5 align-self-center" data-aos="fade-up">
