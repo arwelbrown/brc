@@ -129,6 +129,13 @@
                 >
                   About Us
                 </a>
+                <a
+                  class="dropdown-item text-white" 
+                  href="/brc-newsletter"
+                  style="font-family: 'Open Sans', sans-serif;"
+                >
+                  BRC Newsletter
+                </a>
               </div>
             </li>
             <li class="nav-item text-end">
