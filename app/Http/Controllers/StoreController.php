@@ -8,7 +8,7 @@ use App\Models\Book;
 use App\Models\Series;
 use App\DataProviders\eJunkie\EjProductDataProvider;
 use Illuminate\Contracts\View\View;
-use App\Helpers\ImageHelper;
+use App\Helpers\AssetHelper;
 
 class StoreController extends Controller
 {
@@ -22,7 +22,7 @@ class StoreController extends Controller
         $books = Book::orderByDesc('id')->where('active', 1)->paginate(24);
         // set books asset paths
         foreach ($books as $book) {
-            $book->img_string = ImageHelper::getPublicAssetPath($book->img_string);
+            $book->img_string = AssetHelper::getPublicAssetPath($book->img_string);
         }
 
         $featuredBooks = Book::orderByDesc('id')
@@ -30,13 +30,13 @@ class StoreController extends Controller
             ->where('featured_product', 1)->get();
 
         foreach ($featuredBooks as $featuredBook) {
-            $featuredBook->img_string = ImageHelper::getPublicAssetPath($featuredBook->img_string);
+            $featuredBook->img_string = AssetHelper::getPublicAssetPath($featuredBook->img_string);
         }
 
         $fetchCanons = Canon::all();
         $canons = [];
         foreach ($fetchCanons as $canon) {
-            $canon->img_string = ImageHelper::getPublicAssetPath($canon->img_string);
+            $canon->img_string = AssetHelper::getPublicAssetPath($canon->img_string);
             $canons[] = $canon;
         }
 
@@ -55,12 +55,12 @@ class StoreController extends Controller
         $canon = Canon::where('slug', '=', $slug)->get()->first();
         $seriesInCanon = $canon->series()->get();
 
-        $canon->img_string = ImageHelper::getPublicAssetPath($canon->img_string);
-        $canon->bg_img_string = ImageHelper::getPublicAssetPath($canon->bg_img_string ?? $canon->img_string);
+        $canon->img_string = AssetHelper::getPublicAssetPath($canon->img_string);
+        $canon->bg_img_string = AssetHelper::getPublicAssetPath($canon->bg_img_string ?? $canon->img_string);
 
         $formattedSeries = [];
         foreach ($seriesInCanon as $series) {
-            $series->series_banner = ImageHelper::getPublicAssetPath($series->series_banner);
+            $series->series_banner = AssetHelper::getPublicAssetPath($series->series_banner);
             $formattedSeries[] = $series;
         }
 
@@ -68,7 +68,7 @@ class StoreController extends Controller
 
         foreach ($seriesInCanon as $series) {
             foreach ($series->books()->get() as $book) {
-                $book->img_string = ImageHelper::getPublicAssetPath($book->img_string);
+                $book->img_string = AssetHelper::getPublicAssetPath($book->img_string);
                 $books[] = $book;
             }
         }
@@ -98,17 +98,17 @@ class StoreController extends Controller
 
         // set book asset paths
         foreach ($books as $book) {
-            $book->img_string = ImageHelper::getPublicAssetPath($book->img_string);
+            $book->img_string = AssetHelper::getPublicAssetPath($book->img_string);
         }
 
         // set series asset paths
-        $series->series_banner = ImageHelper::getPublicAssetPath($series->series_banner);
+        $series->series_banner = AssetHelper::getPublicAssetPath($series->series_banner);
 
         $characters = [];
 
         foreach ($charactersInSeries as $character) {
             // set asset paths
-            $character->img_string = ImageHelper::getPublicAssetPath($character->img_string);
+            $character->img_string = AssetHelper::getPublicAssetPath($character->img_string);
 
             // link other series
             if (!empty($character->appearances)) {
@@ -191,10 +191,10 @@ class StoreController extends Controller
         $books = [];
         foreach ($seriesCollection as $series) {
             // set series asset paths
-            $series->series_banner = ImageHelper::getPublicAssetPath($series->series_banner);
+            $series->series_banner = AssetHelper::getPublicAssetPath($series->series_banner);
 
             foreach ($series->books()->get()->all() as $book) {
-                $book->img_string = ImageHelper::getPublicAssetPath($book->img_string);
+                $book->img_string = AssetHelper::getPublicAssetPath($book->img_string);
                 $books[] = $book;
             }
         }

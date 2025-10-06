@@ -38,7 +38,7 @@
     <div class="container">
         <div class="row text-center" style="margin-bottom: 50px;">
             @foreach ($newsletters as $newsletter)
-                @if (!$newsletter->coming_soon && $newsletter->active == 1)
+                @if (!$newsletter->coming_soon&& $newsletter->active)
                     <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3 item" style="padding-bottom: 10px;">
                         <div class="card border rounded-0" style="background: rgb(0,0,0);">
                             <div class="card-body" style="padding-top: 16px;">
