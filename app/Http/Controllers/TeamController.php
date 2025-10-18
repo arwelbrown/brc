@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\AssetHelper;
 use App\Models\User;
-use App\Helpers\ImageHelper;
 
 class TeamController extends Controller
 {
@@ -17,7 +17,7 @@ class TeamController extends Controller
 
         foreach ($users as $user) {
             if (!empty($user['img_string'])) {
-                $user['img_string'] = ImageHelper::getPublicAssetPath($user['img_string'] ?? '');
+                $user['img_string'] = AssetHelper::getPublicAssetPath($user['img_string'] ?? '');
                 switch ($user['brc_team_role']) {
                     case 'Founder':
                         $founders[] = $user;
