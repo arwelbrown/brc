@@ -50,7 +50,9 @@
                     </p>
                 </div>
                 @foreach ($featuredBooks as $book)
-                    @include('store.store-card', ['book' => $book])
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2 item" style="margin-bottom: 10px;">
+                        @include('store.store-card', ['book' => $book])
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -70,9 +72,11 @@
         </div>
         <div class="container">
             <div class="row d-flex justify-content-center">
-                @foreach ($books as $book)
-                    @include('store.store-card', ['book' => $book])
-                @endforeach
+                    @foreach ($books as $book)
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-2 item" style="margin-bottom: 10px;">
+                            @include('store.store-card', ['book' => $book])
+                        </div>
+                    @endforeach
             </div>
         </div>
     </section>
