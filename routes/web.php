@@ -17,38 +17,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get(
-    '/',
-    function () {
-        return view('index');
-    }
+Route::get("/", fn() => view("index"));
+
+Route::resource("/about-us", TeamController::class);
+
+Route::get("/store/series/{slug}", [StoreController::class, "series"])->name(
+    "series",
 );
 
-Route::resource('/about-us', TeamController::class);
+Route::get("/store/canon/{slug}", [StoreController::class, "canon"])->name(
+    "canon",
+);
 
-Route::get(
-    '/store/series/{slug}',
-    [StoreController::class, 'series']
-)->name('series');
+Route::resource("/store", StoreController::class);
 
-Route::get(
-    '/store/canon/{slug}',
-    [StoreController::class, 'canon']
-)->name('canon');
+Route::get("/brc-newsletter", [NewsletterController::class, "index"])->name(
+    "newsletter",
+);
 
-Route::resource('/store', StoreController::class);
+Route::get("/payment-success", [StripeController::class, "success"])->name(
+    "payment_success",
+);
 
-Route::get(
-    '/brc-newsletter',
-    [NewsletterController::class, 'index']
-)->name('newsletter');
-
-Route::get(
-    '/payment-success',
-    [StripeController::class, 'success']
-)->name('payment_success');
-
-Route::get(
-    '/payment-failure',
-    [StripeController::class, 'failure']
-)->name('payment_failure');
+Route::get("/payment-failure", [StripeController::class, "failure"])->name(
+    "payment_failure",
+);

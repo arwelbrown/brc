@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Models\Canon;
 use App\Models\Book;
 use App\Models\Series;
@@ -19,48 +18,58 @@ class StoreController extends Controller
      */
     public function index(): View
     {
-        $books = Book::orderByDesc('id')->where('active', 1)->paginate(24);
+        $books = Book::where("active", 1)->orderByDesc("id")->paginate(24);
         // set books asset paths
         foreach ($books as $book) {
-            $book->img_string = AssetHelper::getPublicAssetPath($book->img_string);
+            $book->img_string = AssetHelper::getPublicAssetPath(
+                $book->img_string,
+            );
         }
 
-        $featuredBooks = Book::orderByDesc('id')
-            ->where('active', 1)
-            ->where('featured_product', 1)->get();
+        $featuredBooks = Book::where("active", true)
+            ->where("featured_product", true)
+            ->orderByDesc("id")
+            ->get();
 
         foreach ($featuredBooks as $featuredBook) {
-            $featuredBook->img_string = AssetHelper::getPublicAssetPath($featuredBook->img_string);
+            $featuredBook->img_string = AssetHelper::getPublicAssetPath(
+                $featuredBook->img_string,
+            );
         }
 
         $fetchCanons = Canon::all();
         $canons = [];
         foreach ($fetchCanons as $canon) {
-            $canon->img_string = AssetHelper::getPublicAssetPath($canon->img_string);
+            $canon->img_string = AssetHelper::getPublicAssetPath(
+                $canon->img_string,
+            );
             $canons[] = $canon;
         }
 
-        return view(
-            'store',
-            [
-                'canons' => $canons,
-                'books' => $books,
-                'featuredBooks' => $featuredBooks
-            ]
-        );
+        return view("store.store", [
+            "canons" => $canons,
+            "books" => $books,
+            "featuredBooks" => $featuredBooks,
+        ]);
     }
 
     public function canon(string $slug): View
     {
-        $canon = Canon::where('slug', '=', $slug)->get()->first();
+        $canon = Canon::where("slug", "=", $slug)->get()->first();
         $seriesInCanon = $canon->series()->get();
 
-        $canon->img_string = AssetHelper::getPublicAssetPath($canon->img_string);
-        $canon->bg_img_string = AssetHelper::getPublicAssetPath($canon->bg_img_string ?? $canon->img_string);
+        $canon->img_string = AssetHelper::getPublicAssetPath(
+            $canon->img_string,
+        );
+        $canon->bg_img_string = AssetHelper::getPublicAssetPath(
+            $canon->bg_img_string ?? $canon->img_string,
+        );
 
         $formattedSeries = [];
         foreach ($seriesInCanon as $series) {
-            $series->series_banner = AssetHelper::getPublicAssetPath($series->series_banner);
+            $series->series_banner = AssetHelper::getPublicAssetPath(
+                $series->series_banner,
+            );
             $formattedSeries[] = $series;
         }
 
@@ -68,19 +77,18 @@ class StoreController extends Controller
 
         foreach ($seriesInCanon as $series) {
             foreach ($series->books()->get() as $book) {
-                $book->img_string = AssetHelper::getPublicAssetPath($book->img_string);
+                $book->img_string = AssetHelper::getPublicAssetPath(
+                    $book->img_string,
+                );
                 $books[] = $book;
             }
         }
 
-        return view(
-            'store-canon',
-            [
-                'canon' => $canon,
-                'seriesInCanon' => $formattedSeries,
-                'books' => $books,
-            ]
-        );
+        return view("store.store-canon", [
+            "canon" => $canon,
+            "seriesInCanon" => $formattedSeries,
+            "books" => $books,
+        ]);
     }
 
     /**
@@ -92,23 +100,29 @@ class StoreController extends Controller
      */
     public function series(string $slug): View
     {
-        $series = Series::where('series_slug', $slug)->get()->first();
+        $series = Series::where("series_slug", $slug)->get()->first();
         $books = $series->books()->paginate(24);
         $charactersInSeries = $series->characters()->get()->all();
 
         // set book asset paths
         foreach ($books as $book) {
-            $book->img_string = AssetHelper::getPublicAssetPath($book->img_string);
+            $book->img_string = AssetHelper::getPublicAssetPath(
+                $book->img_string,
+            );
         }
 
         // set series asset paths
-        $series->series_banner = AssetHelper::getPublicAssetPath($series->series_banner);
+        $series->series_banner = AssetHelper::getPublicAssetPath(
+            $series->series_banner,
+        );
 
         $characters = [];
 
         foreach ($charactersInSeries as $character) {
             // set asset paths
-            $character->img_string = AssetHelper::getPublicAssetPath($character->img_string);
+            $character->img_string = AssetHelper::getPublicAssetPath(
+                $character->img_string,
+            );
 
             // link other series
             if (!empty($character->appearances)) {
@@ -117,13 +131,13 @@ class StoreController extends Controller
                 $appearances = [];
 
                 foreach ($showsUpIn as $seriesId) {
-                    $seriesToInsert = Series::where('id', '=', (int) $seriesId)
+                    $seriesToInsert = Series::where("id", "=", (int) $seriesId)
                         ->get()
                         ->all();
 
                     $appearance = [
-                      'series_name' => $seriesToInsert[0]->series_name,
-                      'series_slug' => $seriesToInsert[0]->series_slug,
+                        "series_name" => $seriesToInsert[0]->series_name,
+                        "series_slug" => $seriesToInsert[0]->series_slug,
                     ];
 
                     $appearances[] = $appearance;
@@ -138,78 +152,26 @@ class StoreController extends Controller
         $artTeam = [];
 
         if (!empty($series->artists)) {
-            $artTeam['artists'] = $series->artists;
+            $artTeam["artists"] = $series->artists;
         }
         if (!empty($series->colorists)) {
-            $artTeam['colorists'] = $series->colorists;
+            $artTeam["colorists"] = $series->colorists;
         }
 
         if (!empty($series->letterers)) {
-            $artTeam['letterers'] = $series->letterers;
+            $artTeam["letterers"] = $series->letterers;
         }
 
-        return view(
-            'store-series',
-            [
-              'canon'         => $series->canon()->get()->first(),
-              'books'         => $books,
-              'series'        => $series,
-              'creators'      => $series->creators,
-              'editors'       => $series->editors,
-              'writers'       => $series->writers,
-              'artTeam'       => $artTeam,
-              'characters'    => $characters,
-            ]
-        );
-    }
-
-    public function brcOrCommunity(string $slug): View
-    {
-        switch ($slug) {
-            case 'brc':
-
-                $brcBooks = 1;
-                $bgImg = 'storage/img/universe_bruniverse/bruniverse2.webp';
-                $storeLogo = 'storage/img/universe_brokenrealitycomics/BRC LOGO TAG.webp';
-                $description = '
-                  After the death of Tenebris in “Broken Realities #1”, the 
-                  known Universe was forced to endure a cataclysmic release 
-                  energy. The force of the event was strong enough to divide 
-                  the Universe into three territories.
-                ';
-                break;
-            case 'community':
-                $brcBooks = 0;
-                $bgImg = 'storage/img/universe_infinitedimensions/beyond.webp';
-                break;
-            default:
-                throw new Exception('Invalid URL!');
-        }
-
-        $seriesCollection = Series::where('brc_series', $brcBooks)->get();
-
-        $books = [];
-        foreach ($seriesCollection as $series) {
-            // set series asset paths
-            $series->series_banner = AssetHelper::getPublicAssetPath($series->series_banner);
-
-            foreach ($series->books()->get()->all() as $book) {
-                $book->img_string = AssetHelper::getPublicAssetPath($book->img_string);
-                $books[] = $book;
-            }
-        }
-
-        return view(
-            'store-brc-or-community',
-            [
-                'title'             => $slug,
-                'books'             => $books,
-                'bgImg'             => $bgImg,
-                'storeDescription'  => $description ?? null,
-                'storeLogo'         => $storeLogo ?? null,
-                'seriesInStore'     => $seriesCollection,
-            ]
-        );
+        return view("store.store-series", [
+            "canon" => $series->canon()->get()->first(),
+            "books" => $books,
+            "series" => $series,
+            "creators" => $series->creators,
+            "editors" => $series->editors,
+            "writers" => $series->writers,
+            "artTeam" => $artTeam,
+            "characters" => $characters,
+        ]);
     }
 
     public function getAllFromEjunkie(): array
@@ -217,7 +179,7 @@ class StoreController extends Controller
         $ej = new EjProductDataProvider();
         $result = $ej->getAllFromEjunkie();
 
-        $products = $result['products'];
+        $products = $result["products"];
 
         return $products;
     }

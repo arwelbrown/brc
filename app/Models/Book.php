@@ -14,13 +14,13 @@ class Book extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = "id";
     protected $casts = [
-        'tags' => 'array',
-        'in_development' => 'integer',
-        'physical_available' => 'integer',
-        'featured_product' => 'integer',
-        'active' => 'integer',
+        "tags" => "array",
+        "in_development" => "integer",
+        "physical_available" => "integer",
+        "featured_product" => "integer",
+        "active" => "integer",
     ];
 
     public function series(): BelongsTo
@@ -39,21 +39,21 @@ class Book extends Model
     }
 
     protected $fillable = [
-        'id',
-        'name',
-        'series',
-        'tags',
-        'store_slug',
-        'ejunkie_link_digital',
-        'ejunkie_link_physical',
-        'summary',
-        'digital_price',
-        'physical_price',
-        'img_string',
-        'in_development',
-        'physical_available',
-        'created_at',
-        'updated_at',
-        'active',
+        "id",
+        "name",
+        "series",
+        "tags",
+        "store_slug",
+        "ejunkie_link_digital",
+        "ejunkie_link_physical",
+        "summary",
+        "digital_price",
+        "physical_price",
+        "img_string",
+        "in_development",
+        "physical_available",
+        "created_at",
+        "updated_at",
+        "active",
     ];
 }
