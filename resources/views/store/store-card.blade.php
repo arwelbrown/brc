@@ -1,6 +1,12 @@
 <div class="card border rounded-1 bg-black" style="height: 100%;">
     <div class="card-body d-flex flex-column justify-content-between" style="padding-top: 16px;">
-        <img class="img-fluid" data-bs-toggle="modal" data-bs-target="#show_modal_{{ $book->id }}" src="{{ asset($book->img_string) }}">
+        <img
+            class="img-fluid"
+            style="{{ $book->summary != '.' ? 'cursor: pointer;' : '' }}"
+            data-bs-toggle="modal"
+            data-bs-target="#show_modal_{{ $book->id }}"
+            src="{{ asset($book->img_string) }}"
+        >
         <h2 class="name"
             style="font-family: 'Open Sans', sans-serif;font-size: 15px;padding-top: 15px;font-weight: bold;color: rgb(255,255,255);"
         >
@@ -36,4 +42,6 @@
     </div>
 </div>
 
-@include('partials.store-modal' , ['book' => $book])
+@if ($book->summary != '.')
+    @include('partials.store-modal' , ['book' => $book])
+@endif
