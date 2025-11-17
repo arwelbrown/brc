@@ -37,7 +37,7 @@ class StoreController extends Controller
             );
         }
 
-        $fetchCanons = Canon::all();
+        $fetchCanons = Canon::all()->where("active", 1);
         $canons = [];
         foreach ($fetchCanons as $canon) {
             $canon->img_string = AssetHelper::getPublicAssetPath(
@@ -61,6 +61,7 @@ class StoreController extends Controller
         $canon->img_string = AssetHelper::getPublicAssetPath(
             $canon->img_string,
         );
+
         $canon->bg_img_string = AssetHelper::getPublicAssetPath(
             $canon->bg_img_string ?? $canon->img_string,
         );
