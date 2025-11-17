@@ -154,6 +154,7 @@ class StoreController extends Controller
         if (!empty($series->artists)) {
             $artTeam["artists"] = $series->artists;
         }
+
         if (!empty($series->colorists)) {
             $artTeam["colorists"] = $series->colorists;
         }
