@@ -5,7 +5,6 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\Canons\RelationManagers\SeriesRelationManager;
 use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Actions\EditAction;
 use App\Filament\Resources\Canons\Pages\ListCanons;
@@ -16,6 +15,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Toggle;
 use Filament\Tables\Table;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
@@ -65,6 +65,7 @@ class CanonResource extends Resource
                             "/" .
                             $file->getClientOriginalName(),
                     ),
+                Toggle::make("active"),
             ]),
         ]);
     }
