@@ -22,13 +22,13 @@ ddev start
 Next, once the container has built, run:
 
 ```sh
-docker ps
+ddev describe
 ```
 To verify that it's working.
 
-Now, we need to `dockin` to the container using this command:
+Now, we need to ssh into the container using this command:
 ```sh
-dockin brc_web
+ddev ssh
 ```
 Once we're in the container, we now need to run
 ```sh
@@ -48,7 +48,7 @@ As part of the sail setup, you will create a MySQL database, running on port 330
 #### Populating the database
 In the project root directory, run the following commands;
 ```sh
-dockin brc_web
+ddev ssh
 
 php artisan migrate
 php artisan db:seed
