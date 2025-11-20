@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Broadcasting
@@ -14,8 +13,7 @@ return [
     |
     */
 
-    'broadcasting' => [
-
+    "broadcasting" => [
         // 'echo' => [
         //     'broadcaster' => 'pusher',
         //     'key' => env('VITE_PUSHER_APP_KEY'),
@@ -27,7 +25,6 @@ return [
         //     'disableStats' => true,
         //     'encrypted' => true,
         // ],
-
     ],
 
     /*
@@ -40,6 +37,5 @@ return [
     |
     */
 
-    'default_filesystem_disk' => env('FILAMENT_FILESYSTEM_DISK', 'public'),
-
+    "default_filesystem_disk" => env("FILAMENT_FILESYSTEM_DISK", "public"),
 ];
