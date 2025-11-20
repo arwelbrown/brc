@@ -9,34 +9,14 @@ In all seriousness, the following setup method is what I used to get the site up
 
 Firstly, you'll need to set up docker on your machine. If you prefer docker desktop, go for it! I don't tend to use it however.
 
+Next, you'll need to install DDEV. You can do so <a href="https://ddev.readthedocs.io/en/stable/#installation">here</a>
+
 Once you have these set up, clone the project.
-
-We now need to create a shell function for entering the docker container we will be creating. To do this, follow these commands (I use bash, this might be different for you if you use zsh, or fish).
-
-```sh
-touch ~/.bash_functions
-nvim ~/.bash_functions
-```
-
-Write the following function in your .bash_functions file
-
-```sh                                      
-dockin() {
-  docker exec -it $1 bash
-}
-```
-Then add this to your .bashrc, or other equivalent;
-```sh
-source ~/.bash_functions
-```
-
-You'll now be able to enter the container from anywhere within your system by running dockin.
 
 Next, cd into the directory where the project is cloned, and run the following;
 
 ```sh
-docker compose build
-docker compose up -d
+ddev start
 ```
 
 Next, once the container has built, run:
