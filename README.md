@@ -3,9 +3,8 @@
 <h2 align="center">Broken Reality Comics</h2>
 
 ## Setup
-Welcome! I'd like to start by saying that I use Arch btw.
 
-In all seriousness, the following setup method is what I used to get the site up and running on Arch Linux - this will likely be similar on other linux distros but if you're on Mac or for some unspeakable reason, Windows... Good luck I guess?
+The following setup method is what I used to get the site up and running on Arch Linux - this will likely be similar on other linux distros but if you're on Mac or for some unspeakable reason, Windows... Good luck I guess?
 
 Firstly, you'll need to set up docker on your machine. If you prefer docker desktop, go for it! I don't tend to use it however.
 
