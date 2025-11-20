@@ -1,5 +1,5 @@
 <div class="modal fade" id="show_modal_{{ $book->id }}" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog bg-black">
+    <div class="modal-dialog bg-black border border-white">
         <div class="modal-content bg-black">
             <div class="modal-header">
                 <h5 class="modal-title text-white">{{ $book->name }}</h5>
