@@ -7,11 +7,9 @@ use Filament\Widgets\AccountWidget;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -26,30 +24,35 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->id('admin')
-            ->path('brc-admin')
+            ->id("admin")
+            ->path("brc-admin")
             ->login()
             ->colors([
-                'danger' => Color::Rose,
-                'gray' => Color::Gray,
-                'info' => Color::Blue,
-                'primary' => Color::Purple,
-                'success' => Color::Emerald,
-                'warning' => Color::Orange,
+                "danger" => Color::Rose,
+                "gray" => Color::Gray,
+                "info" => Color::Blue,
+                "primary" => Color::Purple,
+                "success" => Color::Emerald,
+                "warning" => Color::Orange,
             ])
-            ->font('Poppins')
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
-            ->pages([
-                Dashboard::class,
-            ])
-            ->brandName('Broken Reality Comics')
-            ->brandLogo(asset('storage/img/br_admin/brc_logo.webp'))
-            ->favicon(asset('storage/img/br_admin/brc_logo.webp'))
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
-                AccountWidget::class,
-            ])
+            ->font("Poppins")
+            ->discoverResources(
+                in: app_path("Filament/Resources"),
+                for: "App\\Filament\\Resources",
+            )
+            ->discoverPages(
+                in: app_path("Filament/Pages"),
+                for: "App\\Filament\\Pages",
+            )
+            ->pages([Dashboard::class])
+            ->brandName("Broken Reality Comics")
+            ->brandLogo(asset("storage/img/br_admin/brc_logo.webp"))
+            ->favicon(asset("storage/img/br_admin/brc_logo.webp"))
+            ->discoverWidgets(
+                in: app_path("Filament/Widgets"),
+                for: "App\\Filament\\Widgets",
+            )
+            ->widgets([AccountWidget::class])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -61,10 +64,7 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->authMiddleware([
-                Authenticate::class,
-            ])
-            ->spa()
-        ;
+            ->authMiddleware([Authenticate::class])
+            ->spa();
     }
 }
