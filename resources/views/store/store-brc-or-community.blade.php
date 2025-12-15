@@ -92,7 +92,7 @@
                                     </button>
                                 @endif
                                 @if (!empty($book->physical_price) && !empty($book->ejunkie_link_physical) && (int) $book->physical_available === 1)
-                                    <p style="font-size: 15px;">Physical: ${{ $book->physical_price }}</p>
+                                    <p class="text-white" style="font-size: 15px;margin-top: 1rem;">Physical: ${{ $book->physical_price }}</p>
                                     <button class="btn btn-light">
                                         <a href='{{ $book->ejunkie_link_physical }}' onclick='return EJEJC_lc(this);'
                                             target='ej_ejc' class='ec_ejc_thkbx'
