@@ -7,7 +7,6 @@ use App\Models\Book;
 use App\Models\Series;
 use App\DataProviders\eJunkie\EjProductDataProvider;
 use Illuminate\Contracts\View\View;
-use App\Helpers\AssetHelper;
 
 class StoreController extends Controller
 {
@@ -19,32 +18,13 @@ class StoreController extends Controller
     public function index(): View
     {
         $books = Book::where("active", 1)->orderByDesc("id")->paginate(24);
-        // set books asset paths
-        foreach ($books as $book) {
-            $book->img_string = AssetHelper::getPublicAssetPath(
-                $book->img_string,
-            );
-        }
 
         $featuredBooks = Book::where("active", true)
             ->where("featured_product", true)
             ->orderByDesc("id")
             ->get();
 
-        foreach ($featuredBooks as $featuredBook) {
-            $featuredBook->img_string = AssetHelper::getPublicAssetPath(
-                $featuredBook->img_string,
-            );
-        }
-
-        $fetchCanons = Canon::all()->where("active", 1);
-        $canons = [];
-        foreach ($fetchCanons as $canon) {
-            $canon->img_string = AssetHelper::getPublicAssetPath(
-                $canon->img_string,
-            );
-            $canons[] = $canon;
-        }
+        $canons = Canon::all()->where("active", 1);
 
         return view("store.store", [
             "canons" => $canons,
@@ -56,38 +36,17 @@ class StoreController extends Controller
     public function canon(string $slug): View
     {
         $canon = Canon::where("slug", "=", $slug)->get()->first();
+        dd($canon->bg_img_string);
         $seriesInCanon = $canon->series()->get();
 
-        $canon->img_string = AssetHelper::getPublicAssetPath(
-            $canon->img_string,
-        );
-
-        $canon->bg_img_string = AssetHelper::getPublicAssetPath(
-            $canon->bg_img_string ?? $canon->img_string,
-        );
-
-        $formattedSeries = [];
-        foreach ($seriesInCanon as $series) {
-            $series->series_banner = AssetHelper::getPublicAssetPath(
-                $series->series_banner,
-            );
-            $formattedSeries[] = $series;
-        }
-
         $books = [];
-
         foreach ($seriesInCanon as $series) {
-            foreach ($series->books()->get() as $book) {
-                $book->img_string = AssetHelper::getPublicAssetPath(
-                    $book->img_string,
-                );
-                $books[] = $book;
-            }
+            $books[] = $series->books()->get();
         }
 
         return view("store.store-canon", [
             "canon" => $canon,
-            "seriesInCanon" => $formattedSeries,
+            "seriesInCanon" => $series,
             "books" => $books,
         ]);
     }
@@ -105,26 +64,9 @@ class StoreController extends Controller
         $books = $series->books()->paginate(24);
         $charactersInSeries = $series->characters()->get()->all();
 
-        // set book asset paths
-        foreach ($books as $book) {
-            $book->img_string = AssetHelper::getPublicAssetPath(
-                $book->img_string,
-            );
-        }
-
-        // set series asset paths
-        $series->series_banner = AssetHelper::getPublicAssetPath(
-            $series->series_banner,
-        );
-
         $characters = [];
 
         foreach ($charactersInSeries as $character) {
-            // set asset paths
-            $character->img_string = AssetHelper::getPublicAssetPath(
-                $character->img_string,
-            );
-
             // link other series
             if (!empty($character->appearances)) {
                 $showsUpIn = $character->appearances;

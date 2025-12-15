@@ -26,81 +26,71 @@ class SubmissionResource extends Resource
 {
     protected static ?string $model = Submission::class;
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-inbox';
-    protected static string | \UnitEnum | null $navigationGroup = 'Product Management';
+    protected static string|\BackedEnum|null $navigationIcon = "heroicon-o-inbox";
+    protected static string|\UnitEnum|null $navigationGroup = "Product Management";
 
     public static function form(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                Section::make()
-                    ->schema([
-                        TextInput::make('name')
-                            ->autofocus(),
-                        TextInput::make('email')
-                            ->autofocus(),
-                        DateTimePicker::make('created_at')
-                            ->autofocus()
-                            ->label('Uploaded At')
-                            ->disabled(),
-                        FileUpload::make('file_name')
-                            ->autofocus()
-                            ->directory('submissions')
-                            ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
-                                return $file->getClientOriginalName();
-                            })
-                            ->columnSpanFull()
-                            ->label('Uploaded File')
-                            ->downloadable()
-                            ->previewable(),
-                        Toggle::make('approved'),
-                    ])
-            ]);
+        return $schema->components([
+            Section::make()->schema([
+                TextInput::make("name")->autofocus(),
+                TextInput::make("email")->autofocus(),
+                DateTimePicker::make("created_at")
+                    ->autofocus()
+                    ->label("Uploaded At")
+                    ->disabled(),
+                FileUpload::make("file_name")
+                    ->autofocus()
+                    ->directory("submissions")
+                    ->getUploadedFileNameForStorageUsing(
+                        fn(
+                            TemporaryUploadedFile $file,
+                        ): string => $file->getClientOriginalName(),
+                    )
+                    ->columnSpanFull()
+                    ->label("Uploaded File")
+                    ->downloadable()
+                    ->previewable(),
+                Toggle::make("approved"),
+            ]),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('email')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('created_at')->dateTime('d-M-Y'),
-                IconColumn::make('approved')->boolean(),
+                TextColumn::make("name")->searchable()->sortable(),
+                TextColumn::make("email")->searchable()->sortable(),
+                TextColumn::make("created_at")->dateTime("d-M-Y"),
+                IconColumn::make("approved")->boolean(),
             ])
             ->filters([
                 //
             ])
-            ->recordActions([
-                EditAction::make(),
-            ])
+            ->recordActions([EditAction::make()])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                BulkActionGroup::make([DeleteBulkAction::make()]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
-    
+
     public static function getPages(): array
     {
         return [
-            'index' => ListSubmissions::route('/'),
-            'edit' => EditSubmission::route('/{record}/edit'),
+            "index" => ListSubmissions::route("/"),
+            "edit" => EditSubmission::route("/{record}/edit"),
         ];
-    }    
+    }
 
-  public static function shouldRegisterNavigation(): bool
-  {
-    return auth()->user()->hasRole('super-admin');
-  }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()->hasRole("super-admin");
+    }
 }

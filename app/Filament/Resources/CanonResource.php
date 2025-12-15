@@ -50,7 +50,7 @@ class CanonResource extends Resource
                     ->columnSpan(2)
                     ->required()
                     ->default("")
-                    ->directory("public/img")
+                    ->directory("img")
                     ->getUploadedFileNameForStorageUsing(
                         fn(TemporaryUploadedFile $file): string => "canons" .
                             "/" .
@@ -60,6 +60,7 @@ class CanonResource extends Resource
                 FileUpload::make("bg_img_string")
                     ->label("Background Image")
                     ->columnSpan(2)
+                    ->directory("img")
                     ->getUploadedFileNameForStorageUsing(
                         fn(TemporaryUploadedFile $file): string => "canons" .
                             "/" .

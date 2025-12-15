@@ -32,132 +32,132 @@ class UploadResource extends Resource
 {
     protected static ?string $model = Upload::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Book Management';
+    protected static string|\UnitEnum|null $navigationGroup = "Book Management";
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-arrow-up-on-square';
+    protected static string|\BackedEnum|null $navigationIcon = "heroicon-o-arrow-up-on-square";
 
     public static function form(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                Section::make('New Book')
-                    ->schema([
-                        TextInput::make('book_title')
-                            ->required()
-                            ->autofocus(),
-                        Textarea::make('book_summary')
-                            ->required()
-                            ->autofocus(),
-                        FileUpload::make('book_script')
-                            ->required()
-                            ->autofocus()
-                            ->directory('/uploads')
-                            ->getUploadedFileNameForStorageUsing(
-                                fn (TemporaryUploadedFile $file): string =>'upload_' . uniqid() . '.' . $file->getClientOriginalExtension()
-                            )
-                            ->downloadable()
-                            ->previewable()
-                    ]),
-                Section::make('Upload Status')
-                    ->schema([
-                        Select::make('status')
-                            ->autofocus()
-                            ->live(onBlur: true)
-                            ->options([
-                                'Pending' => UploadStatusEnum::PENDING->value,
-                                'Approved' => UploadStatusEnum::APPROVED->value,
-                                'Rejected' => UploadStatusEnum::REJECTED->value,
-                            ])
-                            ->default(UploadStatusEnum::PENDING)
-                            ->disabled(fn () => !auth()->user()->hasRole('admin')),
-                        Textarea::make('rejection_reason')
-                            ->autofocus()
-                            ->disabled(fn () => !auth()->user()->hasRole('admin')),
-                    ])
-                    ->hidden(function(Get $get) {
-                        if (auth()->user()->hasRole('admin')) {
-                            return false;
-                        }
+        return $schema->components([
+            Section::make("New Book")->schema([
+                TextInput::make("book_title")->required()->autofocus(),
+                Textarea::make("book_summary")->required()->autofocus(),
+                FileUpload::make("book_script")
+                    ->required()
+                    ->autofocus()
+                    ->directory("/uploads")
+                    ->getUploadedFileNameForStorageUsing(
+                        fn(TemporaryUploadedFile $file): string => "upload_" .
+                            uniqid() .
+                            "." .
+                            $file->getClientOriginalExtension(),
+                    )
+                    ->downloadable()
+                    ->previewable(),
+            ]),
+            Section::make("Upload Status")
+                ->schema([
+                    Select::make("status")
+                        ->autofocus()
+                        ->live(onBlur: true)
+                        ->options([
+                            "Pending" => UploadStatusEnum::PENDING->value,
+                            "Approved" => UploadStatusEnum::APPROVED->value,
+                            "Rejected" => UploadStatusEnum::REJECTED->value,
+                        ])
+                        ->default(UploadStatusEnum::PENDING)
+                        ->disabled(fn() => !auth()->user()->hasRole("admin")),
+                    Textarea::make("rejection_reason")
+                        ->autofocus()
+                        ->disabled(fn() => !auth()->user()->hasRole("admin")),
+                ])
+                ->hidden(function (Get $get) {
+                    if (auth()->user()->hasRole("admin")) {
+                        return false;
+                    }
 
-                        if ($get('status') != UploadStatusEnum::REJECTED->value) {
-                            return true;
-                        }
-                    }),
-                Section::make('Final Upload')
-                    ->schema([
-                        FileUpload::make('book_pdf')
-                            ->live(onBlur: true)
-                            ->autofocus()
-                            ->disabled(function(Get $get) {
-                                if (auth()->user()->hasRole('admin')) {
-                                    return false;
-                                }
+                    if ($get("status") != UploadStatusEnum::REJECTED->value) {
+                        return true;
+                    }
+                }),
+            Section::make("Final Upload")
+                ->schema([
+                    FileUpload::make("book_pdf")
+                        ->live(onBlur: true)
+                        ->autofocus()
+                        ->disabled(function (Get $get) {
+                            if (auth()->user()->hasRole("admin")) {
+                                return false;
+                            }
 
-                                if ($get('status') != UploadStatusEnum::APPROVED->value) {
-                                    return true;
-                                }
-                            })
-                    ])
-                    ->hidden(function(Get $get) {
-                        if (auth()->user()->hasRole('admin')) {
-                            return false;
-                        }
+                            if (
+                                $get("status") !=
+                                UploadStatusEnum::APPROVED->value
+                            ) {
+                                return true;
+                            }
+                        }),
+                ])
+                ->hidden(function (Get $get) {
+                    if (auth()->user()->hasRole("admin")) {
+                        return false;
+                    }
 
-                        if ($get('status') != UploadStatusEnum::APPROVED->value) {
-                            return true;
-                        }
-                    })
-            ]);
+                    if ($get("status") != UploadStatusEnum::APPROVED->value) {
+                        return true;
+                    }
+                }),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('book_title'),
-                TextColumn::make('user_id')
-                    ->label('User Email')
-                    ->formatStateUsing(fn (string $state): string => User::where('id', $state)->first()->email),
-                TextColumn::make('status')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'Rejected' => 'danger',
-                        'Pending' => 'info',
-                        'Approved' => 'success'
-                    }),
+                TextColumn::make("book_title"),
+                TextColumn::make("user_id")
+                    ->label("User Email")
+                    ->formatStateUsing(
+                        fn(string $state): string => User::where(
+                            "id",
+                            $state,
+                        )->first()->email,
+                    ),
+                TextColumn::make("status")->badge()->color(
+                    fn(string $state): string => match ($state) {
+                        "Rejected" => "danger",
+                        "Pending" => "info",
+                        "Approved" => "success",
+                    },
+                ),
             ])
             ->filters([
                 //
             ])
-            ->recordActions([
-                EditAction::make(),
-            ])
+            ->recordActions([EditAction::make()])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                BulkActionGroup::make([DeleteBulkAction::make()]),
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => ListUploads::route('/'),
-            'create' => CreateUpload::route('/create'),
-            'edit' => EditUpload::route('/{record}/edit'),
+            "index" => ListUploads::route("/"),
+            "create" => CreateUpload::route("/create"),
+            "edit" => EditUpload::route("/{record}/edit"),
         ];
     }
 
-  public static function shouldRegisterNavigation(): bool
-  {
-    return auth()->user()->hasRole('super-admin');
-  }
-
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()->hasRole("super-admin");
+    }
 }

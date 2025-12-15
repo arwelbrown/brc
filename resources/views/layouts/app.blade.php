@@ -24,7 +24,7 @@
     </script>
     @endverbatim
 
-    <link rel="icon" type="image/png" sizes="1700x1525" href="{{ url('storage/img/br_admin/brc_logo.webp') }}">
+    <link rel="icon" type="image/png" sizes="1700x1525" href="{{ url('img/br_admin/brc_logo.webp') }}">
     <link rel="manifest" href="{{ url('build/manifest.json') }}">
 
     <!-- Fonts -->
@@ -76,8 +76,8 @@
           BROKEN REALITY COMICS
         </a>
         <button
-          data-bs-toggle="collapse" 
-          class="navbar-toggler text-start" 
+          data-bs-toggle="collapse"
+          class="navbar-toggler text-start"
           data-bs-target="#navcol-2"
           style="border-color: rgb(0,0,0);"
         >
@@ -93,7 +93,7 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item text-end">
               <a
-                class="nav-link hover" 
+                class="nav-link hover"
                 href="/store"
                 style="color: var(--bs-white);font-size: 18px;font-family: 'Open Sans', sans-serif;">
                 Comic Book Store
@@ -110,9 +110,9 @@
             <li class="nav-item text-end"></li>
             <li class="nav-item dropdown">
               <a
-                class="dropdown-toggle nav-link text-end" 
+                class="dropdown-toggle nav-link text-end"
                 aria-expanded="false"
-                data-bs-toggle="dropdown" 
+                data-bs-toggle="dropdown"
                 href="#"
                 style="font-size: 18px;font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);"
               >
@@ -123,14 +123,14 @@
                 style="font-size: 13px;background: rgb(0,0,0);"
               >
                   <a
-                    class="dropdown-item text-white" 
+                    class="dropdown-item text-white"
                     href="/about-us"
                     style="font-family: 'Open Sans', sans-serif;"
                 >
                   About Us
                 </a>
                 <a
-                  class="dropdown-item text-white" 
+                  class="dropdown-item text-white"
                   href="/brc-newsletter"
                   style="font-family: 'Open Sans', sans-serif;"
                 >
@@ -178,7 +178,7 @@
             </a>
           </div>
         </div>
-        <div 
+        <div
           class="col-5 col-sm-5 col-md-3 col-lg-3 col-xl-3 col-xxl-2 offset-md-1 offset-lg-1 offset-xl-1 align-self-center item"
           style="font-family: Lato, sans-serif;color: rgb(255,255,255);"
         >

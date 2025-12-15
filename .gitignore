@@ -3,7 +3,7 @@ node_modules
 .php-cs-fixer.cache
 
 ### composer ###
-vendor/*
+vendor
 
 ### db ###
 storage/db-data
@@ -14,14 +14,12 @@ public/hot
 
 ### envs ###
 .env.local
-.env.uat
 .env
 .env.prod
 
 ### symlinks ###
-public/storage/submissions
-public/storage/img
-public/storage/newsletters
+public/submissions
+public/img
+public/newsletters
 
 artisan
-_artisan

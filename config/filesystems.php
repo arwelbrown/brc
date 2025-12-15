@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Filesystem Disk
@@ -13,7 +12,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'local'),
+    "default" => env("FILESYSTEM_DISK", "local"),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,39 +27,32 @@ return [
     |
     */
 
-    'disks' => [
-
-        'local' => [
-            'driver' => 'local',
-            'root' => storage_path('app'),
-            'throw' => false,
+    "disks" => [
+        "local" => [
+            "driver" => "local",
+            "root" => storage_path("app"),
+            "throw" => false,
         ],
-
-        'public' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL') . '/',
-            'visibility' => 'public',
-            'throw' => false,
+        "public" => [
+            "driver" => "local",
+            "root" => storage_path("app/public"),
+            "url" => env("APP_URL") . "/",
+            "visibility" => "public",
+            "throw" => false,
         ],
-
-        'img' => [
-            'driver' => 'local',
-            'root' => storage_path('app/img'),
-            'url' => env('APP_URL' . '/img'),
-            'visibility' => 'public',
-            'throw' => false,
-        ],
-        's3' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'throw' => false,
+        "s3" => [
+            "driver" => "s3",
+            "key" => env("AWS_ACCESS_KEY_ID"),
+            "secret" => env("AWS_SECRET_ACCESS_KEY"),
+            "region" => env("AWS_DEFAULT_REGION"),
+            "bucket" => env("AWS_BUCKET"),
+            "url" => env("AWS_URL"),
+            "endpoint" => env("AWS_ENDPOINT"),
+            "use_path_style_endpoint" => env(
+                "AWS_USE_PATH_STYLE_ENDPOINT",
+                false,
+            ),
+            "throw" => false,
         ],
     ],
 
@@ -75,9 +67,9 @@ return [
     |
     */
 
-    'links' => [
-        public_path('storage/img') => storage_path('app/public/img'),
-        public_path('storage/submissions') => storage_path('app/public/submissions'),
-        public_path('storage/newsletters') => storage_path('app/public/newsletters')
+    "links" => [
+        public_path("img") => storage_path("app/public/img"),
+        public_path("submissions") => storage_path("app/public/submissions"),
+        public_path("newsletters") => storage_path("app/public/newsletters"),
     ],
 ];

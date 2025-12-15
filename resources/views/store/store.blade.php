@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <section class="py-4 py-xl-5 text-center"
-        style="background: linear-gradient(rgba(9,0,34,0.75) 0%, #000000 100%), url({{ url('storage/img/br_admin/brc_wallpaper.webp') }}) center / cover no-repeat;">
+        style="background: linear-gradient(rgba(9,0,34,0.75) 0%, #000000 100%), url({{ asset('img/br_admin/brc_wallpaper.webp') }}) center / cover no-repeat;">
         <h1 data-aos="fade-up"
             style="margin-top: 80px;font-family: Anton, sans-serif;color: rgb(255,255,255);font-size: 50PX;margin-bottom: 30px;">
             EXPLORE THE GREAT BEYOND!
