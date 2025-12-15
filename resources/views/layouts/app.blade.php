@@ -24,7 +24,7 @@
     </script>
     @endverbatim
 
-    <link rel="icon" type="image/png" sizes="1700x1525" href="{{ url('img/br_admin/brc_logo.webp') }}">
+    <link rel="icon" type="image/png" sizes="1700x1525" href="{{ asset('img/br_admin/brc_logo.webp') }}">
     <link rel="manifest" href="{{ url('build/manifest.json') }}">
 
     <!-- Fonts -->
