@@ -42,7 +42,8 @@ npm run build
 We should be good to go! The project will not load with images however, so you'll need to get them directly from the server.
 
 ## Database
-As part of the sail setup, you will create a MySQL database, running on port 3306 of your local machine. You should be able to download any SQL client, and connect using the information in the .env file.
+The DDEV setup stage will create a MySQL database. You should be able to download any SQL client, and connect using the information in the .env file. To find out which port to use to connect the database, run 
+`ddev describe`
 
 #### Populating the database
 In the project root directory, run the following commands;
