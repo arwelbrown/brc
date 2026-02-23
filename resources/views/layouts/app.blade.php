@@ -213,7 +213,7 @@
         class="lead text-center"
         style="color: rgb(187, 187, 187);font-size: 13px; margin-top: 20px; font-family: 'Open Sans', sans-serif;"
       >
-        Broken Reality Comics © 2025
+        Broken Reality Comics © 2026
       </p>
     </div>
   </footer>
