@@ -198,7 +198,7 @@
           </ul>
         </div>
         <div class="col-lg-2 col-xl-2 offset-lg-1 offset-xl-0 align-self-center item social">
-          <a href="https://www.facebook.com/ThExpanse1/">
+          <a href="https://www.facebook.com/profile.php?id=61586281311620&mibextid=wwXIfr&rdid=jRODqrVoSNEYOTDB&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16FQirMJms%2F%3Fmibextid%3DwwXIfr">
             <i class="icon ion-social-facebook"></i>
           </a>
           <a href="https://www.instagram.com/brokenrealitycomics/">
