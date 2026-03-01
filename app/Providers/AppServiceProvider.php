@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Filament\Facades\Filament;
 
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -26,9 +25,6 @@ class AppServiceProvider extends ServiceProvider
         Model::unguard();
         Paginator::useBootstrap();
 
-        Filament::serving(function () {
-            // Using Vite
-            Filament::registerViteTheme('resources/css/filament.css');
-        });
+        Filament::serving(function () {});
     }
 }

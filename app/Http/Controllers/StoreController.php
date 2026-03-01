@@ -36,17 +36,19 @@ class StoreController extends Controller
     public function canon(string $slug): View
     {
         $canon = Canon::where("slug", "=", $slug)->get()->first();
-        dd($canon->bg_img_string);
         $seriesInCanon = $canon->series()->get();
 
         $books = [];
         foreach ($seriesInCanon as $series) {
-            $books[] = $series->books()->get();
+            $booksInSeries = $series->books()->get();
+            foreach ($booksInSeries as $book) {
+                $books[] = $book;
+            }
         }
 
         return view("store.store-canon", [
             "canon" => $canon,
-            "seriesInCanon" => $series,
+            "seriesInCanon" => $seriesInCanon,
             "books" => $books,
         ]);
     }

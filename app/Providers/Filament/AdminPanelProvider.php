@@ -35,6 +35,7 @@ class AdminPanelProvider extends PanelProvider
                 "success" => Color::Emerald,
                 "warning" => Color::Orange,
             ])
+            ->viteTheme("resources/css/filament.css")
             ->font("Poppins")
             ->discoverResources(
                 in: app_path("Filament/Resources"),
@@ -46,8 +47,8 @@ class AdminPanelProvider extends PanelProvider
             )
             ->pages([Dashboard::class])
             ->brandName("Broken Reality Comics")
-            ->brandLogo(asset("storage/img/br_admin/brc_logo.webp"))
-            ->favicon(asset("storage/img/br_admin/brc_logo.webp"))
+            ->brandLogo(asset("img/br_admin/brc_logo.webp"))
+            ->favicon(asset("img/br_admin/brc_logo.webp"))
             ->discoverWidgets(
                 in: app_path("Filament/Widgets"),
                 for: "App\\Filament\\Widgets",

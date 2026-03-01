@@ -2,13 +2,13 @@
 @section('content')
 <section class="py-2" style="border-color: rgb(0,0,0);background: #000000;">
     <div class="container-fluid">
-        <div 
+        <div
             class="text-center rounded border-0 d-flex flex-column justify-content-center align-items-center p-4 py-5"
-            style="background: linear-gradient(rgba(36,0,52,0.62) 0%, rgb(0,0,0) 88%), url({{ url('storage/img/br_admin/BRC_HOME_PAGE_BANNER.webp') }}) center / cover no-repeat;"
+            style="background: linear-gradient(rgba(36,0,52,0.62) 0%, rgb(0,0,0) 88%), url({{asset('img/br_admin/BRC_HOME_PAGE_BANNER.webp') }}) center / cover no-repeat;"
         >
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-9 col-md-7 col-lg-5 align-self-center" data-aos="fade-up">
-                    <img class="img-fluid" data-aos="fade-up" src="{{ asset('storage/img/br_admin/brc_logo.webp') }}" width="80%" style="margin-bottom: 15px;margin-top: 15px;">
+                    <img class="img-fluid" data-aos="fade-up" src="{{ asset('img/br_admin/brc_logo.webp') }}" width="80%" style="margin-bottom: 15px;margin-top: 15px;">
                     <p class="text-center" data-aos="fade-down" style="font-family: Anton, sans-serif;color: rgb(255,255,255);font-size: 40px;letter-spacing: 1px;margin-bottom: 0px;">JOIN THE NEW REALITY!</p>
                     <p class="text-center" data-aos="fade-down" style="font-family: 'Open Sans', sans-serif;color: rgb(255,255,255);font-size: 30px;letter-spacing: 1px;">#BRUNIVERSE</p>
                 </div>
@@ -40,8 +40,8 @@
                 <div class="col-md-6 align-self-center" data-aos="fade-up">
                     <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="6000" data-bs-pause="false" id="carousel-1">
                         <div class="carousel-inner">
-                            <div class="carousel-item active"><img class="img-fluid w-100 d-block" src="{{ url('storage/img/br_admin/Home_Page_Banner_1.webp') }}" alt="Slide Image"></div>
-                            <div class="carousel-item"><img class="img-fluid w-100 d-block" src="{{ url('storage/img/br_admin/Home_Page_Banner_3.webp') }}" alt="Slide Image"></div>
+                            <div class="carousel-item active"><img class="img-fluid w-100 d-block" src="{{ asset('img/br_admin/Home_Page_Banner_1.webp') }}" alt="Slide Image"></div>
+                            <div class="carousel-item"><img class="img-fluid w-100 d-block" src="{{ asset('img/br_admin/Home_Page_Banner_3.webp') }}" alt="Slide Image"></div>
                         </div>
                         <div>
                           <a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev">

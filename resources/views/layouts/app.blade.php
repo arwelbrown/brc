@@ -49,16 +49,9 @@
     <link rel="stylesheet" href="{{ url('css/Newsletter-Subscription-Form.css') }}">
     <link rel="stylesheet" href="{{ url('css/Simple-Slider-swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ url('css/Team-Clean.css') }}">
-
-    @if ($_ENV['APP_ENVIRONMENT'] === 'dev')
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-        <!-- Scripts -->
-    @else
-        <link rel="stylesheet" href="{{ url('build/assets/filament-e3b0c442.css') }}">
-        <link rel="stylesheet" href="{{ url('build/assets/app-e422d0ee.css') }}">
-        <!-- Scripts -->
-        <script src="{{ url('build/assets/app-4ed993c7.js') }}"></script>
-    @endif
+    <link rel="stylesheet" href="{{ url('build/assets/app-4d3eff2.css') }}">
+    <link rel="stylesheet" href="{{ url('build/assets/filament-62269d63.css') }}">
+    <script src="{{ url('build/assets/app-4ed993c7.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous">
     </script>
@@ -174,7 +167,7 @@
         <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2 align-self-center item">
           <div>
             <a href="/">
-              <img class="img-fluid" src="{{ url('storage/img/br_admin/brc_logo.webp') }}" width="" alt="BRC Hex logo">
+              <img class="img-fluid" src="{{ asset('img/br_admin/brc_logo.webp') }}" width="" alt="BRC Hex logo">
             </a>
           </div>
         </div>
