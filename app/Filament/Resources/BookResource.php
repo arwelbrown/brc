@@ -93,7 +93,7 @@ class BookResource extends Resource
                                         TagsInput::make("series.letterers"),
                                         Select::make("universe_id")
                                             ->relationship(
-                                                "univhttp://localhost/public/img/series_theemeraldcoyote/covers/EC_1_Cover.webperse",
+                                                "universe",
                                                 "universe_name",
                                             )
                                             ->required(),
