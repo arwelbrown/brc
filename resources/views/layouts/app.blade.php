@@ -49,9 +49,9 @@
     <link rel="stylesheet" href="{{ url('css/Newsletter-Subscription-Form.css') }}">
     <link rel="stylesheet" href="{{ url('css/Simple-Slider-swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ url('css/Team-Clean.css') }}">
-    <link rel="stylesheet" href="{{ url('build/assets/app-4d3eff2.css') }}">
-    <link rel="stylesheet" href="{{ url('build/assets/filament-62269d63.css') }}">
-    <script src="{{ url('build/assets/app-4ed993c7.js') }}"></script>
+    <link rel="stylesheet" href="{{ url('build/assets/app-E_Pc9yGP.css') }}">
+    <link rel="stylesheet" href="{{ url('build/assets/filament-DI3mTRFi.css') }}">
+    <script src="{{ url('build/assets/app-BLa98ks6.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous">
     </script>
