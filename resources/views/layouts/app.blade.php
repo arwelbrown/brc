@@ -6,7 +6,7 @@
     <title>Broken Reality Comics</title>
     <link rel="canonical" href="https://broken-reality-comics.com/">
     <meta property="og:url" content="https://broken-reality-comics.com/">
-    <meta name="twitter:image" content="{{ url('storage/img/br_admin/brc_logo.webp') }}">
+    <meta name="twitter:image" content="{{ url('img/br_admin/brc_logo.webp') }}">
     <meta name="description" content="Join The New Reality | #bruniverse">
     <meta property="og:type" content="website">
 
@@ -51,7 +51,7 @@
     <link rel="stylesheet" href="{{ url('css/Team-Clean.css') }}">
     <link rel="stylesheet" href="{{ url('build/assets/app-a04d4ed0.css') }}">
     <link rel="stylesheet" href="{{ url('build/assets/filament-27f842af.css') }}">
-    <script src="{{ url('build/assets/app-4ed993c7.css') }}"></script>
+    <script src="{{ url('build/assets/app-4ed993c7.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous">
     </script>

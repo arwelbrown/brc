@@ -23,18 +23,23 @@ Next, once the container has built, run:
 ```sh
 ddev describe
 ```
+
 To verify that it's working.
 
 Now, we need to ssh into the container using this command:
+
 ```sh
 ddev ssh
 ```
+
 Once we're in the container, we now need to run
+
 ```sh
 composer install
 ```
 
 Next, exit the container, and run
+
 ```sh
 npm run build
 ```
@@ -42,14 +47,24 @@ npm run build
 We should be good to go! The project will not load with images however, so you'll need to get them directly from the server.
 
 ## Database
-The DDEV setup stage will create a MySQL database. You should be able to download any SQL client, and connect using the information in the .env file. To find out which port to use to connect the database, run 
+
+The DDEV setup stage will create a MySQL database. You should be able to download any SQL client, and connect using the information in the .env file. To find out which port to use to connect the database, run
 `ddev describe`
 
 #### Populating the database
+
 In the project root directory, run the following commands;
+
 ```sh
 ddev ssh
 
 php artisan migrate
 php artisan db:seed
+```
+
+This will populate the database with seed data. If you want an SQL backup, grab that from Arwel or from the server, and run the following;
+
+```sh
+ddev exec import-db --database=db --file=~/path/to/your/download
+
 ```

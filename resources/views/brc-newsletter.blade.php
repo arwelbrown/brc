@@ -3,7 +3,7 @@
     <div class="container-fluid text-center" style="margin-top: 20px;">
         <div class="row g-0">
             <div class="col-md-6 col-lg-12">
-                <div data-bss-parallax-bg="true" style="height: 500px;background: linear-gradient(rgba(124,104,241,0.36), #000000 109%), url({{ url('storage/img/br_admin/brc_wallpaper.webp') }}) center / cover no-repeat;">
+                <div data-bss-parallax-bg="true" style="height: 500px;background: linear-gradient(rgba(124,104,241,0.36), #000000 109%), url({{ url('img/br_admin/brc_wallpaper.webp') }}) center / cover no-repeat;">
                     <div class="row g-0 mb-2" style="margin-top: 20px;">
                         <div class="col-8 col-sm-10 col-md-9 col-lg-7 col-xl-7 text-center mx-auto" style="color: rgb(49, 52, 55);">
                             <h2 class="display-6 fw-bold" data-aos="fade-up" style="color: rgb(255,255,255);font-family: Anton, sans-serif;letter-spacing: 2px;margin-top: 100px;">SUBSCRIBE TO THE BRC NEWSLETTER</h2>
