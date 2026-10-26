@@ -115,7 +115,6 @@ class BookResource extends Resource
                             ->separator()
                             ->columnSpan(1),
                         TextInput::make("ejunkie_link_digital")
-                            ->required()
                             ->maxLength(255)
                             ->label("EJunkie Digital Link")
                             ->columnSpan(2)
@@ -129,7 +128,7 @@ class BookResource extends Resource
                             )
                             ->nullable()
                             ->maxLength(255)
-                            ->label("Ejunkie Physical Link")
+                            ->label("EJunkie Physical Link")
                             ->url()
                             ->columnSpan(2)
                             ->required(
@@ -144,7 +143,6 @@ class BookResource extends Resource
                             ->maxLength(2000),
                         TextInput::make("digital_price")
                             ->numeric()
-                            ->required()
                             ->columnSpan(1),
                         TextInput::make("physical_price")
                             ->reactive()

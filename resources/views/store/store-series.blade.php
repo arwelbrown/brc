@@ -31,7 +31,7 @@
                         @if (!empty($characters) && count($characters) > 0)
                             <li class="nav-item" role="presentation">
                               <a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;background: rgba(255,255,255,0);">
-                                <strong>Character Bio</strong>
+                                <strong>Character Bios</strong>
                               </a>
                             </li>
                         @endif

@@ -87,7 +87,6 @@ class BooksRelationManager extends RelationManager
                         ->separator()
                         ->columnSpan(1),
                     TextInput::make('ejunkie_link_digital')
-                        ->required()
                         ->maxLength(255)
                         ->label('EJunkie Digital Link')
                         ->columnSpan(2)
@@ -99,7 +98,7 @@ class BooksRelationManager extends RelationManager
                         )
                         ->nullable()
                         ->maxLength(255)
-                        ->label('Ejunkie Physical Link')
+                        ->label('EJunkie Physical Link')
                         ->url()
                         ->columnSpan(2)
                         ->required(fn (Get $get) => ! empty($get('physical_price')) ? true : false),
